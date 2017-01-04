@@ -18,7 +18,7 @@ public class Facade {
 		this.utilisateurs = new ArrayList<Utilisateur>();
 	}
 	
-	public void ajouterUtilisateur(String nom, String prenom, String mail, String pseudo, String mdp) {
+	public void ajouterUtilisateur(String pseudo, String mdp) {
 		Utilisateur user = new Utilisateur();
 		user.setPseudo(pseudo);
 		user.setMdp(mdp);

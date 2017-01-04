@@ -41,18 +41,15 @@ public class Projet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String op = request.getParameter("op");
-		String nom = request.getParameter("nom");
-		String prenom = request.getParameter("prenom");
-		String mail = request.getParameter("mail");
 		String pseudo = request.getParameter("pseudo");
 		String mdp = request.getParameter("mdp");
 		switch (op) {
-		case "con":
+		case "Connexion":
 			request.setAttribute("utilisateur", facade.getUtilisateur(pseudo));
 			request.getRequestDispatcher("compte.jsp").forward(request, response);
 			break;
 		case "Inscription":
-			facade.ajouterUtilisateur(nom, prenom, mail, pseudo, mdp);
+			facade.ajouterUtilisateur(pseudo, mdp);
 			request.getRequestDispatcher("accueil.html").forward(request, response);
 			break;
 		}
