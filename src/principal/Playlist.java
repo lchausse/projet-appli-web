@@ -56,4 +56,8 @@ public class Playlist {
 	public void setMotsClefs(List<String> motsClefs) {
 		this.motsClefs = motsClefs;	
 	}
+	
+	public addUtilisateur(Utilisateur user) {
+		this.utilisateurs.add(user);
+	}
 }
