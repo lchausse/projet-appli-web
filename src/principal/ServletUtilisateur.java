@@ -43,6 +43,7 @@ public class ServletUtilisateur extends HttpServlet {
 		String op = request.getParameter("op");
 		String pseudo = request.getParameter("pseudo");
 		String mdp = request.getParameter("mdp");
+		String confirmationMdp = request.getParameter("mdp2");
 		switch (op) {
 		case "Connexion":
 			boolean connexionPossible = facadeUtilisateur.seConnecter(pseudo, mdp);
@@ -54,8 +55,12 @@ public class ServletUtilisateur extends HttpServlet {
 			}
 			break;
 		case "Inscription":
-			facadeUtilisateur.ajouterUtilisateur(pseudo, mdp);
-			request.getRequestDispatcher("accueil.html").forward(request, response);
+			boolean compteCree = facadeUtilisateur.ajouterUtilisateur(pseudo, mdp, confirmationMdp);
+			if (compteCree) {
+				request.getRequestDispatcher("accueil.html").forward(request, response);
+			} else {
+				request.getRequestDispatcher("creerCompte.html").forward(request, response);
+			}
 			break;
 		}
 	}

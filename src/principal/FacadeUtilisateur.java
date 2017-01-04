@@ -21,7 +21,7 @@ public class FacadeUtilisateur {
 	public boolean ajouterUtilisateur(String pseudo, String mdp, String confirmationMdp) {
 		boolean compteCree = false;
 
-		if (mdp == confirmationMdp && getUtilisateur(pseudo) == null ) {
+		if (mdp.equals(confirmationMdp) && getUtilisateur(pseudo) == null ) {
 			Utilisateur user = new Utilisateur();
 			user.setPseudo(pseudo);
 			user.setMdp(mdp);
@@ -43,7 +43,7 @@ public class FacadeUtilisateur {
 	}
 
 	public void ajouterPlayList(String pseudo, Playlist playlist) {
-		this.getUtilisateur(pseudo).addPlaylist(playlist);
+//		this.getUtilisateur(pseudo).addPlaylist(playlist);
 	}
 
 	public boolean seConnecter(String pseudo, String mdp) {
