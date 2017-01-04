@@ -18,14 +18,14 @@ public class Projet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	@EJB
-	private Facade facade;
+	private FacadeUtilisateur facadeUtilisateur;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
     public Projet() {
         super();
-        this.facade = new Facade();
+        this.facadeUtilisateur = new FacadeUtilisateur();
     }
 
 	/**
@@ -45,11 +45,11 @@ public class Projet extends HttpServlet {
 		String mdp = request.getParameter("mdp");
 		switch (op) {
 		case "Connexion":
-			request.setAttribute("utilisateur", facade.getUtilisateur(pseudo));
+			request.setAttribute("utilisateur", facadeUtilisateur.getUtilisateur(pseudo));
 			request.getRequestDispatcher("compte.jsp").forward(request, response);
 			break;
 		case "Inscription":
-			facade.ajouterUtilisateur(pseudo, mdp);
+			facadeUtilisateur.ajouterUtilisateur(pseudo, mdp);
 			request.getRequestDispatcher("accueil.html").forward(request, response);
 			break;
 		}
