@@ -21,10 +21,7 @@ public class Facade {
 	public void ajouterUtilisateur(String nom, String prenom, String mail, String pseudo, String mdp) {
 		Utilisateur user = new Utilisateur();
 		user.setPseudo(pseudo);
-		user.setMail(mail);
 		user.setMdp(mdp);
-		user.setNom(nom);
-		user.setPrenom(prenom);
 		em.persist(user);
 	}
 	
