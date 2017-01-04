@@ -41,7 +41,8 @@ public class FacadeUtilisateur {
 		
 	}
 	
-	public void ajouterPlayList() {
+	public void ajouterPlayList(String pseudo, Playlist playlist) {
+		this.getUtilisateur(pseudo).addPlaylist(playlist);
 	}
 	
 	public void seConnecter() {
