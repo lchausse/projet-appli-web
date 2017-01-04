@@ -40,4 +40,5 @@ public class Utilisateur {
 //	public void setMesPlayList(List<Playlist> playlists) {
 //		this.mesPlayLists = playlists;	
 //	}
+
 }
