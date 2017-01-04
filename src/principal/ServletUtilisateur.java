@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
  * Servlet implementation class Projet
  */
 @WebServlet("/Projet")
-public class Projet extends HttpServlet {
+public class ServletUtilisateur extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	@EJB
@@ -23,7 +23,7 @@ public class Projet extends HttpServlet {
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Projet() {
+    public ServletUtilisateur() {
         super();
         this.facadeUtilisateur = new FacadeUtilisateur();
     }
