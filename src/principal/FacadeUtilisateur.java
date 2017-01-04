@@ -25,6 +25,24 @@ public class FacadeUtilisateur {
 		em.persist(user);
 	}
 	
+	public void modifierPseudo(String ancienPseudo, String nouveauPseudo) {
+		this.getUtilisateur(ancienPseudo).setPseudo(nouveauPseudo);
+	}
+	
+	public void modifierMdp(String pseudo, String mdp) {
+		this.getUtilisateur(pseudo).setMdp(mdp);
+	}
+	
+	public void partagerPlayList() {
+		
+	}
+	
+	public void ajouterPlayList() {
+	}
+	
+	public void seConnecter() {
+	}
+	
 	public Utilisateur getUtilisateur(String pseudo2) {
 		TypedQuery<Utilisateur> req = em.createQuery(
 				"SELECT u FROM Utilisateur u WHERE u.pseudo LIKE :pseudo2", Utilisateur.class)
