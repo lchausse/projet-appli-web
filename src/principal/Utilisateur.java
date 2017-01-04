@@ -37,7 +37,7 @@ public class Utilisateur {
 		return this.mesPlayLists;	
 	}
 	
-	public void setMesPlayList(List<Playlist> playlists) {
+	public void setMesPlayLists(List<Playlist> playlists) {
 		this.mesPlayLists = playlists;	
 	}
 }
