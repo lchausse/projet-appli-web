@@ -45,8 +45,13 @@ public class ServletUtilisateur extends HttpServlet {
 		String mdp = request.getParameter("mdp");
 		switch (op) {
 		case "Connexion":
-			request.setAttribute("utilisateur", facadeUtilisateur.getUtilisateur(pseudo));
-			request.getRequestDispatcher("compte.jsp").forward(request, response);
+			boolean connexionPossible = facadeUtilisateur.seConnecter(pseudo, mdp);
+			if (connexionPossible) {
+				request.setAttribute("utilisateur", facadeUtilisateur.getUtilisateur(pseudo));
+				request.getRequestDispatcher("compte.jsp").forward(request, response);
+			} else {
+				request.getRequestDispatcher("accueil.html").forward(request, response);
+			}
 			break;
 		case "Inscription":
 			facadeUtilisateur.ajouterUtilisateur(pseudo, mdp);

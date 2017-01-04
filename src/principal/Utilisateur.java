@@ -11,10 +11,10 @@ public class Utilisateur {
 	@Id
 	private String pseudo;
 	private String mdp;
-	private List<Playlist> mesPlayLists;
+//	private List<Playlist> mesPlayLists;
 	
 	public Utilisateur() {
-		this.mesPlayLists = new ArrayList<Playlist>();
+//		this.mesPlayLists = new ArrayList<Playlist>();
 	}
 	
 	public String getPseudo() {
@@ -33,11 +33,11 @@ public class Utilisateur {
 		this.mdp = mdp;
 	}
 	
-	public List<Playlist> getMesPlayLists() {
-		return this.mesPlayLists;	
-	}
-	
-	public void setMesPlayList(List<Playlist> playlists) {
-		this.mesPlayLists = playlists;	
-	}
+//	public List<Playlist> getMesPlayLists() {
+//		return this.mesPlayLists;	
+//	}
+//	
+//	public void setMesPlayList(List<Playlist> playlists) {
+//		this.mesPlayLists = playlists;	
+//	}
 }

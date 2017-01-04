@@ -8,11 +8,13 @@ public class Playlist {
 	private List<Musique> musiques;
 	private List<Utilisateur> utilisateurs;
 	private List<String> motsClefs;
+	private int vues;
 	
 	public Playlist() {
 		this.musiques = new ArrayList<Musique>();
 		this.utilisateurs = new ArrayList<Utilisateur>();
 		this.motsClefs = new ArrayList<String>();
+		this.vues = 0;
 	}
 
 	public String getNom() {
@@ -23,6 +25,14 @@ public class Playlist {
 		this.nom = nom;
 	}
 
+	public int getVues() {
+		return this.vues;
+	}
+	
+	public void setVues(int vues) {
+		this.vues = vues;	
+	}
+	
 	public List<Musique> getMusiques() {
 		return musiques;
 	}
