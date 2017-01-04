@@ -1,17 +1,16 @@
 package principal;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 public class Playlist {
 	
 	private String nom;
 	private List<Musique> musiques;
-	private HashMap<Utilisateur, Droit> utilisateurs;
+	private List<Utilisateur> utilisateurs;
 	
 	public Playlist() {
 		this.musiques = new ArrayList<Musique>();
-		this.utilisateurs = new HashMap<Utilisateur, Droit>();
+		this.utilisateurs = new ArrayList<Utilisateur>();
 	}
 
 	public String getNom() {
@@ -26,17 +25,15 @@ public class Playlist {
 		return musiques;
 	}
 
-	public void ajouterMusique(String lien) {
-		Musique m = new Musique();
-		m.setLien(lien);
-		this.musiques.add(m);
-	}
-
-	public HashMap<Utilisateur, Droit> getUtilisateurs() {
+	public List<Utilisateur> getUtilisateurs() {
 		return utilisateurs;
 	}
 
-	public void ajouterUtilisateur(Utilisateur user, Droit droit) {
-		this.utilisateurs.put(user, droit);
+	public void setMusiques(List<Musique> musiques) {
+		this.musiques = musiques;
+	}
+
+	public void setUtilisateurs(List<Utilisateur> utilisateurs) {
+		this.utilisateurs = utilisateurs;
 	}
 }
