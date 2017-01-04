@@ -2,14 +2,19 @@ package principal;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 public class Utilisateur {
 	
 	@Id
 	private String pseudo;
 	private String mdp;
+	private List<PlayList> mesPlayLists;
 	
 	public Utilisateur() {
+		this.mesPlayLists = new ArrayList<PlayList>();
 	}
 	
 	public String getPseudo() {
@@ -26,5 +31,13 @@ public class Utilisateur {
 	
 	public void setMdp(String mdp) {
 		this.mdp = mdp;
+	}
+	
+	public List<PlayList> getPlayLists() {
+		return this.mesPlayLists;	
+	}
+	
+	public void setPlayList(List<PlayList> playlist) {
+		this.mesPlayLists = playlist;	
 	}
 }
