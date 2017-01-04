@@ -20,7 +20,7 @@ public class FacadeUtilisateur {
 	
 	public boolean ajouterUtilisateur(String pseudo, String mdp, String confirmationMdp) {
 		boolean compteCree = false;
-		if (mdp == confirmationMdp) {
+		if (mdp == confirmationMdp && getUtilisateur(pseudo) != null ) {
 			Utilisateur user = new Utilisateur();
 			user.setPseudo(pseudo);
 			user.setMdp(mdp);
@@ -52,7 +52,12 @@ public class FacadeUtilisateur {
 				"SELECT u FROM Utilisateur u WHERE u.pseudo LIKE :pseudo2", Utilisateur.class)
 				.setParameter("pseudo2", pseudo2);
 		
-		return req.getResultList().get(0);
+		if (req.getResultList.size() == 0) {
+			return null;	
+		}
+		else {
+			return req.getResultList().get(0);
+		}
 	}
 	
 	
