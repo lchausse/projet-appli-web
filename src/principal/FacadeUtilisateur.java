@@ -18,11 +18,15 @@ public class FacadeUtilisateur {
 		this.utilisateurs = new ArrayList<Utilisateur>();
 	}
 	
-	public void ajouterUtilisateur(String pseudo, String mdp) {
-		Utilisateur user = new Utilisateur();
-		user.setPseudo(pseudo);
-		user.setMdp(mdp);
-		em.persist(user);
+	public boolean ajouterUtilisateur(String pseudo, String mdp, String confirmationMdp) {
+		boolean compteCree = false;
+		if (mdp == confirmationMdp) {
+			Utilisateur user = new Utilisateur();
+			user.setPseudo(pseudo);
+			user.setMdp(mdp);
+			em.persist(user);
+			compteCree = true;
+		}
 	}
 	
 	public void modifierPseudo(String ancienPseudo, String nouveauPseudo) {
