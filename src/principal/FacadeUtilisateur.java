@@ -39,7 +39,8 @@ public class FacadeUtilisateur {
 		this.getUtilisateur(pseudo).setMdp(mdp);
 	}
 
-	public void partagerPlayList() {
+	public void partagerPlayList(Utilisateur user, Playlist playlist) {
+		playlist.addUtilisateur(user);
 	}
 
 	public void ajouterPlayList(String pseudo, Playlist playlist) {

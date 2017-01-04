@@ -16,16 +16,16 @@ public class Playlist {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	private String nom;
-//	private List<Musique> musiques;
+	private List<Musique> musiques;
 	@ManyToMany(fetch=FetchType.EAGER)
 	private List<Utilisateur> utilisateurs;
-//	private List<String> motsClefs;
+	private List<String> motsClefs;
 	private int vues;
 	
 	public Playlist() {
-//		this.musiques = new ArrayList<Musique>();
+		this.musiques = new ArrayList<Musique>();
 		this.utilisateurs = new ArrayList<Utilisateur>();
-//		this.motsClefs = new ArrayList<String>();
+		this.motsClefs = new ArrayList<String>();
 		this.vues = 0;
 	}
 
@@ -64,8 +64,13 @@ public class Playlist {
 	public void setUtilisateurs(List<Utilisateur> utilisateurs) {
 		this.utilisateurs = utilisateurs;
 	}
+
+	public void setMotsClefs(List<String> motsClefs) {
+		this.motsClefs = motsClefs;	
+	}
 	
-//	public void setMotsClefs(List<String> motsClefs) {
-//		this.motsClefs = motsClefs;	
-//	}
+	public void addUtilisateur(Utilisateur user) {
+		this.utilisateurs.add(user);
+	}
+
 }
