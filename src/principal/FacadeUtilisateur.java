@@ -41,14 +41,9 @@ public class FacadeUtilisateur {
 
 	public void partagerPlayList() {
 	}
-<<<<<<< HEAD
 
-	public void ajouterPlayList() {
-=======
-	
 	public void ajouterPlayList(String pseudo, Playlist playlist) {
 		this.getUtilisateur(pseudo).addPlaylist(playlist);
->>>>>>> 2cfe7ac1ac4a57debdda8a6930184f43a513c563
 	}
 
 	public boolean seConnecter(String pseudo, String mdp) {
