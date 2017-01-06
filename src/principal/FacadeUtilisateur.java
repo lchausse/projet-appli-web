@@ -10,7 +10,7 @@ import javax.persistence.TypedQuery;
 @Singleton
 public class FacadeUtilisateur {
 	
-	private ArrayList<Utilisateur> utilisateurs;
+	private ArrayList<Utilisateur> utilisateurs; // liste des utilisateurs inscrits sur le site
 	@PersistenceContext
 	EntityManager em;
 	
@@ -76,5 +76,9 @@ public class FacadeUtilisateur {
 		else {
 			return req.getResultList().get(0);
 		}
+	}
+	
+	public List<Utilisateur> getUtilisateurs() {
+		return this.utilisateurs;	
 	}
 }
