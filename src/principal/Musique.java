@@ -2,9 +2,9 @@ package principal;
 
 public class Musique {
 	
-	private String titre;
-	private String auteur;
-	private String lien;
+	private String titre; // titre de la musique
+	private String auteur; // auteur de la musique
+	private String lien; // lien youtube de la musique
 	
 	public String getTitre() {
 		return titre;
