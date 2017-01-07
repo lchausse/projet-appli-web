@@ -2,6 +2,8 @@ package principal;
 
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
@@ -13,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class Projet
  */
-@WebServlet("/Projet")
+@WebServlet("/ServletUtilisateur")
 public class ServletUtilisateur extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
@@ -32,7 +34,6 @@ public class ServletUtilisateur extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doPost(request, response);
 	}
 
@@ -41,11 +42,18 @@ public class ServletUtilisateur extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String op = request.getParameter("op");
-		String pseudo = request.getParameter("pseudo");
-		String mdp = request.getParameter("mdp");
-		String confirmationMdp = request.getParameter("mdp2");
+		String pseudo;
+		String mdp;
+		String confirmationMdp;
+		
 		switch (op) {
+		case "creerCompte":
+			request.getRequestDispatcher("creerCompte.jsp").forward(request, response);
+			break;
+			
 		case "Connexion":
+			pseudo = request.getParameter("pseudo");
+			mdp = request.getParameter("mdp");
 			boolean connexionPossible = facadeUtilisateur.seConnecter(pseudo, mdp);
 			if (connexionPossible) {
 				request.setAttribute("utilisateur", facadeUtilisateur.getUtilisateur(pseudo));
@@ -54,15 +62,51 @@ public class ServletUtilisateur extends HttpServlet {
 				request.getRequestDispatcher("accueil.html").forward(request, response);
 			}
 			break;
+			
 		case "Inscription":
-			boolean compteCree = facadeUtilisateur.ajouterUtilisateur(pseudo, mdp, confirmationMdp);
-			if (compteCree) {
-				request.getRequestDispatcher("accueil.html").forward(request, response);
-			} else {
-				request.getRequestDispatcher("creerCompte.html").forward(request, response);
-			}
+			Map<String, String> erreurs = new HashMap<String, String>();
+			pseudo = request.getParameter("pseudo");
+			mdp = request.getParameter("mdp");
+			confirmationMdp = request.getParameter("mdp2");
+			
+			/* Validation des champs mot de passe et confirmation. */
+	        try {
+	            validationMotsDePasse(mdp, confirmationMdp);
+	        } catch (Exception e) {
+	            erreurs.put("mdp", e.getMessage());
+	        }
+
+	        /* Validation du champ pseudo */
+	        try {
+	            validationPseudo(pseudo);
+	        } catch ( Exception e ) {
+	            erreurs.put("pseudo", e.getMessage());
+	        }
+	        
+	        if (erreurs.isEmpty()) {
+	        	facadeUtilisateur.ajouterUtilisateur(pseudo, mdp);
+	        	request.getRequestDispatcher("accueil.html").forward(request, response);
+	        } else {
+	        	request.setAttribute("erreurs", erreurs);
+		        request.getRequestDispatcher("creerCompte.jsp").forward(request, response);
+	        }
 			break;
 		}
 	}
-
+	
+	private void validationMotsDePasse(String motDePasse, String confirmation) throws Exception{
+	    if (!motDePasse.equals(confirmation)) {
+	        throw new Exception("Les mots de passe entrés sont différents, merci de les saisir à nouveau.");
+	    } else if (motDePasse.trim().length() < 3) {
+	        throw new Exception("Les mots de passe doivent contenir au moins 3 caractères.");
+	    }
+	}
+	
+	private void validationPseudo(String pseudo) throws Exception {
+	    if (pseudo != null && pseudo.trim().length() < 3) {
+	        throw new Exception("Le pseudo doit contenir au moins 3 caractères.");
+	    } else if (facadeUtilisateur.getUtilisateur(pseudo) != null) {
+	    	throw new Exception("Ce pseudo n'est pas disponible.");
+	    }
+	}
 }
