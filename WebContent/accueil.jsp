@@ -47,5 +47,10 @@
   <input type="submit" name="op" value = "Rechercher Playlist" />  
 </form>
 
+<% Set<Playlist> resultatsRecherchePlaylist = (HashSet<Playlist>)request.getAttribute("resultatsRecherchePlaylist"); %>
+<% if (resultatsRecherchePlaylist != null) { %>
+<% for (Playlist pl : resultatsRecherchePlaylist) { %>
+<%= pl.getNom() %> 
+<% }} %>
 </body>
 </html>
