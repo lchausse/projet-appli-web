@@ -46,7 +46,7 @@ public class ServletPlaylist extends HttpServlet {
 			String[] motsClefs = recherche.split(" ");
 			Set<Playlist> results = facadePlaylist.rechercherPlaylists(motsClefs);
 			request.setAttribute("resultatsRecherchePlaylist", results);
-			request.getRequestDispatcher("recherchePlaylist.jsp").forward(request, response);
+			request.getRequestDispatcher("accueil.jsp").forward(request, response);
 			break;
 		}
 	}
