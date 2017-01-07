@@ -1,31 +1,45 @@
 package principal;
 
 import java.util.ArrayList;
-
+import java.util.List;
 import javax.ejb.Singleton;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
 @Singleton
-public class FacadePlayList {
+public class FacadePlaylist {
 	
-  	List<PlayList> playlists; // liste des playlists disponibles sur le site
+  	List<Playlist> playlists; // liste des playlists disponibles sur le site
 	@PersistenceContext
 	EntityManager em;
 	
-	public FacadePlayList() {
+	public FacadePlaylist() {
 	}
 	
 
-	public void creerPlayList(String nom) {
+	public void creerPlaylist(String nom) {
 	  	Playlist playlist = new Playlist();
 		playlist.setNom(nom);
 		this.playlists.add(playlist);
 
 	}
 
-	public Playlist rechercherPlayList(String nom) {
+	public List<Playlist> rechercherPlaylists(List<String> motClefs) {
+		List<Playlist> playlistsCorrespondantes = this.playlists;
+		List<Playlist> playlistsARetirer;
+		for (String motClef : motClefs) {
+			playlistsARetirer = new ArrayList<Playlist>();
+			for (Playlist pl : playlistsCorrespondantes) {
+				if (!pl.getMotsClefs().contains(motClef)) {
+					playlistsARetirer.add(pl);
+				}
+			}
+			for (Playlist plARetirer : playlistsARetirer) {
+				playlistsCorrespondantes.remove(plARetirer);
+			}
+		}
+		return playlistsCorrespondantes;
 	}
 
 	public void ajouterMusique(Playlist playlist, Musique musique) {
@@ -33,13 +47,13 @@ public class FacadePlayList {
 	}
 
 	public void supprimerMusique(Playlist playlist, Musique musique) {
-		playlist.removeMusique(musique);
+		playlist.deleteMusique(musique);
 	}
 
 	public void rendrePublique(Playlist playlist) {
 	}
 
-	public void ModifierMotClef(Playlist playlist, String... nouveauxMotsClefs){
+	public void ModifierMotClef(Playlist playlist, List<String> nouveauxMotsClefs){
 	  	playlist.setMotsClefs(nouveauxMotsClefs);
 	}
 
