@@ -1,0 +1,12 @@
+#yl-masthead-signin {
+	background-color:navy;
+	color: white;
+	position: absolute;
+	top: 0;
+	right: 0;
+}
+
+#yl-masthead-content {
+    margin: 0px auto;
+    width:500px;
+}
