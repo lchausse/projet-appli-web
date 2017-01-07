@@ -24,6 +24,7 @@ public class Playlist {
 	private Set<Utilisateur> utilisateurs; // utilisateur pouvant modifier la playlist
     @ElementCollection(targetClass=String.class)
 	private Set<String> motsClefs; // mots clefs de la playlist
+    private boolean publique;
 	private int vues; // nombre de vue de la playlistre
 	
 	public Playlist() {
@@ -89,5 +90,13 @@ public class Playlist {
 	
 	public void addVues() {
 		this.vues++;
+	}
+	
+	public boolean isPublique() {
+		return publique;
+	}
+
+	public void setPublique(boolean publique) {
+		this.publique = publique;
 	}
 }
