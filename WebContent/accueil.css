@@ -1,12 +1,61 @@
-#yl-masthead-signin {
-	background-color:navy;
+body {
+	background-color: #F5F5F5;
+}
+
+#yl-masthead-up {
+	position: fixed;
+	height: 57px;
+	width: 100%;
+	background-color: #FFFFFF;
+}
+
+.logo {
+	position: fixed;
+}
+
+.signup {
+	background-color: #4169E1;
 	color: white;
-	position: absolute;
-	top: 0;
-	right: 0;
+	position: fixed;
+	top: 25px;
+	right: 75px;
+}
+
+.signin {
+	background-color: #4169E1;
+	color: white;
+	position: fixed;
+	top: 25px;
+	right: 160px;
 }
 
 #yl-masthead-content {
-    margin: 0px auto;
-    width:500px;
+	position: fixed;
+	left: 230px;
+	top: 25px;
+}
+
+#masthead-appbar {
+    	position: fixed;
+  	top: 67px;
+	height: 30px;
+	width: 100%;
+	background-color: #FFFFFF;
+}
+
+#accueil-tendance {
+    	position: fixed;
+  	top: 72px;
+    	margin: 0 0 0 -5%;
+    	left:50%;
+	height: 20px;
+	width: 100%;
+}
+
+
+#page-container {
+	position : absolute;
+	top : 120px;
+	left: 10%;
+	background-color: #F5F5F5;
 }
