@@ -1,56 +1,61 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ page import="principal.*" %>
+<!DOCTYPE html>
 <html>
-<head>
-<meta charset="UTF-8">
-<link rel="stylesheet" href="style.css" />
-<title>YouList</title>
-</head>
-<body>
-<div id="masthead-positioner">
-	<div id="yl-masthead-container" class="clearfix yl-base-gutter"> <!-- logo && barre de recherche && connexion -->
-		<div id="yl-masthead"> <!-- logo -->
-			<span class="logo" title="Accueil YouList"></span>
-		</div>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="accueil.css"/>
+		<title>YouList</title>
+	</head>
+
+	<body>
+		<div id="yl-masthead">
+			<div id="yl-masthead-up"> <!-- logo && bare de recherche && 
+
+connexion/inscription -->
+				<span class="logo" title="Accueil YouList"><img 
+
+src="images/youlist.png"/></span> <!-- logo -->
 				
-		<div id="yl-masthead-signin"> <!-- connexion -->
-			<button class="yl-signin-button" type="button" onclick=";window.location.href=this.getAttribute('href');return false;" href="creerCompte.jsp?op=creerCompte" role="link">
-				<span class="yl-button-content">Connexion</span>
-			</button>
-		</div>
+				<div id="yl-masthead-sign"> <!-- connexion/inscription-->
+					<a href="" class="signin">Connexion</a> 
+					<a href="" class="signup">Inscription</a>
+				</div>
 				
-		<div id="yl-masthead-content"> <!-- barre de recherche -->
+				<div id="yl-masthead-content"> <!-- barre de recherche -->
+					<form action="http://www.youtube.com/results" method="get" 
+
+target="_blank" >
+						<input name="search_query" type="text" 
+
+maxlength="128" />
+						<select name="search_type">
+							<option value="">Videos</option>
+							<option 
+
+value="search_users">Channels</option>
+						</select>
+						<input type="submit" value="Search" />
+					</form> 
+				</div>
+			</div>
+
+			<div id="masthead-appbar"> <!-- accueil && playlist tendance -->
+				<div id="accueil-tendance">
+					<a href="">Accueil</a> 
+					<a href="">Tendances</a>
+				</div>
+			</div>
 		</div>
-	</div>
-	<div id="masthead-appbar-container" class="clearfix"> <!-- playlist tendance -->
-	</div>
-</div>
-<div id="masthead-positioner-height-offset"></div> <!-- positionnement de masthead-positioner -->
 
-<p>Déjà  inscrit ? </p>
-<form  action = "ServletUtilisateur" method = "POST">
-	<input type = "text" name = "pseudo" placeholder = "Pseudo" autofocus value="<c:out value="${param.pseudo}"/>" required/>
-	<span class="erreur">${erreurs['pseudo']}</span><br />
-	<input type = "password" name = "mdp" placeholder = "Mot de passe" required/>
-	<span class="erreur">${erreurs['mdp']}</span><br />
-	<input type = "submit" name = "op" value = "Connexion" /><br />
-</form>
-	
-<p>
-<em><a href="creerCompte.jsp">Créer un compte</a></em>
-</p>
 
-<p>Rechercher une playlist publique</p>
-<form  action = "Projet" method = "POST">
-  <input type="text" name="recherche" placeholder="Mots clefs..."/>
-  <input type="submit" name="op" value = "Rechercher Playlist" />  
-</form>
+		<div id="page-container">
+			<iframe width="560" height="315" 
 
-<% Set<Playlist> resultatsRecherchePlaylist = (HashSet<Playlist>)request.getAttribute("resultatsRecherchePlaylist"); %>
-<% if (resultatsRecherchePlaylist != null) { %>
-<% for (Playlist pl : resultatsRecherchePlaylist) { %>
-<%= pl.getNom() %> 
-<% }} %>
-</body>
+src="https://www.youtube.com/embed/OU548L9B5mo" frameborder="0" allowfullscreen></iframe><br\>
+			<iframe width="560" height="315" 
+
+src="https://www.youtube.com/embed/zBs6al8-gCw" frameborder="0" allowfullscreen></iframe>
+		</div>
+
+		
+	</body>
 </html>
