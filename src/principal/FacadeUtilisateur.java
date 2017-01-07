@@ -1,7 +1,9 @@
 package principal;
 
-import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+
 import javax.ejb.Singleton;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -10,12 +12,12 @@ import javax.persistence.TypedQuery;
 @Singleton
 public class FacadeUtilisateur {
 	
-	private ArrayList<Utilisateur> utilisateurs; // liste des utilisateurs inscrits sur le site
+	private HashSet<Utilisateur> utilisateurs; // liste des utilisateurs inscrits sur le site
 	@PersistenceContext
 	EntityManager em;
 	
 	public FacadeUtilisateur() {
-		this.utilisateurs = new ArrayList<Utilisateur>();
+		this.utilisateurs = new HashSet<Utilisateur>();
 	}
 	
 	public boolean ajouterUtilisateur(String pseudo, String mdp, String confirmationMdp) {
@@ -78,7 +80,7 @@ public class FacadeUtilisateur {
 		}
 	}
 	
-	public List<Utilisateur> getUtilisateurs() {
+	public Set<Utilisateur> getUtilisateurs() {
 		return this.utilisateurs;	
 	}
 }

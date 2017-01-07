@@ -1,13 +1,15 @@
 package principal;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+
 
 @Entity
 public class Playlist {
@@ -16,16 +18,18 @@ public class Playlist {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	private String nom; // nom de la playlist
-	private List<Musique> musiques; // musique de la playlist
+	@ManyToMany(fetch=FetchType.EAGER)
+	private Set<Musique> musiques; // musique de la playlist
 	@ManyToMany(fetch=FetchType.EAGER) 
-	private List<Utilisateur> utilisateurs; // utilisateur pouvant modifier la playlist
-	private List<String> motsClefs; // mots clefs de la playlist
+	private Set<Utilisateur> utilisateurs; // utilisateur pouvant modifier la playlist
+    @ElementCollection(targetClass=String.class)
+	private Set<String> motsClefs; // mots clefs de la playlist
 	private int vues; // nombre de vue de la playlistre
 	
 	public Playlist() {
-		this.musiques = new ArrayList<Musique>();
-		this.utilisateurs = new ArrayList<Utilisateur>();
-		this.motsClefs = new ArrayList<String>();
+		this.musiques = new HashSet<Musique>();
+		this.utilisateurs = new HashSet<Utilisateur>();
+		this.motsClefs = new HashSet<String>();
 		this.vues = 0;
 	}
 
@@ -37,11 +41,11 @@ public class Playlist {
 		this.nom = nom;
 	}
 	
-	public List<Musique> getMusiques() {
+	public Set<Musique> getMusiques() {
 		return this.musiques;
 	}
 	
-	public void setMusiques(List<Musique> musiques) {
+	public void setMusiques(Set<Musique> musiques) {
 		this.musiques = musiques;
 	}
 	
@@ -54,11 +58,11 @@ public class Playlist {
 	}
 
 	
-	public List<Utilisateur> getUtilisateurs() {
+	public Set<Utilisateur> getUtilisateurs() {
 		return this.utilisateurs;
 	}
 	
-	public void setUtilisateurs(List<Utilisateur> utilisateurs) {
+	public void setUtilisateurs(Set<Utilisateur> utilisateurs) {
 		this.utilisateurs = utilisateurs;
 	}
 	
@@ -67,10 +71,10 @@ public class Playlist {
 	}
 
 	
-	public List<String> getMotsClefs() {
+	public Set<String> getMotsClefs() {
 		return this.motsClefs;	
 	}
-	public void setMotsClefs(List<String> motsClefs) {
+	public void setMotsClefs(Set<String> motsClefs) {
 		this.motsClefs = motsClefs;	
 	}
 

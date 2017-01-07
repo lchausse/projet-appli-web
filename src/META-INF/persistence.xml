@@ -8,7 +8,9 @@
         
         <jta-data-source>java:jboss/datasources/ExampleDS</jta-data-source>
         
-        <class>pack.Utilisateur</class>
+        <class>principal.Utilisateur</class>
+        <class>principal.Playlist</class>
+        <class>principal.Musique</class>
         
         <properties>
             <property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect" />

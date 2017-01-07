@@ -1,6 +1,8 @@
 package principal;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -14,10 +16,10 @@ public class Utilisateur {
 	private String pseudo;
 	private String mdp;
 	@ManyToMany(fetch=FetchType.EAGER)
-	private List<Playlist> mesPlayLists;
+	private Set<Playlist> mesPlayLists;
 	
 	public Utilisateur() {
-		this.mesPlayLists = new ArrayList<Playlist>();
+		this.mesPlayLists = new HashSet<Playlist>();
 	}
 	
 	public String getPseudo() {
@@ -36,11 +38,11 @@ public class Utilisateur {
 		this.mdp = mdp;
 	}
 	
-	public List<Playlist> getMesPlayLists() {
+	public Set<Playlist> getMesPlayLists() {
 		return this.mesPlayLists;	
 	}
 	
-	public void setMesPlayList(List<Playlist> playlists) {
+	public void setMesPlayList(Set<Playlist> playlists) {
 		this.mesPlayLists = playlists;	
 	}
 

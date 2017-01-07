@@ -1,7 +1,10 @@
 package principal;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+
 import javax.ejb.Singleton;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -10,7 +13,7 @@ import javax.persistence.TypedQuery;
 @Singleton
 public class FacadePlaylist {
 	
-  	List<Playlist> playlists; // liste des playlists disponibles sur le site
+  	Set<Playlist> playlists; // liste des playlists disponibles sur le site
 	@PersistenceContext
 	EntityManager em;
 	
@@ -25,11 +28,11 @@ public class FacadePlaylist {
 
 	}
 
-	public List<Playlist> rechercherPlaylists(List<String> motClefs) {
-		List<Playlist> playlistsCorrespondantes = this.playlists;
-		List<Playlist> playlistsARetirer;
+	public Set<Playlist> rechercherPlaylists(List<String> motClefs) {
+		Set<Playlist> playlistsCorrespondantes = this.playlists;
+		Set<Playlist> playlistsARetirer;
 		for (String motClef : motClefs) {
-			playlistsARetirer = new ArrayList<Playlist>();
+			playlistsARetirer = new HashSet<Playlist>();
 			for (Playlist pl : playlistsCorrespondantes) {
 				if (!pl.getMotsClefs().contains(motClef)) {
 					playlistsARetirer.add(pl);
@@ -53,7 +56,7 @@ public class FacadePlaylist {
 	public void rendrePublique(Playlist playlist) {
 	}
 
-	public void ModifierMotClef(Playlist playlist, List<String> nouveauxMotsClefs){
+	public void ModifierMotClef(Playlist playlist, Set<String> nouveauxMotsClefs){
 	  	playlist.setMotsClefs(nouveauxMotsClefs);
 	}
 
