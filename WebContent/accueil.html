@@ -1,20 +1,41 @@
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="UTF-8">
-<title>YouList</title>
-</head>
-<body>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="accueuil.css"/>
+		<title>YouList</title>
+	</head>
 
-<p>Déjà inscrit ? </p>
-<form  action = "ServletUtilisateur" method = "POST">
-	<input type = "text" name = "pseudo" placeholder = "Pseudo" autofocus required/> <br />
-	<input type = "password" name = "mdp" placeholder = "Mot de passe" required/> <br />
-	<input type = "submit" name = "op" value = "Connexion" /> <br />
-</form>
-	
-<p>
-<em><a href="creerCompte.jsp?op=creerCompte">Créer un compte</a></em>
-</p>
-</body>
+	<body>
+		<div id="masthead-positioner">
+			<div id="yl-masthead-container" class="clearfix yl-base-gutter"> <!-- logo && barre de recherche && connexion -->
+				<div id="yl-masthead"> <!-- logo -->
+					<span class="logo" title="Accueil YouList"></span>
+				</div>
+				
+				<div id="yl-masthead-signin"> <!-- connexion -->
+					<button class="yl-signin-button" type="button" onclick=";window.location.href=this.getAttribute('href');return false;" href="creerCompte.jsp?op=creerCompte" role="link">
+						<span class="yl-button-content">Connexion</span>
+					</button>
+				</div>
+				
+				<div id="yl-masthead-content"> <!-- barre de recherche -->
+				</div>
+			</div>
+			<div id="masthead-appbar-container" class="clearfix"> <!-- playlist tendance -->
+			</div>
+		</div>
+		<div id="masthead-positioner-height-offset"></div> <!-- positionnement de masthead-positioner -->
+
+		<p>Déjà inscrit ? </p>
+		<form  action = "ServletUtilisateur" method = "POST">
+			<input type = "text" name = "pseudo" placeholder = "Pseudo" autofocus required/> <br />
+			<input type = "password" name = "mdp" placeholder = "Mot de passe" required/> <br />
+			<input type = "submit" name = "op" value = "Connexion" /> <br />
+		</form>
+
+		<p>
+			<em><a href="creerCompte.jsp?op=creerCompte">Créer un compte</a></em>
+		</p>
+	</body>
 </html>
