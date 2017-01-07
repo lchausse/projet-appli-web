@@ -39,19 +39,19 @@ public class FacadeUtilisateur {
 //		this.getUtilisateur(pseudo).addPlaylist(playlist);
 	}
 
-	public boolean seConnecter(String pseudo, String mdp) {
-		boolean res;
+	public boolean seConnecter(String pseudo, String mdp) throws Exception {
+		boolean res = false;
 		TypedQuery<Utilisateur> req = em.createQuery(
 				"SELECT u FROM Utilisateur u WHERE u.pseudo LIKE :pseudo2", Utilisateur.class)
 				.setParameter("pseudo2", pseudo);
 		if (req.getResultList().size() == 0) {
-			res = false;
+			throw new Exception("Ce pseudo n'existe pas.");
 		} else {
 			Utilisateur user = req.getResultList().get(0);
 			if (mdp.equals(user.getMdp())) {
 				res = true;
 			} else {
-				res = false;
+				throw new Exception("Mauvais mot de passe.");
 			}
 		}
 		return res;
