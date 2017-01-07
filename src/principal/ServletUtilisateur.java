@@ -45,26 +45,33 @@ public class ServletUtilisateur extends HttpServlet {
 		String pseudo;
 		String mdp;
 		String confirmationMdp;
+		Map<String, String> erreurs = new HashMap<String, String>();
 		
 		switch (op) {
-		case "creerCompte":
-			request.getRequestDispatcher("creerCompte.jsp").forward(request, response);
-			break;
-			
 		case "Connexion":
+			boolean connexionPossible = false;
 			pseudo = request.getParameter("pseudo");
 			mdp = request.getParameter("mdp");
-			boolean connexionPossible = facadeUtilisateur.seConnecter(pseudo, mdp);
+			try {
+				connexionPossible = facadeUtilisateur.seConnecter(pseudo, mdp);
+			} catch (Exception e) {
+				String errMes = e.getMessage();
+				if (errMes.equals("Ce pseudo n'existe pas.")) {
+					erreurs.put("pseudo", errMes);
+				} else if (errMes.equals("Mauvais mot de passe.")) {
+					erreurs.put("mdp", errMes);
+				}
+			}
 			if (connexionPossible) {
 				request.setAttribute("utilisateur", facadeUtilisateur.getUtilisateur(pseudo));
 				request.getRequestDispatcher("compte.jsp").forward(request, response);
 			} else {
-				request.getRequestDispatcher("accueil.html").forward(request, response);
+				request.setAttribute("erreurs", erreurs);
+				request.getRequestDispatcher("accueil.jsp").forward(request, response);
 			}
 			break;
 			
 		case "Inscription":
-			Map<String, String> erreurs = new HashMap<String, String>();
 			pseudo = request.getParameter("pseudo");
 			mdp = request.getParameter("mdp");
 			confirmationMdp = request.getParameter("mdp2");
@@ -85,7 +92,7 @@ public class ServletUtilisateur extends HttpServlet {
 	        
 	        if (erreurs.isEmpty()) {
 	        	facadeUtilisateur.ajouterUtilisateur(pseudo, mdp);
-	        	request.getRequestDispatcher("accueil.html").forward(request, response);
+	        	request.getRequestDispatcher("accueil.jsp").forward(request, response);
 	        } else {
 	        	request.setAttribute("erreurs", erreurs);
 		        request.getRequestDispatcher("creerCompte.jsp").forward(request, response);
