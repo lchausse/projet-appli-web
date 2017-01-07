@@ -3,18 +3,17 @@ form {
 	transform: translateY(-50%);
 }
 
+body {
+	background-color: #e74c3c
+}
 fieldset {
     padding: 10px;
-    border: 1px #0568CD solid;
+    border: 2px #000000 solid;
     width: 250px;
     margin: auto;
     margin-top: auto;
     margin-bottom: auto;
-}
-
-legend {
-    font-weight: bold;
-    color: #0568CD;
+    background-color: #bdc3c7;
 }
 
 form .erreur {
@@ -22,12 +21,19 @@ form .erreur {
 }
 
 input {
-	width: 250px;
 	font-size: 15pt;
+	width: 250px;
+    padding: 10px;
+    border: none;
+    border-bottom: solid 2px #c9c9c9;
+    -webkit-transition: border 0.3s;
+    -moz-transition: border 0.3s;
+    -o-transition: border 0.3s;
+    transition: border 0.3s;
 }
 
 img#logoYoulist { 
   position: absolute; 
   top: 0; 
   left: 0;
-} 
+}
