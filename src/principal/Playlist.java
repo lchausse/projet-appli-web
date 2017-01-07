@@ -38,16 +38,6 @@ public class Playlist {
 	}
 	
 	public List<Musique> getMusiques() {
-		return musiques;
-	}
-
-	public List<Utilisateur> getUtilisateurs() {
-		return utilisateurs;
-	}
-
-	
-	
-	public List<Musique> getMusiques() {
 		return this.musiques;
 	}
 	
