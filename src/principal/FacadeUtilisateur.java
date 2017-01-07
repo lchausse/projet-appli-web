@@ -1,9 +1,7 @@
 package principal;
 
-import java.util.HashSet;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
-
 import javax.ejb.Singleton;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -12,25 +10,17 @@ import javax.persistence.TypedQuery;
 @Singleton
 public class FacadeUtilisateur {
 	
-	private HashSet<Utilisateur> utilisateurs; // liste des utilisateurs inscrits sur le site
 	@PersistenceContext
 	EntityManager em;
 	
 	public FacadeUtilisateur() {
-		this.utilisateurs = new HashSet<Utilisateur>();
 	}
 	
-	public boolean ajouterUtilisateur(String pseudo, String mdp, String confirmationMdp) {
-		boolean compteCree = false;
-
-		if (mdp.equals(confirmationMdp) && getUtilisateur(pseudo) == null ) {
-			Utilisateur user = new Utilisateur();
-			user.setPseudo(pseudo);
-			user.setMdp(mdp);
-			em.persist(user);
-			compteCree = true;
-		}
-		return compteCree;
+	public void ajouterUtilisateur(String pseudo, String mdp) {
+		Utilisateur user = new Utilisateur();
+		user.setPseudo(pseudo);
+		user.setMdp(mdp);
+		em.persist(user);
 	}
 
 	public void modifierPseudo(String ancienPseudo, String nouveauPseudo) {
@@ -78,9 +68,5 @@ public class FacadeUtilisateur {
 		else {
 			return req.getResultList().get(0);
 		}
-	}
-	
-	public Set<Utilisateur> getUtilisateurs() {
-		return this.utilisateurs;	
 	}
 }
