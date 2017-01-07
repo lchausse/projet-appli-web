@@ -18,6 +18,7 @@ public class FacadePlaylist {
 	EntityManager em;
 	
 	public FacadePlaylist() {
+		this.playlists = new HashSet<Playlist>();
 	}
 	
 
@@ -28,13 +29,16 @@ public class FacadePlaylist {
 
 	}
 
-	public Set<Playlist> rechercherPlaylists(List<String> motClefs) {
-		Set<Playlist> playlistsCorrespondantes = this.playlists;
+	public Set<Playlist> rechercherPlaylists(String[] motClefs) {
 		Set<Playlist> playlistsARetirer;
+		Set<Playlist> playlistsCorrespondantes = new HashSet<Playlist>();
+		for (Playlist pl : this.playlists) {
+			playlistsCorrespondantes.add(pl);
+		}
 		for (String motClef : motClefs) {
 			playlistsARetirer = new HashSet<Playlist>();
 			for (Playlist pl : playlistsCorrespondantes) {
-				if (!pl.getMotsClefs().contains(motClef)) {
+				if (!match(pl.getMotsClefs(), motClef)) {
 					playlistsARetirer.add(pl);
 				}
 			}
@@ -71,5 +75,17 @@ public class FacadePlaylist {
 	public void modifierTitreMusique(Musique musique, String nouveauTitre) {
 	  	musique.setTitre(nouveauTitre);
 
+	}
+	
+	private boolean match(Set<String> motClefs, String motClef) {
+		for (String mc : motClefs) {
+			if (mc.equals(motClef)) {
+				return true;
+			}
+			if (mc.toLowerCase().contains(motClef.toLowerCase())) {
+				return true;
+			}
+		}
+		return false;
 	}
 }
