@@ -107,6 +107,8 @@ public class ServletUtilisateur extends HttpServlet {
 			String titre = request.getParameter("titre");
 			String[] motsClefs = request.getParameter("motsClefs").split(" ");
 			this.facadeUtilisateur.creerPlaylist(titre, utilisateurCourant, new HashSet<String>(Arrays.asList(motsClefs)));
+			request.setAttribute("utilisateur", utilisateurCourant);
+			request.getRequestDispatcher("compte.jsp").forward(request, response);
 			break;
 		}
 	}
