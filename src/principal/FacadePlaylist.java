@@ -20,16 +20,6 @@ public class FacadePlaylist {
 	public FacadePlaylist() {
 		this.playlists = new HashSet<Playlist>();
 	}
-	
-
-	public void creerPlaylist(String nom, Utilisateur u, Set<String> motsClefs) {
-	  	Playlist playlist = new Playlist();
-	  	playlist.addUtilisateur(u);
-		playlist.setNom(nom);
-		playlist.setMotsClefs(motsClefs);
-		em.persist(playlist);
-		this.playlists.add(playlist);
-	}
 
 	public Set<Playlist> rechercherPlaylists(String[] motClefs) {
 		Set<Playlist> playlistsARetirer;
