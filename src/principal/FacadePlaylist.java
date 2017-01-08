@@ -33,14 +33,12 @@ public class FacadePlaylist {
 		Set<Playlist> playlistsARetirer;
 		Set<Playlist> playlistsCorrespondantes = new HashSet<Playlist>();
 		for (Playlist pl : this.playlists) {
-			playlistsCorrespondantes.add(pl);
+			if (pl.isPublique) playlistsCorrespondantes.add(pl);
 		}
 		for (String motClef : motClefs) {
 			playlistsARetirer = new HashSet<Playlist>();
 			for (Playlist pl : playlistsCorrespondantes) {
-				if (!match(pl.getMotsClefs(), motClef)) {
-					playlistsARetirer.add(pl);
-				}
+				if (!match(pl.getMotsClefs(), motClef)) playlistsARetirer.add(pl);
 			}
 			for (Playlist plARetirer : playlistsARetirer) {
 				playlistsCorrespondantes.remove(plARetirer);
@@ -79,12 +77,9 @@ public class FacadePlaylist {
 	
 	private boolean match(Set<String> motClefs, String motClef) {
 		for (String mc : motClefs) {
-			if (mc.equals(motClef)) {
-				return true;
-			}
-			if (mc.toLowerCase().contains(motClef.toLowerCase())) {
-				return true;
-			}
+			if (mc.toLowerCase().equals(motClef.toLowerCase())) return true;
+			if (mc.toLowerCase().contains(motClef.toLowerCase())) return true;
+			if ((mc.toLowerCase() + 's').equals(motClef.toLowerCase())) return true;
 		}
 		return false;
 	}
