@@ -57,6 +57,14 @@ public class FacadeUtilisateur {
 		return res;
 	}
 
+	public void creerPlaylist(String nom, Utilisateur u, Set<String> motsClefs) {
+	  	Playlist playlist = new Playlist();
+	  	playlist.addUtilisateur(u);
+		playlist.setNom(nom);
+		playlist.setMotsClefs(motsClefs);
+		em.persist(playlist);
+	}
+	
 	public Utilisateur getUtilisateur(String pseudo2) {
 		TypedQuery<Utilisateur> req = em.createQuery(
 				"SELECT u FROM Utilisateur u WHERE u.pseudo LIKE :pseudo2", Utilisateur.class)
