@@ -16,8 +16,8 @@ connexion/inscription -->
 src="images/youlist.png"/></span> <!-- logo -->
 				
 				<div id="yl-masthead-sign"> <!-- connexion/inscription-->
-					<a href="" class="signin">Connexion</a> 
-					<a href="" class="signup">Inscription</a>
+					<a href="connextion.html" class="signin">Connexion</a> 
+					<a href="creerCompte.jsp" class="signup">Inscription</a>
 				</div>
 				
 				<div id="yl-masthead-content"> <!-- barre de recherche -->
@@ -41,7 +41,7 @@ value="search_users">Channels</option>
 			<div id="masthead-appbar"> <!-- accueil && playlist tendance -->
 				<div id="accueil-tendance">
 					<a href="">Accueil</a> 
-					<a href="">Tendances</a>
+					<a href="tendance.html">Tendances</a>
 				</div>
 			</div>
 		</div>
