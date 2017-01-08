@@ -1,0 +1,70 @@
+.logo {
+	position: absolute;
+  	top: 20px;
+    	margin: 0 0 0 -10%;
+    	left:50%;
+}
+
+.banner h1 {
+	font-size: 38px;
+	margin-bottom: 15px;
+	font-family: 'Open Sans', arial;
+	color: #555;
+	font-weight: 300;
+	margin-top: 0;
+	position: absolute;
+  	top: 110px;
+    	margin: 0 0 0 -24%;
+    	left:50%;
+}
+
+.hidden-small {
+	font-size: 18px;
+	margin-bottom: 15px;
+	font-family: 'Open Sans', arial;
+	color: #555;
+	font-weight: 400;
+	position: absolute;
+  	top: 165px;
+    	margin: 0 0 0 -16%;
+    	left:50%;
+}
+
+.main-content {
+	position: absolute;
+    	margin: 0 0 0 -16%;
+    	left:50%;
+	top: 230px;
+	background-color: #F5F5FC;
+	height: 265px;
+	width: 280px;
+}
+
+.circle-mask {
+	position: absolute;
+	margin: 0 0 0 -6%;
+    	left: 50%;
+	top: 260px;
+}
+
+#Email {
+	position: absolute;
+	margin: 0 0 0 -8%;
+    	left:50%;
+	top: 380px;
+}
+
+.input-mdp {
+	position: absolute;
+	margin: 0 0 0 -8%;
+    	left:50%;
+	top: 410px;
+}
+
+
+#next {
+	position: absolute;
+	margin: 0 0 0 -3%;
+    	left:50%;
+	top: 445px;
+}
