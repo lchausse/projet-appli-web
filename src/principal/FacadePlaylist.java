@@ -22,11 +22,13 @@ public class FacadePlaylist {
 	}
 	
 
-	public void creerPlaylist(String nom) {
+	public void creerPlaylist(String nom, Utilisateur u, Set<String> motsClefs) {
 	  	Playlist playlist = new Playlist();
+	  	playlist.addUtilisateur(u);
 		playlist.setNom(nom);
+		playlist.setMotsClefs(motsClefs);
+		em.persist(playlist);
 		this.playlists.add(playlist);
-
 	}
 
 	public Set<Playlist> rechercherPlaylists(String[] motClefs) {
