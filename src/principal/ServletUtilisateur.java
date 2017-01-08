@@ -2,7 +2,9 @@ package principal;
 
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 
 import javax.ejb.EJB;
@@ -21,6 +23,7 @@ public class ServletUtilisateur extends HttpServlet {
 	
 	@EJB
 	private FacadeUtilisateur facadeUtilisateur;
+	private Utilisateur utilisateurCourant;
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -63,6 +66,7 @@ public class ServletUtilisateur extends HttpServlet {
 				}
 			}
 			if (connexionPossible) {
+				utilisateurCourant = facadeUtilisateur.getUtilisateur(pseudo);
 				request.setAttribute("utilisateur", facadeUtilisateur.getUtilisateur(pseudo));
 				request.getRequestDispatcher("compte.jsp").forward(request, response);
 			} else {
@@ -77,26 +81,32 @@ public class ServletUtilisateur extends HttpServlet {
 			confirmationMdp = request.getParameter("mdp2");
 			
 			/* Validation des champs mot de passe et confirmation. */
-	        try {
-	            validationMotsDePasse(mdp, confirmationMdp);
-	        } catch (Exception e) {
-	            erreurs.put("mdp", e.getMessage());
-	        }
+			try {
+			    validationMotsDePasse(mdp, confirmationMdp);
+			} catch (Exception e) {
+			    erreurs.put("mdp", e.getMessage());
+			}
 
-	        /* Validation du champ pseudo */
-	        try {
-	            validationPseudo(pseudo);
-	        } catch ( Exception e ) {
-	            erreurs.put("pseudo", e.getMessage());
-	        }
-	        
-	        if (erreurs.isEmpty()) {
-	        	facadeUtilisateur.ajouterUtilisateur(pseudo, mdp);
-	        	request.getRequestDispatcher("accueil.jsp").forward(request, response);
-	        } else {
-	        	request.setAttribute("erreurs", erreurs);
-		        request.getRequestDispatcher("creerCompte.jsp").forward(request, response);
-	        }
+			/* Validation du champ pseudo */
+			try {
+			    validationPseudo(pseudo);
+			} catch ( Exception e ) {
+			    erreurs.put("pseudo", e.getMessage());
+			}
+
+			if (erreurs.isEmpty()) {
+				facadeUtilisateur.ajouterUtilisateur(pseudo, mdp);
+				request.getRequestDispatcher("accueil.jsp").forward(request, response);
+			} else {
+				request.setAttribute("erreurs", erreurs);
+				request.getRequestDispatcher("creerCompte.jsp").forward(request, response);
+			}
+			break;
+		
+		case "Appliquer":
+			String titre = request.getParameter("titre");
+			String[] motsClefs = request.getParameter("motsClefs").split(" ");
+			this.facadeUtilisateur.creerPlaylist(titre, utilisateurCourant, new HashSet<String>(Arrays.asList(motsClefs)));
 			break;
 		}
 	}
