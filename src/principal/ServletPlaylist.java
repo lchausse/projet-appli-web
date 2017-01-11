@@ -1,7 +1,13 @@
 package principal;
 
+import model.Search;
+
 import java.io.IOException;
 import java.util.Set;
+
+import com.google.api.services.youtube.model.SearchResult;
+
+import java.util.List;
 
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
@@ -13,7 +19,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class Projet
  */
-@WebServlet("/Projet")
+@WebServlet("/ServletPlaylist")
 public class ServletPlaylist extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
@@ -41,14 +47,21 @@ public class ServletPlaylist extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String op = request.getParameter("op");
 		String recherche = request.getParameter("recherche");
+		Set<Playlist> results;
+		String[] motsClefs;
+		String rechercheMusique;
 		switch (op) {
 		case "Rechercher Playlist":
-			String[] motsClefs = recherche.split(" ");
-			Set<Playlist> results = facadePlaylist.rechercherPlaylists(motsClefs);
+			motsClefs = recherche.split(" ");
+			results = facadePlaylist.rechercherPlaylistsPubliques(motsClefs);
 			request.setAttribute("resultatsRecherchePlaylist", results);
 			request.getRequestDispatcher("accueil.jsp").forward(request, response);
 			break;
+			
+		case "Rechercher":
+			rechercheMusique = request.getParameter("rechercheMusique");
+			List<SearchResult> resultatsRecherche = Search.youtubeSearch(rechercheMusique);
+			request.getRequestDispatcher("creerPlaylist.jsp").forward(request, response);
 		}
 	}
-
 }
