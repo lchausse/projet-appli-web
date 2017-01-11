@@ -1,51 +1,41 @@
 <%@ page contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ page import="principal.*, java.util.Set" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="styleAccueil.css" />
+<link rel="stylesheet" href="css/styleAccueil.css" />
 <title>YouList</title>
 </head>
 <body>
-<div id="masthead-positioner">
-	<div id="yl-masthead-container" class="clearfix yl-base-gutter"> <!-- logo && barre de recherche && connexion -->
-		<div id="yl-masthead"> <!-- logo -->
-			<span class="logo" title="Accueil YouList"></span>²
-		</div>
-				
-		<div id="yl-masthead-signin"> <!-- connexion -->
-			<button class="yl-signin-button" type="button" onclick=";window.location.href=this.getAttribute('href');return false;" href="creerCompte.jsp?op=creerCompte" role="link">
-				<span class="yl-button-content">Connexion</span>
-			</button>
-		</div>
-				
-		<div id="yl-masthead-content"> <!-- barre de recherche -->
-		</div>
-	</div>
-	<div id="masthead-appbar-container" class="clearfix"> <!-- playlist tendance -->
-	</div>
+
+<%
+Utilisateur user = (Utilisateur)request.getAttribute("utilisateur");
+ %>
+
+<ul>
+  <li class = "left"><a class="active" href="">Accueil</a></li>
+  <li class = "left"><a href="tendances.jsp">Tendances</a></li>
+<%
+if (user != null) {
+	out.println("<li class = \"left\"><a href = \"ServletUtilisateur?op=mesPlaylists" + user.getPseudo() + "\">Mes playlists</a>");
+	out.println("<li class = \"right\"><a href = \"\">Déconnexion</a>");
+	out.println("<li class = \"right\"><a href = \"\">Mon compte</a>");
+} else {
+	out.println("<li class = \"right\"><a href = \"connexion.jsp\">Connexion</a>");
+	out.println("<li class = \"right\"><a href = \"creerCompte.jsp\">Inscription</a>");
+}
+%>
+</ul>
+
+<div id = "principal">
+	<p>Rechercher une playlist publique</p>
+	<form  action = "ServletPlaylist" method = "POST">
+	  <input type="search" name="recherchePublique" placeholder="Mots clefs..."/>
+	  <input type="submit" name="op" value = "Rechercher Playlist" />  
+	</form>
+	</p>
 </div>
-<div id="masthead-positioner-height-offset"></div> <!-- positionnement de masthead-positioner -->
-
-<p>Déjà  inscrit ? </p>
-<form  action = "ServletUtilisateur" method = "POST">
-	<input type = "text" name = "pseudo" placeholder = "Pseudo" autofocus value="<c:out value="${param.pseudo}"/>" required/>
-	<span class="erreur">${erreurs['pseudo']}</span><br />
-	<input type = "password" name = "mdp" placeholder = "Mot de passe" required/>
-	<span class="erreur">${erreurs['mdp']}</span><br />
-	<input type = "submit" name = "op" value = "Connexion" /><br />
-</form>
-	
-<p>
-<em><a href="creerCompte.jsp">Créer un compte</a></em>
-</p>
-
-<p>Rechercher une playlist publique</p>
-<form  action = "ServletPlaylist" method = "POST">
-  <input type="search" name="recherchePublique" placeholder="Mots clefs..."/>
-  <input type="submit" name="op" value = "Rechercher Playlist" />  
-</form>
-</p>
 </body>
 </html>
