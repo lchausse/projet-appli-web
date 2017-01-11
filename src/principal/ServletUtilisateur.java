@@ -52,8 +52,7 @@ public class ServletUtilisateur extends HttpServlet {
 		String[] motsClefs;
 		Map<String, String> erreurs = new HashMap<String, String>();
 		
-		switch (op) {
-		case "Connexion":
+		if (op.equals("Connexion")) {
 			boolean connexionPossible = false;
 			pseudo = request.getParameter("pseudo");
 			mdp = request.getParameter("mdp");
@@ -70,15 +69,13 @@ public class ServletUtilisateur extends HttpServlet {
 			if (connexionPossible) {
 				utilisateurCourant = facadeUtilisateur.getUtilisateur(pseudo);
 				request.setAttribute("utilisateur", facadeUtilisateur.getUtilisateur(pseudo));
-				request.setAttribute("resultats", new HashSet<Playlist>());
-				request.getRequestDispatcher("compte.jsp").forward(request, response);
+				request.getRequestDispatcher("accueil.jsp").forward(request, response);
 			} else {
 				request.setAttribute("erreurs", erreurs);
-				request.getRequestDispatcher("accueil.jsp").forward(request, response);
+				request.getRequestDispatcher("connexion.jsp").forward(request, response);
 			}
-			break;
-			
-		case "Inscription":
+		}
+		else if (op.equals("Inscription")) {
 			pseudo = request.getParameter("pseudo");
 			mdp = request.getParameter("mdp");
 			confirmationMdp = request.getParameter("mdp2");
@@ -104,9 +101,8 @@ public class ServletUtilisateur extends HttpServlet {
 	        	request.setAttribute("erreurs", erreurs);
 		        request.getRequestDispatcher("creerCompte.jsp").forward(request, response);
 	        }
-			break;
-		
-		case "Appliquer":
+		}
+		else if (op.equals("Appliquer")) {
 			String titre = request.getParameter("titre");
 			motsClefs = request.getParameter("motsClefs").split(" ");
 			Set<String> motsClefsEns = (new HashSet<String>(Arrays.asList(motsClefs)));
@@ -115,19 +111,33 @@ public class ServletUtilisateur extends HttpServlet {
 			request.setAttribute("utilisateur", utilisateurCourant);
 			request.setAttribute("resultats", new HashSet<Playlist>());
 			request.getRequestDispatcher("compte.jsp").forward(request, response);
-			break;
-			
-		case "Rechercher":
+		}
+		else if (op.equals("Rechercher")) {
 			String recherche = request.getParameter("recherche");
 			motsClefs = recherche.split(" ");
 			Set<Playlist> results = facadeUtilisateur.rechercherPlaylistsUtilisateur(motsClefs, utilisateurCourant);
 			request.setAttribute("resultats", results);
 			request.setAttribute("utilisateur", utilisateurCourant);
 			request.getRequestDispatcher("compte.jsp").forward(request, response);
-			
-		case "Rechercher musique":
+		}
+		else if (op.equals("Rechercher musique")) {
 			String rechercheMusique = request.getParameter("rechercheMusique");
-			
+		}
+		else if (op.contains("mesPlaylists")) {
+			String pseudoUser = op.split("mesPlaylists")[1];
+			request.setAttribute("utilisateur", facadeUtilisateur.getUtilisateur(pseudoUser));
+			request.setAttribute("resultats", new HashSet<Playlist>());
+			request.getRequestDispatcher("mesPlaylists.jsp").forward(request, response);
+		}
+		else if (op.contains("accueil")) {
+			String pseudoUser = op.split("accueil")[1];
+			request.setAttribute("utilisateur", facadeUtilisateur.getUtilisateur(pseudoUser));
+			request.getRequestDispatcher("accueil.jsp").forward(request, response);
+		}
+		else if (op.contains("ajouterPlaylist")) {
+			String pseudoUser = op.split("ajouterPlaylist")[1];
+			request.setAttribute("utilisateur", facadeUtilisateur.getUtilisateur(pseudoUser));
+			request.getRequestDispatcher("creerPlaylist.jsp").forward(request, response);
 		}
 	}
 	
