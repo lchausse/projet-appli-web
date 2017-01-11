@@ -36,11 +36,11 @@ public class Utilisateur {
 		this.mdp = mdp;
 	}
 	
-	public Set<Playlist> getMesPlayLists() {
+	public Set<Playlist> getMesPlaylists() {
 		return this.mesPlayLists;	
 	}
 	
-	public void setMesPlayList(Set<Playlist> playlists) {
+	public void setMesPlaylists(Set<Playlist> playlists) {
 		this.mesPlayLists = playlists;	
 	}
 
