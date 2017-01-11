@@ -4,13 +4,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="style.css" />
+<link rel="stylesheet" href="styleCreerCompte.css" />
 <title>YouList - Inscription</title>
 </head>
 <body>
 <form  action = "ServletUtilisateur" method = "POST">
 <fieldset>
-<legend>Inscription</legend>
 	<input type = "text" name = "pseudo" placeholder = "Pseudo" value="<c:out value="${param.pseudo}"/>" required/>
 	<span class="erreur">${erreurs['pseudo']}</span><br /><br />
 	<input type = "password" name = "mdp" placeholder = "Mot de passe" required/>
@@ -19,8 +18,8 @@
 	<input type = "submit" name = "op" value = "Inscription" /><br />
 </fieldset>
 </form>
-<a href="accueil.html">
-<img id="logoYoulist" src="images/youlist.png" alt="Logo" />
+<a href="accueil.jsp">
+<img id="logoYoulist" src="images/YouList.jpeg" alt="Logo" />
 </a>
 </body>
 </html>
