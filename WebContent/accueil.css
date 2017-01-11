@@ -11,22 +11,55 @@ body {
 
 .logo {
 	position: fixed;
+	top: 19px;
+	left: 15px;
+}
+
+.signin, .signup {
+	background-color:#606665;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:17px;
+	text-decoration:none;
+	position: fixed;
 }
 
 .signup {
-	background-color: #4169E1;
-	color: white;
-	position: fixed;
-	top: 25px;
-	right: 75px;
+	
+	padding:7px 16px;
+	top: 20px;
+	right: 49px;
+}
+
+.signup:hover, .signin:hover{
+	background-color:#e21d1d;
+}
+
+.signup:active{
+	position:fixed;
 }
 
 .signin {
-	background-color: #4169E1;
-	color: white;
-	position: fixed;
-	top: 25px;
+	padding:7px 13px;
+	top: 20px;
 	right: 160px;
+}
+
+
+.headerLinks{
+	text-decoration:none;
+	font-family:Arial;
+	color:#000;
+}
+
+.headerLinks:hover{
+	border-bottom:2px solid #cc1a1a;;
+}
+
+.headerLinksSelected{
+	border-bottom:2px solid #606665;
 }
 
 #yl-masthead-content {

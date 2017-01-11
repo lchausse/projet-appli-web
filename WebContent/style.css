@@ -1,0 +1,39 @@
+form {
+	margin-top: 50vh;
+	transform: translateY(-50%);
+}
+
+body {
+	background-color: #e74c3c
+}
+fieldset {
+    padding: 10px;
+    border: 2px #000000 solid;
+    width: 250px;
+    margin: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+    background-color: #bdc3c7;
+}
+
+form .erreur {
+    color: #900;
+}
+
+input {
+	font-size: 15pt;
+	width: 250px;
+    padding: 10px;
+    border: none;
+    border-bottom: solid 2px #c9c9c9;
+    -webkit-transition: border 0.3s;
+    -moz-transition: border 0.3s;
+    -o-transition: border 0.3s;
+    transition: border 0.3s;
+}
+
+img#logoYoulist { 
+  position: absolute; 
+  top: 0; 
+  left: 0;
+}
