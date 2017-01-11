@@ -32,6 +32,7 @@ public class Playlist {
 		this.utilisateurs = new HashSet<Utilisateur>();
 		this.motsClefs = new HashSet<String>();
 		this.vues = 0;
+		this.publique = false;
 	}
 
 	public String getNom() {
