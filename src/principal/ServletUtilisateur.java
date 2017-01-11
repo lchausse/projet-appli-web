@@ -6,6 +6,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
@@ -48,6 +49,7 @@ public class ServletUtilisateur extends HttpServlet {
 		String pseudo;
 		String mdp;
 		String confirmationMdp;
+		String[] motsClefs;
 		Map<String, String> erreurs = new HashMap<String, String>();
 		
 		switch (op) {
@@ -68,6 +70,7 @@ public class ServletUtilisateur extends HttpServlet {
 			if (connexionPossible) {
 				utilisateurCourant = facadeUtilisateur.getUtilisateur(pseudo);
 				request.setAttribute("utilisateur", facadeUtilisateur.getUtilisateur(pseudo));
+				request.setAttribute("resultats", new HashSet<Playlist>());
 				request.getRequestDispatcher("compte.jsp").forward(request, response);
 			} else {
 				request.setAttribute("erreurs", erreurs);
@@ -81,35 +84,50 @@ public class ServletUtilisateur extends HttpServlet {
 			confirmationMdp = request.getParameter("mdp2");
 			
 			/* Validation des champs mot de passe et confirmation. */
-			try {
-			    validationMotsDePasse(mdp, confirmationMdp);
-			} catch (Exception e) {
-			    erreurs.put("mdp", e.getMessage());
-			}
+	        try {
+	            validationMotsDePasse(mdp, confirmationMdp);
+	        } catch (Exception e) {
+	            erreurs.put("mdp", e.getMessage());
+	        }
 
-			/* Validation du champ pseudo */
-			try {
-			    validationPseudo(pseudo);
-			} catch ( Exception e ) {
-			    erreurs.put("pseudo", e.getMessage());
-			}
-
-			if (erreurs.isEmpty()) {
-				facadeUtilisateur.ajouterUtilisateur(pseudo, mdp);
-				request.getRequestDispatcher("accueil.jsp").forward(request, response);
-			} else {
-				request.setAttribute("erreurs", erreurs);
-				request.getRequestDispatcher("creerCompte.jsp").forward(request, response);
-			}
+	        /* Validation du champ pseudo */
+	        try {
+	            validationPseudo(pseudo);
+	        } catch ( Exception e ) {
+	            erreurs.put("pseudo", e.getMessage());
+	        }
+	        
+	        if (erreurs.isEmpty()) {
+	        	facadeUtilisateur.ajouterUtilisateur(pseudo, mdp);
+	        	request.getRequestDispatcher("accueil.jsp").forward(request, response);
+	        } else {
+	        	request.setAttribute("erreurs", erreurs);
+		        request.getRequestDispatcher("creerCompte.jsp").forward(request, response);
+	        }
 			break;
 		
 		case "Appliquer":
 			String titre = request.getParameter("titre");
-			String[] motsClefs = request.getParameter("motsClefs").split(" ");
-			this.facadeUtilisateur.creerPlaylist(titre, utilisateurCourant, new HashSet<String>(Arrays.asList(motsClefs)));
+			motsClefs = request.getParameter("motsClefs").split(" ");
+			Set<String> motsClefsEns = (new HashSet<String>(Arrays.asList(motsClefs)));
+			motsClefsEns.remove("");
+			this.facadeUtilisateur.creerPlaylist(titre, utilisateurCourant, motsClefsEns);
 			request.setAttribute("utilisateur", utilisateurCourant);
+			request.setAttribute("resultats", new HashSet<Playlist>());
 			request.getRequestDispatcher("compte.jsp").forward(request, response);
 			break;
+			
+		case "Rechercher":
+			String recherche = request.getParameter("recherche");
+			motsClefs = recherche.split(" ");
+			Set<Playlist> results = facadeUtilisateur.rechercherPlaylistsUtilisateur(motsClefs, utilisateurCourant);
+			request.setAttribute("resultats", results);
+			request.setAttribute("utilisateur", utilisateurCourant);
+			request.getRequestDispatcher("compte.jsp").forward(request, response);
+			
+		case "Rechercher musique":
+			String rechercheMusique = request.getParameter("rechercheMusique");
+			
 		}
 	}
 	
