@@ -4,9 +4,16 @@
 
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" href="styleCreerPlaylist.css" />
 <title>Youlist - Créer playlist</title>
 </head>
 <body>
+<section id = "rechercheMusique">
+	<form action = "ServletPlaylist" method = "POST">
+		<input type = "search" name = "rechercheMusique" placeholder = "Rechercher musique">
+		<input type = "submit" name = "op" value = "Rechercher musique">
+	</form>
+</section>
 <section id = "informationsPlaylist">
 	<form action = "ServletUtilisateur" method = "POST">
 		Saisissez le titre et les mots clefs de la playlist <br />
