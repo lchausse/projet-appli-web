@@ -4,10 +4,18 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="styleCreerCompte.css" />
+<link rel="stylesheet" href="css/styleCreerCompte.css" />
 <title>YouList - Inscription</title>
 </head>
 <body>
+
+<ul>
+  <li class = "left"><a href="accueil.jsp">Accueil</a></li>
+  <li class = "left"><a href="tendances.jsp">Tendances</a></li>
+  <li class = "right"><a href="connexion.jsp">Connexion</a></li>
+  <li class = "right"><a class="active" href="">Inscription</a></li>
+</ul>
+<div id = principal>
 <form  action = "ServletUtilisateur" method = "POST">
 <fieldset>
 	<input type = "text" name = "pseudo" placeholder = "Pseudo" value="<c:out value="${param.pseudo}"/>" required/>
@@ -19,7 +27,8 @@
 </fieldset>
 </form>
 <a href="accueil.jsp">
-<img id="logoYoulist" src="images/YouList.jpeg" alt="Logo" />
+<!-- <img id="logoYoulist" src="images/YouList.jpeg" alt="Logo" /> -->
 </a>
+</div>
 </body>
 </html>
