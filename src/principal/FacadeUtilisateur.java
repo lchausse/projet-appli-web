@@ -1,7 +1,10 @@
 package principal;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+
 import javax.ejb.Singleton;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -56,14 +59,45 @@ public class FacadeUtilisateur {
 		}
 		return res;
 	}
-
+	
 	public void creerPlaylist(String nom, Utilisateur u, Set<String> motsClefs) {
 	  	Playlist playlist = new Playlist();
 	  	playlist.addUtilisateur(u);
 		playlist.setNom(nom);
 		playlist.setMotsClefs(motsClefs);
+		u.addPlaylist(playlist);
 		em.persist(playlist);
 	}
+	
+	public Set<Playlist> rechercherPlaylistsUtilisateur(String[] motClefs, Utilisateur u) {
+		Set<Playlist> playlistsARetirer;
+		Set<Playlist> playlistsCorrespondantes = new HashSet<Playlist>();
+		playlistsCorrespondantes.addAll(u.getMesPlaylists());
+		for (String motClef : motClefs) {
+			playlistsARetirer = new HashSet<Playlist>();
+			for (Playlist pl : playlistsCorrespondantes) {
+				if (!match(pl.getMotsClefs(), motClef)) {
+					playlistsARetirer.add(pl);
+				}
+			}
+			for (Playlist plARetirer : playlistsARetirer) {
+				playlistsCorrespondantes.remove(plARetirer);
+			}
+		}
+		return playlistsCorrespondantes;
+	}
+	
+	private boolean match(Set<String> motClefs, String motClef) {
+		for (String mc : motClefs) {
+			if (mc.equals(motClef)) {
+				return true;
+			}
+			if (mc.toLowerCase().contains(motClef.toLowerCase())) {
+				return true;
+			}
+		}
+		return false;
+	}	
 	
 	public Utilisateur getUtilisateur(String pseudo2) {
 		TypedQuery<Utilisateur> req = em.createQuery(
