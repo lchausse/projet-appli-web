@@ -21,16 +21,18 @@ public class FacadePlaylist {
 		this.playlists = new HashSet<Playlist>();
 	}
 
-	public Set<Playlist> rechercherPlaylists(String[] motClefs) {
+	public Set<Playlist> rechercherPlaylistsPubliques(String[] motClefs) {
 		Set<Playlist> playlistsARetirer;
-		Set<Playlist> playlistsCorrespondantes = new HashSet<Playlist>();
-		for (Playlist pl : this.playlists) {
-			if (pl.isPublique) playlistsCorrespondantes.add(pl);
-		}
+		Set<Playlist> playlistsCorrespondantes = this.getPlaylistsPubliques();
+//		for (Playlist pl : this.playlists) {
+//			playlistsCorrespondantes.add(pl);
+//		}
 		for (String motClef : motClefs) {
 			playlistsARetirer = new HashSet<Playlist>();
 			for (Playlist pl : playlistsCorrespondantes) {
-				if (!match(pl.getMotsClefs(), motClef)) playlistsARetirer.add(pl);
+				if (!match(pl.getMotsClefs(), motClef)) {
+					playlistsARetirer.add(pl);
+				}
 			}
 			for (Playlist plARetirer : playlistsARetirer) {
 				playlistsCorrespondantes.remove(plARetirer);
@@ -38,7 +40,7 @@ public class FacadePlaylist {
 		}
 		return playlistsCorrespondantes;
 	}
-
+	
 	public void ajouterMusique(Playlist playlist, Musique musique) {
 	  	playlist.addMusique(musique);
 	}
@@ -65,6 +67,18 @@ public class FacadePlaylist {
 	public void modifierTitreMusique(Musique musique, String nouveauTitre) {
 	  	musique.setTitre(nouveauTitre);
 
+	}
+	
+	private Set<Playlist> getPlaylistsPubliques() {
+		List<Playlist> playlists = em.createQuery("SELECT p FROM Playlist p", Playlist.class)
+				                     .getResultList();
+		Set<Playlist> playlistsPubliques = new HashSet<Playlist>();
+		for (Playlist p : playlists) {
+			if (p.isPublique()) {
+				playlistsPubliques.add(p);
+			}
+		}
+		return playlistsPubliques;
 	}
 	
 	private boolean match(Set<String> motClefs, String motClef) {
