@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="principal.*" %>
+<%@ page import="principal.*, java.util.Set" %>
 <html>
 <head>
 <meta charset="UTF-8">
@@ -18,7 +18,11 @@
 <!-- </select> -->
 <!-- <input type="submit" value="Search" /> -->
 <!-- </form>  -->
-<%Utilisateur user = (Utilisateur)request.getAttribute("utilisateur");%>
+<%
+Utilisateur user = (Utilisateur)request.getAttribute("utilisateur");
+Set<Playlist> playlistsUtilisateur = user.getMesPlaylists();
+Set<Playlist> resultatRecherche = (Set<Playlist>)request.getAttribute("resultats");
+ %>
 
 <!-- <form action = "ServletUtilisateur" method = "POST"> -->
 <header> Utilisateur : <%=user.getPseudo() %></header>
@@ -26,13 +30,22 @@
 <!-- 	<input value="Next" type = "button" onclick="IframeRefresh('ibra');" /> -->
 <!-- </form> -->
 
-<form action = "ServletPlaylist" method = "POST" class = "rechercher">
-<input type = "search" name = "barreRecherche" placeholder = "Rechercher playlist" />
+<form action = "ServletUtilisateur" method = "POST" class = "rechercher">
+<input type = "search" name = "recherche" placeholder = "Rechercher playlist" />
 <input type="submit" name="op" value = "Rechercher"/>
 </form>
+<%
+for (Playlist p : playlistsUtilisateur) {
+	out.println(p.getNom() + "<br />");
+}
+for (Playlist p : resultatRecherche) {
+	out.println(p.getNom() + "<br />");
+}
+%>
+
 
 <a href="creerPlaylist.jsp" >
-<img id="ajouterPlaylist" src="images/ajouterPlaylist.png" alt="Logo" />
+<img id="ajouterPlaylist" src="images/ajouterPlaylist.png" alt="Logo" title = "Créer une playlist"/>
 </a>
 
 <!-- <script language="javascript"> -->
