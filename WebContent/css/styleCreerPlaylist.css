@@ -1,0 +1,64 @@
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    left: 0;
+    overflow: hidden;
+    background-color: #333;
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+
+li.left {
+    float: left;
+}
+
+li.right {
+    float: right;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+li a:hover:not(.active) {
+    background-color: #111;
+}
+
+.active {
+    background-color: #c0392b;
+}
+
+div#principal {
+    padding:20px;
+    margin-top:30px;
+}
+
+section#informationsPlaylist {
+	position: absolute;
+	right: 100px;
+	top: 100px;
+}
+
+
+section#rechercheMusique {
+	width: 400px;
+	margin-left: 10%;
+}
+
+section#rechercheMusique input[type="search"] {
+	font-size: 15pt;
+	width:400px;
+    padding: 10px;
+    border: none;
+    border-bottom: solid 2px #c9c9c9;
+    -webkit-transition: border 0.3s;
+    -moz-transition: border 0.3s;
+    -o-transition: border 0.3s;
+    transition: border 0.3s;
+}

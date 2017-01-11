@@ -1,0 +1,64 @@
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    left: 0;
+    overflow: hidden;
+    background-color: #333;
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+
+li.left {
+    float: left;
+}
+
+li.right {
+    float: right;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+li a:hover:not(.active) {
+    background-color: #111;
+}
+
+.active {
+    background-color: #c0392b;
+}
+
+div#principal {
+    padding:20px;
+    margin-top:30px;
+}
+
+input {
+	font-size: 15pt;
+	width:400px;
+    padding: 10px;
+    border: none;
+    border-bottom: solid 2px #c9c9c9;
+    -webkit-transition: border 0.3s;
+    -moz-transition: border 0.3s;
+    -o-transition: border 0.3s;
+    transition: border 0.3s;
+}
+
+form.rechercher {
+	width:400px;
+	margin: auto;
+}
+
+img#ajouterPlaylist { 
+  position: absolute; 
+  bottom: 50px; 
+  left: 50px;
+  border-width: 1px; 
+}
