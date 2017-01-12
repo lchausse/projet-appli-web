@@ -27,10 +27,3 @@ div.desc {
     left: 150px;
     font-size: 130%;
 }
-
-div.views {
-  
-    position: relative;
-    top: -50px;
-    left: 600px;
-}
