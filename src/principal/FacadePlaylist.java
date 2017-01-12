@@ -1,121 +1,96 @@
 package principal;
+
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
-import javax.persistence.ElementCollection;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.ejb.Singleton;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 
-
-@Entity
-public class Playlist {
+@Singleton
+public class FacadePlaylist {
 	
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int id;
-	private String nom; // nom de la playlist
-	@ManyToMany(fetch=FetchType.EAGER)
-	private Set<Musique> musiques; // musique de la playlist
-	@ManyToMany(fetch=FetchType.EAGER) 
-	private Set<Utilisateur> utilisateurs; // utilisateur pouvant modifier la playlist
-    @ElementCollection(targetClass=String.class)
-	private Set<String> motsClefs; // mots clefs de la playlist
-    private boolean publique;
-	private int vues; // nombre de vue de la playlistre
-	private String titre; // titre de la playlist
+  	Set<Playlist> playlists; // liste des playlists disponibles sur le site
+	@PersistenceContext
+	EntityManager em;
 	
-
-	public Playlist() {
-		this.musiques = new HashSet<Musique>();
-		this.utilisateurs = new HashSet<Utilisateur>();
-		this.motsClefs = new HashSet<String>();
-		this.vues = 0;
-		this.publique = false;
-	}
-	
-	public Playlist(String titre, HashSet<String> motsClefs, HashSet<Utilisateur> utilisateurs, boolean estPublique) {
-		this.musiques = new HashSet<Musique>();
-		this.utilisateurs = utilisateurs;
-		this.motsClefs = motsClefs;
-		this.vues = 0;
-		this.publique = estPublique;
+	public FacadePlaylist() {
+		this.playlists = new HashSet<Playlist>();
 	}
 
-	public String getNom() {
-		return nom;
+	public Set<Playlist> rechercherPlaylistsPubliques(String[] motClefs) {
+		Set<Playlist> playlistsARetirer;
+		Set<Playlist> playlistsCorrespondantes = this.getPlaylistsPubliques();
+//		for (Playlist pl : this.playlists) {
+//			playlistsCorrespondantes.add(pl);
+//		}
+		for (String motClef : motClefs) {
+			playlistsARetirer = new HashSet<Playlist>();
+			for (Playlist pl : playlistsCorrespondantes) {
+				if (!match(pl.getMotsClefs(), motClef)) {
+					playlistsARetirer.add(pl);
+				}
+			}
+			for (Playlist plARetirer : playlistsARetirer) {
+				playlistsCorrespondantes.remove(plARetirer);
+			}
+		}
+		return playlistsCorrespondantes;
+	}
+	
+	public void ajouterMusique(Playlist playlist, Musique musique) {
+	  	playlist.addMusique(musique);
 	}
 
-	public void setNom(String nom) {
-		this.nom = nom;
+	public void supprimerMusique(Playlist playlist, Musique musique) {
+		playlist.deleteMusique(musique);
 	}
 	
-	public String getTitre() {
-		return titre;
+	public void creerPlaylist(Playlist playlist) {
+		playlists.add(playlist);
 	}
 
-	public void setTitre(String titre) {
-		this.titre = titre;
-	}
-	
-	public Set<Musique> getMusiques() {
-		return this.musiques;
-	}
-	
-	public void setMusiques(Set<Musique> musiques) {
-		this.musiques = musiques;
-	}
-	
-	public void addMusique(Musique musique) {
-		this.musiques.add(musique);	
-	}
-	
-	public void deleteMusique(Musique musique) {
-		this.musiques.remove(musique);
+	public void rendrePublique(Playlist playlist) {
 	}
 
-	
-	public Set<Utilisateur> getUtilisateurs() {
-		return this.utilisateurs;
-	}
-	
-	public void setUtilisateurs(Set<Utilisateur> utilisateurs) {
-		this.utilisateurs = utilisateurs;
-	}
-	
-	public void addUtilisateur(Utilisateur user) {
-		this.utilisateurs.add(user);
+	public void ModifierMotClef(Playlist playlist, Set<String> nouveauxMotsClefs){
+	  	playlist.setMotsClefs(nouveauxMotsClefs);
 	}
 
-	
-	public Set<String> getMotsClefs() {
-		return this.motsClefs;	
-	}
-	public void setMotsClefs(Set<String> motsClefs) {
-		this.motsClefs = motsClefs;	
+	public void modifierTitrePlayList(Playlist playlist, String nouveauTitre) {
+	  	playlist.setNom(nouveauTitre);
 	}
 
-
-	public int getVues() {
-		return this.vues;
-	}
-	
-	public void setVues(int vues) {
-		this.vues = vues;	
-	}
-	
-	public void addVues() {
-		this.vues++;
-	}
-	
-	public boolean isPublique() {
-		return publique;
+	public void modifierArtiste(Musique musique, String nouveauArtiste) {
+	  	musique.setAuteur(nouveauArtiste);
 	}
 
-	public void setPublique(boolean publique) {
-		this.publique = publique;
+	public void modifierTitreMusique(Musique musique, String nouveauTitre) {
+	  	musique.setTitre(nouveauTitre);
+
+	}
+	
+	private Set<Playlist> getPlaylistsPubliques() {
+		List<Playlist> playlists = em.createQuery("SELECT p FROM Playlist p", Playlist.class)
+				                     .getResultList();
+		Set<Playlist> playlistsPubliques = new HashSet<Playlist>();
+		for (Playlist p : playlists) {
+			if (p.isPublique()) {
+				playlistsPubliques.add(p);
+			}
+		}
+		return playlistsPubliques;
+	}
+	
+	private boolean match(Set<String> motClefs, String motClef) {
+		for (String mc : motClefs) {
+			if (mc.toLowerCase().equals(motClef.toLowerCase())) return true;
+			if (mc.toLowerCase().contains(motClef.toLowerCase())) return true;
+			if ((mc.toLowerCase() + 's').equals(motClef.toLowerCase())) return true;
+		}
+		return false;
 	}
 }
