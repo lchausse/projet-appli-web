@@ -16,20 +16,17 @@
   <input class = "right" type = "submit" name = "op" value = "Inscription" />
 </form>
 
+
 <div id = "principal">
-	<span class="logo" title="Connection"><img src="images/YouList.jpeg" width="200"/></span>
-	<div class="banner">
-		<h1>Créer et partager vos playlists</h1>
-		<h2 class="hidden-small">Connectez-vous pour accÃ©der Ã  tous les services.</h2>
-	</div>
-	<form  action = "ServletUtilisateur" method = "POST">
-		<input type = "text" name = "pseudo" placeholder = "Pseudo" autofocus value="<c:out value="${param.pseudo}"/>" required/>
-		<span class="erreur">${erreurs['pseudo']}</span><br />
-		<input type = "password" name = "mdp" placeholder = "Mot de passe" required/>
-		<span class="erreur">${erreurs['mdp']}</span><br />
-		<input type = "submit" name = "op" value = "Se connecter" /><br />
-	</form>
-	
+  <form class="login-form" action = "ServletUtilisateur" method = "POST" >
+	<p class="message">Créer un compte pour accéder à tous nos services </p>  
+    <input type="text" name = "pseudo" placeholder="identifiant" autofocus value="<c:out value="${param.pseudo}"/>" required/>
+    <span class="erreur">${erreurs['pseudo']}</span><br />
+    <input type="password" name = "mdp" placeholder="mot de passe" required/>
+    <span class="erreur">${erreurs['mdp']}</span><br />
+    <input type = "submit" class="button" name = "op" value = "Se connecter"/><br />
+
+  </form>
 </div>
 
 </body>
