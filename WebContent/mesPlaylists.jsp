@@ -13,7 +13,7 @@
 Utilisateur user = (Utilisateur)request.getAttribute("utilisateur");
 Set<Playlist> playlistsUtilisateur = user.getMesPlaylists();
 Set<Playlist> resultatRecherche = (Set<Playlist>)request.getAttribute("resultats");
- %>
+%>
  
 
 <form action = "ServletUtilisateur" method = "POST" class = "barre-navigation">
@@ -21,7 +21,7 @@ Set<Playlist> resultatRecherche = (Set<Playlist>)request.getAttribute("resultats
 <%out.println("<input type = \"hidden\" name = \"pseudo\" value = \"" + user.getPseudo() + "\" />");%>
   <input class = "left" type = "submit" name = "op" value = "Tendances" />
   <input class = "left-active" type = "submit" name = "op" value = "Mes playlists" />
-  <input class = "right" type = "submit" name = "op" value = "Déconnexion" />
+  <input class = "right" type = "submit" name = "op" value = "Deconnexion" />
   <input class = "right" type = "submit" name = "op" value = "Mon compte" />
 </form>
 
@@ -35,7 +35,7 @@ Set<Playlist> resultatRecherche = (Set<Playlist>)request.getAttribute("resultats
 <!-- <input type="submit" value="Search" /> -->
 <!-- </form>  -->
 
-
+<%out.println(playlistsUtilisateur); %>
 <!-- <form action = "ServletUtilisateur" method = "POST"> -->
 <header> Utilisateur : <%=user.getPseudo() %></header>
 
