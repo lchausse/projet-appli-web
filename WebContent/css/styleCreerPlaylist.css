@@ -136,3 +136,7 @@ img#logoYoulist {
   width: 18px;
   height: 18px;
 }
+
+form .erreur {
+    color: #900;
+}
