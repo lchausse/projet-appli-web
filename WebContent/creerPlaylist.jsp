@@ -34,13 +34,11 @@
 		<% String id = rId.getVideoId(); %>
 		<% String title = sr.getSnippet().getTitle(); %>
 		<% title = (Character.toUpperCase(title.charAt(0))) + title.toLowerCase().substring(1,Math.min(45, title.length())) + (Math.min(45, title.length()) == 45? "..." : "");%>
-		<% String views = Search.getViews(id); %>
 		<div class="img" href=<%= "https://www.youtube.com/watch?v=" + id %>>
 		  <a target="_blank" >
 		    <img src=<%= "http://i.ytimg.com/vi/" + id + "/mqdefault.jpg" %> alt=<%= title %> width="300" height="200">
 		  </a>
 		  <div class="desc"><%= title %></div>
-		  <div class="views"><%= views %></div>
 		</div>		
 	<% } %>
 <% }
