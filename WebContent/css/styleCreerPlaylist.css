@@ -62,3 +62,11 @@ section#rechercheMusique input[type="search"] {
     -o-transition: border 0.3s;
     transition: border 0.3s;
 }
+
+img#logoYoulist {
+  position: relative; 
+  top: 0;
+  left: 0;
+  width: 18px;
+  height: 18px;
+}
