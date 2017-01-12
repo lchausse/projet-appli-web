@@ -1,3 +1,5 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:300);
+
 form:not(.barre-navigation) {
 	margin-top: 50vh;
 	transform: translateY(-50%);
@@ -132,4 +134,68 @@ input.right-active {
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
+}
+
+form.login-form {
+ width: 360px;
+ position: fixed;
+ padding: 8% 0 0;
+ background: #FFFFFF;
+ max-width: 360px;
+ margin-top: 52vh;
+ margin-left: 57vh;
+ transform: translateY(-50%);
+ padding: 45px;
+ text-align: center;
+ box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+
+
+form.login-form input {
+ font-family: "Roboto", sans-serif;
+ outline: 0;
+ background: #f2f2f2;
+ width: 100%;
+ border: 0;
+ margin: 0 0 0px;
+ padding: 15px;
+ box-sizing: border-box;
+ font-size: 14px;
+}
+
+form.login-form .button {
+ font-family: "Roboto", sans-serif;
+ text-transform: uppercase;
+ outline: 0;
+ background: #e74c3c;
+ width: 100%;
+ border: 0;
+ padding: 15px;
+ color: #FFFFFF;
+ font-size: 14px;
+ -webkit-transition: all 0.3 ease;
+ transition: all 0.3 ease;
+ cursor: pointer;
+}
+
+form.login-form :hover, form.login-form .button:active, form.login-form .button:hover, form.login-form .button:focus {
+ background: #c0392b;
+}
+
+form.login-form .message {
+ margin: 0 0 25px;
+ color: #b3b3b3;
+ font-size: 12px;
+}
+
+body {
+ background-image: url("../images/inscription.png");
+ -webkit-background-size: 100% auto;
+ -moz-background-size: 100% auto;
+ -ms-background-size: 100% auto;
+ -o-background-size: 100% auto;
+ background-size: 100% auto;
+ font-family: "Roboto", sans-serif;
+ -webkit-font-smoothing: antialiased;
+ -moz-osx-font-smoothing: grayscale;      
 }
