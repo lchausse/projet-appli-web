@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page import="principal.*, java.util.Set" %><html>
 <head>
 <meta charset="UTF-8">
@@ -25,7 +26,8 @@ String pseudo = (String) request.getAttribute("utilisateur");
 <div id = principal >
 	<form action = "ServletUtilisateur" method = "POST">
 		Saisissez le titre et les mots clefs de la playlist <br />
-		<input type = "text" name = "titre" placeholder = "Titre"> <br />
+		<input type = "text" name = "titre" placeholder = "Titre" required value="<c:out value="${param.titre}"/>"> <br />
+		<span class="erreur">${erreurs['titre']}</span><br /><br />
 		<textarea name = "motsClefs" placeholder = "Mots clefs" rows="5"></textarea> <br />
 		<select name="estPublique" size="1">
 			<option> Publique
