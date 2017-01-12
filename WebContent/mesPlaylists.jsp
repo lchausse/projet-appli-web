@@ -15,13 +15,14 @@ Set<Playlist> playlistsUtilisateur = user.getMesPlaylists();
 Set<Playlist> resultatRecherche = (Set<Playlist>)request.getAttribute("resultats");
  %>
  
+
 <ul>
 <%
 out.println("<li class = \"left\"><a href=\"ServletUtilisateur?op=accueil" + user.getPseudo() + "\">Accueil</a></li>");
 %>
   <li class = "left"><a href="tendances.jsp">Tendances</a></li>
   <li class = "left"><a class = "active" href = "">Mes playlists</a>
-  <li class = "right"><a href="">Déconnexion</a></li>
+  <li class = "right"><a href="ServletUtilisateur?op=deconnexion">Déconnexion</a></li>
   <li class = "right"><a href="">Mon compte</a></li>
 </ul>
 
@@ -38,6 +39,7 @@ out.println("<li class = \"left\"><a href=\"ServletUtilisateur?op=accueil" + use
 
 <!-- <form action = "ServletUtilisateur" method = "POST"> -->
 <header> Utilisateur : <%=user.getPseudo() %></header>
+
 <!-- 	<iframe id="ibra" width="854" height="480" src="https://www.youtube.com/embed/W_qih8UTeAQ?autoplay=1" frameborder="0" allowfullscreen></iframe> -->
 <!-- 	<input value="Next" type = "button" onclick="IframeRefresh('ibra');" /> -->
 <!-- </form> -->
