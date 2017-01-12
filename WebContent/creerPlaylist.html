@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Créer une playlist</title>
+</head>
+<body>
+	<form action = "ServletUtilisateur" method = "POST">
+		Saisissez le titre et les mots clefs de la playlist <br />
+		<input type = "text" name = "titre" placeholder = "Titre"> <br />
+		<textarea name = "motsClefs" placeholder = "Mots clefs" rows="5"></textarea> <br />
+		<select name="estPublique" size="1">
+			<option> Publique
+			<option> Privée
+		</select>
+
+		<input type = "submit" name = "op" value = "Créer Playlist">
+		
+	</form>
+</body>
+</html>
