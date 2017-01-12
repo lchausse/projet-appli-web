@@ -15,12 +15,12 @@ Utilisateur user = (Utilisateur)request.getAttribute("utilisateur");
  %>
 
 <ul>
-  <li class = "left"><a class="active" href="">Accueil</a></li>
+  <li class = "left"><a class="active" href=""><img id = "logoYoulist" src = "images/logoyl.png" alt = "logo" /></a></li>
   <li class = "left"><a href="tendances.jsp">Tendances</a></li>
 <%
 if (user != null) {
 	out.println("<li class = \"left\"><a href = \"ServletUtilisateur?op=mesPlaylists" + user.getPseudo() + "\">Mes playlists</a>");
-	out.println("<li class = \"right\"><a href = \"\">Déconnexion</a>");
+	out.println("<li class = \"right\"><a href = \"ServletUtilisateur?op=deconnexion\">Déconnexion</a>");
 	out.println("<li class = \"right\"><a href = \"\">Mon compte</a>");
 } else {
 	out.println("<li class = \"right\"><a href = \"connexion.jsp\">Connexion</a>");
