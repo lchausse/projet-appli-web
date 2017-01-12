@@ -9,12 +9,12 @@
 </head>
 <body>
 
-<ul>
-  <li class = "left"><a href="accueil.jsp"><img id = "logoYoulist" src = "images/logoyl.png" alt = "logo" /></a></li>
-  <li class = "left"><a href="tendances.jsp">Tendances</a></li>
-  <li class = "right"><a class="active" href="">Connexion</a></li>
-  <li class = "right"><a href="creerCompte.jsp">Inscription</a></li>
-</ul>
+<form action = "ServletUtilisateur" method = "POST" class = "barre-navigation">
+  <input class = "left" type = "submit" name = "op" value = "Accueil" />
+  <input class = "left" type = "submit" name = "op" value = "Tendances" />
+  <input class = "right-active" type = "submit" name = "op" value = "Connexion" />
+  <input class = "right" type = "submit" name = "op" value = "Inscription" />
+</form>
 
 <div id = "principal">
 	<span class="logo" title="Connection"><img src="images/YouList.jpeg" width="200"/></span>
@@ -27,7 +27,7 @@
 		<span class="erreur">${erreurs['pseudo']}</span><br />
 		<input type = "password" name = "mdp" placeholder = "Mot de passe" required/>
 		<span class="erreur">${erreurs['mdp']}</span><br />
-		<input type = "submit" name = "op" value = "Connexion" /><br />
+		<input type = "submit" name = "op" value = "Se connecter" /><br />
 	</form>
 	
 </div>
