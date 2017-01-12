@@ -15,7 +15,7 @@
 
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="styleCreerPlaylist.css" />
+<link rel="stylesheet" href="styleModifierPlaylist.css" />
 <title>Youlist - Créer playlist</title>
 </head>
 <body>
