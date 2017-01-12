@@ -64,6 +64,11 @@ out.println("<a href=\"ServletUtilisateur?op=ajouterPlaylist" + user.getPseudo()
 <img id="ajouterPlaylist" src="images/ajouterPlaylist.png" alt="Logo" title = "Créer une playlist"/>
 </a>
 </div>
+
+<form action = "ServletUtilisateur" method = "POST" class = "rechercher">
+<input type="submit" name="op" value = "Nouvelle Playlist"/>
+<input type="hidden" name="utilisateur" value="<%=user.getPseudo()%>" />
+</form>
 <!-- <script language="javascript"> -->
 <!--  function IframeRefresh(IframeId) { -->
 <!--  	var iframe=document.getElementById(IframeId); -->
