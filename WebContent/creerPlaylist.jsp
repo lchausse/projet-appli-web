@@ -1,27 +1,28 @@
-<!DOCTYPE html>
-<html>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ page import="principal.*, java.util.Set" %><html>
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" href="css/styleCreerPlaylist.css" />
 <title>Créer une playlist</title>
 </head>
 <body>
 
 <%
-Utilisateur user = (Utilisateur)request.getAttribute("utilisateur");
-Set<Playlist> playlistsUtilisateur = user.getMesPlaylists();
-Set<Playlist> resultatRecherche = (Set<Playlist>)request.getAttribute("resultats");
+String pseudo = (String) request.getAttribute("utilisateur");
  %>
- 
-<ul>
-<%
-out.println("<li class = \"left\"><a href=\"ServletUtilisateur?op=accueil" + user.getPseudo() + "\">Accueil</a></li>");
-%>
-  <li class = "left"><a href="tendances.jsp">Tendances</a></li>
-  <li class = "left"><a class = "active" href = "">Mes playlists</a>
-  <li class = "right"><a href="">Déconnexion</a></li>
-  <li class = "right"><a href="">Mon compte</a></li>
-</ul>
 
+<form action = "ServletUtilisateur" method = "POST" class = "barre-navigation">
+  <input class = "left" type = "submit" name = "op" value = "Accueil" />
+<%out.println("<input type = \"hidden\" name = \"pseudo\" value = \"" + pseudo + "\" />");%>
+  <input class = "left" type = "submit" name = "op" value = "Tendances" />
+  <input class = "left-active" type = "submit" name = "op" value = "Mes playlists" />
+  <input class = "right" type = "submit" name = "op" value = "Déconnexion" />
+  <input class = "right" type = "submit" name = "op" value = "Mon compte" />
+</form>
+
+
+<div id = principal >
 	<form action = "ServletUtilisateur" method = "POST">
 		Saisissez le titre et les mots clefs de la playlist <br />
 		<input type = "text" name = "titre" placeholder = "Titre"> <br />
@@ -30,9 +31,9 @@ out.println("<li class = \"left\"><a href=\"ServletUtilisateur?op=accueil" + use
 			<option> Publique
 			<option> Privée
 		</select>
-
-		<input type = "submit" name = "op" value = "Créer Playlist">
-		<input type="hidden" name="createur" id="createur" value="<%=user;%>" />
+		<input type="submit" name="op" value="Creer Playlist">
+		<input type="hidden" name="utilisateur" value=<%=pseudo%> />
 	</form>
+</div>
 </body>
 </html>
