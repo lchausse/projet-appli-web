@@ -1,4 +1,4 @@
-form {
+form:not(.barre-navigation) {
 	margin-top: 50vh;
 	transform: translateY(-50%);
 }
@@ -20,7 +20,7 @@ form .erreur {
     color: #900;
 }
 
-input {
+fieldset input {
 	font-size: 15pt;
 	width: 250px;
     padding: 10px;
@@ -32,7 +32,7 @@ input {
     transition: border 0.3s;
 }
 
-ul {
+form.barre-navigation {
     list-style-type: none;
     margin: 0;
     padding: 0;
@@ -44,15 +44,14 @@ ul {
     width: 100%;
 }
 
-li.left {
+input.left {
+	background-color: Transparent;
+    background-repeat:no-repeat;
+    border: none;
+    cursor:pointer;
+    overflow: hidden;
+    outline:none;
     float: left;
-}
-
-li.right {
-    float: right;
-}
-
-li a {
     display: block;
     color: white;
     text-align: center;
@@ -60,23 +59,77 @@ li a {
     text-decoration: none;
 }
 
-li a:hover:not(.active) {
+input.right {
+    background-color: Transparent;
+    background-repeat:no-repeat;
+    border: none;
+    cursor:pointer;
+    overflow: hidden;
+    outline:none;
+    float: right;
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+input.left:hover {
+	background-color: #111;
+    background-repeat:no-repeat;
+    border: none;
+    cursor:pointer;
+    overflow: hidden;
+    outline:none;
+    float: left;
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+input.right:hover {
     background-color: #111;
+    background-repeat:no-repeat;
+    border: none;
+    cursor:pointer;
+    overflow: hidden;
+    outline:none;
+    float: right;
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
 }
 
-.active {
+input.left-active {
+	background-color: #c0392b;
+    background-repeat:no-repeat;
+    border: none;
+    cursor:pointer;
+    overflow: hidden;
+    outline:none;
+    float: left;
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+input.right-active {
     background-color: #c0392b;
-}
-
-div#principal {
-    padding:20px;
-    margin-top:30px;
-}
-
-img#logoYoulist {
-  position: relative; 
-  top: 0; 
-  left: 0;
-  width: 18px;
-  height: 18px;
+    background-repeat:no-repeat;
+    border: none;
+    cursor:pointer;
+    overflow: hidden;
+    outline:none;
+    float: right;
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
 }
