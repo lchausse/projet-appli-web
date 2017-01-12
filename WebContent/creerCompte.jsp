@@ -10,7 +10,7 @@
 <body>
 
 <ul>
-  <li class = "left"><a href="accueil.jsp">Accueil</a></li>
+  <li class = "left"><a href="accueil.jsp"><img id = "logoYoulist" src = "images/logoyl.png" alt = "logo" /></a></li>
   <li class = "left"><a href="tendances.jsp">Tendances</a></li>
   <li class = "right"><a href="connexion.jsp">Connexion</a></li>
   <li class = "right"><a class="active" href="">Inscription</a></li>
