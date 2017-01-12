@@ -139,19 +139,23 @@ public class ServletUtilisateur extends HttpServlet {
 			request.setAttribute("utilisateur", facadeUtilisateur.getUtilisateur(pseudoUser));
 			request.getRequestDispatcher("creerPlaylist.jsp").forward(request, response);
 		}
+		else if (op.equals("deconnexion")) {
+			request.setAttribute("utilisateur", null);
+			request.getRequestDispatcher("accueil.jsp").forward(request,  response);
+		}
 	}
 	
 	private void validationMotsDePasse(String motDePasse, String confirmation) throws Exception{
 	    if (!motDePasse.equals(confirmation)) {
-	        throw new Exception("Les mots de passe entrés sont différents, merci de les saisir à nouveau.");
+	        throw new Exception("Les mots de passe entr�s sont diff�rents, merci de les saisir � nouveau.");
 	    } else if (motDePasse.trim().length() < 3) {
-	        throw new Exception("Les mots de passe doivent contenir au moins 3 caractères.");
+	        throw new Exception("Les mots de passe doivent contenir au moins 3 caract�res.");
 	    }
 	}
 	
 	private void validationPseudo(String pseudo) throws Exception {
 	    if (pseudo != null && pseudo.trim().length() < 3) {
-	        throw new Exception("Le pseudo doit contenir au moins 3 caractères.");
+	        throw new Exception("Le pseudo doit contenir au moins 3 caract�res.");
 	    } else if (facadeUtilisateur.getUtilisateur(pseudo) != null) {
 	    	throw new Exception("Ce pseudo n'est pas disponible.");
 	    }
