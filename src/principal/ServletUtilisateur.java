@@ -51,9 +51,9 @@ public class ServletUtilisateur extends HttpServlet {
 		String mdp;
 		String confirmationMdp;
 		String[] motsClefs;
-		Map<String, String> erreurs = new HashMap<String, String>();
 		
 		if (op.equals("Se connecter")) {
+			Map<String, String> erreurs = new HashMap<String, String>();
 			boolean connexionPossible = false;
 			pseudo = request.getParameter("pseudo");
 			mdp = request.getParameter("mdp");
@@ -83,6 +83,7 @@ public class ServletUtilisateur extends HttpServlet {
 			request.getRequestDispatcher("creerCompte.jsp").forward(request, response);
 		}
 		else if (op.equals("S'inscrire")) {
+			Map<String, String> erreurs = new HashMap<String, String>();
 			pseudo = request.getParameter("pseudo");
 			mdp = request.getParameter("mdp");
 			confirmationMdp = request.getParameter("mdp2");
@@ -115,16 +116,28 @@ public class ServletUtilisateur extends HttpServlet {
 			request.getRequestDispatcher("creerPlaylist.jsp").forward(request, response);
 		}
 		else if (op.equals("Creer Playlist")) {
+			Map<String, String> erreurs = new HashMap<String, String>();
 			pseudo = request.getParameter("utilisateur");
 			Utilisateur user = facadeUtilisateur.getUtilisateur(pseudo);
 			String titre = request.getParameter("titre");
-			motsClefs = (request.getParameter("motsClefs")).split(" ");
+			motsClefs = request.getParameter("motsClefs").split(" ");
 			Set<String> motsClefsEns = (new HashSet<String>(Arrays.asList(motsClefs)));
 			motsClefsEns.remove("");
 			String estPublique = request.getParameter("estPublique");
-			this.facadeUtilisateur.creerPlaylist(titre, user, motsClefsEns, (estPublique.equals("Publique") ? true : false));
-			request.setAttribute("utilisateur", user);
-			request.getRequestDispatcher("mesPlaylists.jsp").forward(request, response);
+			try {
+			    validationTitrePlaylist(titre, user);
+			} catch (Exception e) {
+			    erreurs.put("titre", e.getMessage());
+			}
+			if (erreurs.isEmpty()) {
+				this.facadeUtilisateur.creerPlaylist(titre, user, motsClefsEns, (estPublique.equals("Publique") ? true : false));
+				request.setAttribute("utilisateur", user);
+				request.getRequestDispatcher("mesPlaylists.jsp").forward(request, response);
+			} else {
+				request.setAttribute("utilisateur", pseudo);
+				request.setAttribute("erreurs", erreurs);
+				request.getRequestDispatcher("creerPlaylist.jsp").forward(request, response);
+			}
 		}
 		else if (op.equals("Rechercher")) {
 			String recherche = request.getParameter("recherche");
@@ -161,17 +174,31 @@ public class ServletUtilisateur extends HttpServlet {
 		}
 	}
 	
+	private void validationTitrePlaylist(String titre, Utilisateur u) throws Exception {
+		boolean titreDisponible = true;
+		Set<Playlist> playlists = u.getMesPlaylists();
+		for (Playlist p: playlists) {
+			if (titre.equals(p.getTitre())) {
+				titreDisponible = false;
+				break;
+			}
+		}
+		if (!titreDisponible) {
+			throw new Exception("Ce titre n'est pas disponible !");
+		}
+	}
+	
 	private void validationMotsDePasse(String motDePasse, String confirmation) throws Exception{
 	    if (!motDePasse.equals(confirmation)) {
-	        throw new Exception("Les mots de passe entr�s sont diff�rents, merci de les saisir � nouveau.");
+	        throw new Exception("Les mots de passe entrés sont différents, merci de les saisir à nouveau.");
 	    } else if (motDePasse.trim().length() < 3) {
-	        throw new Exception("Les mots de passe doivent contenir au moins 3 caract�res.");
+	        throw new Exception("Les mots de passe doivent contenir au moins 3 caractères.");
 	    }
 	}
 	
 	private void validationPseudo(String pseudo) throws Exception {
 	    if (pseudo != null && pseudo.trim().length() < 3) {
-	        throw new Exception("Le pseudo doit contenir au moins 3 caract�res.");
+	        throw new Exception("Le pseudo doit contenir au moins 3 caractères.");
 	    } else if (facadeUtilisateur.getUtilisateur(pseudo) != null) {
 	    	throw new Exception("Ce pseudo n'est pas disponible.");
 	    }
