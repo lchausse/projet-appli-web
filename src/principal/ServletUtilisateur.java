@@ -123,9 +123,9 @@ public class ServletUtilisateur extends HttpServlet {
 		else if (op.equals("Rechercher musique")) {
 			String rechercheMusique = request.getParameter("rechercheMusique");
 		}
-		else if (op.contains("mesPlaylists")) {
-			String pseudoUser = op.split("mesPlaylists")[1];
-			request.setAttribute("utilisateur", facadeUtilisateur.getUtilisateur(pseudoUser));
+		else if (op.equals("Mes playlists")) {
+			Utilisateur user = facadeUtilisateur.getUtilisateur(request.getParameter("pseudo"));
+			request.setAttribute("utilisateur", user);
 			request.setAttribute("resultats", new HashSet<Playlist>());
 			request.getRequestDispatcher("mesPlaylists.jsp").forward(request, response);
 		}
