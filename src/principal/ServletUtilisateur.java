@@ -52,7 +52,7 @@ public class ServletUtilisateur extends HttpServlet {
 		String[] motsClefs;
 		Map<String, String> erreurs = new HashMap<String, String>();
 		
-		if (op.equals("Connexion")) {
+		if (op.equals("Se connecter")) {
 			boolean connexionPossible = false;
 			pseudo = request.getParameter("pseudo");
 			mdp = request.getParameter("mdp");
@@ -75,7 +75,13 @@ public class ServletUtilisateur extends HttpServlet {
 				request.getRequestDispatcher("connexion.jsp").forward(request, response);
 			}
 		}
+		else if (op.equals("Connexion")) {
+			request.getRequestDispatcher("connexion.jsp").forward(request, response);
+		}
 		else if (op.equals("Inscription")) {
+			request.getRequestDispatcher("creerCompte.jsp").forward(request, response);
+		}
+		else if (op.equals("S'inscrire")) {
 			pseudo = request.getParameter("pseudo");
 			mdp = request.getParameter("mdp");
 			confirmationMdp = request.getParameter("mdp2");
@@ -129,9 +135,11 @@ public class ServletUtilisateur extends HttpServlet {
 			request.setAttribute("resultats", new HashSet<Playlist>());
 			request.getRequestDispatcher("mesPlaylists.jsp").forward(request, response);
 		}
-		else if (op.contains("accueil")) {
-			String pseudoUser = op.split("accueil")[1];
-			request.setAttribute("utilisateur", facadeUtilisateur.getUtilisateur(pseudoUser));
+		else if (op.equals("Accueil")) {
+			String pseudoUser = request.getParameter("pseudo");
+			if (pseudoUser != null) {
+				request.setAttribute("utilisateur", facadeUtilisateur.getUtilisateur(pseudoUser));
+			}
 			request.getRequestDispatcher("accueil.jsp").forward(request, response);
 		}
 		else if (op.contains("ajouterPlaylist")) {
