@@ -56,9 +56,10 @@ public class ServletPlaylist extends HttpServlet {
 			String titrePlaylist = request.getParameter("titre");
 			String motsClefsPlaylist = request.getParameter("motsClefs");
 			String estPublique = request.getParameter("estPublique");
-			Utilisateur createur = (Utilisateur) request.getParameter("utilisateur");
+			Utilisateur createur = (Utilisateur) request.getAttribute("utilisateur");
 			facadePlaylist.creerPlaylist(new Playlist(titrePlaylist, motsClefsPlaylist, createur, (estPublique.equals("Publique") ? true : false)));
 			request.getRequestDispatcher("mesPlaylists.jsp").forward(request, response);
+			break;
 			
 		case "Rechercher Playlist":
 			motsClefs = recherche.split(" ");
@@ -70,6 +71,7 @@ public class ServletPlaylist extends HttpServlet {
 		case "Rechercher":
 			rechercheMusique = request.getParameter("rechercheMusique");
 			List<SearchResult> resultatsRecherche = Search.youtubeSearch(rechercheMusique);
+			request.setAttribute("resultatsRechercheMusique", resultatsRecherche);
 			request.getRequestDispatcher("modifierPlaylist.jsp").forward(request, response);
 		}
 	}
