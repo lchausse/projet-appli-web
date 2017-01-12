@@ -43,7 +43,7 @@ public class Playlist {
 		this.utilisateurs.add(createur);
 		this.motsClefs = new HashSet<String>();
 		String[] motsClefsPlaylist = motsClefs.split(" ");
-		for (int i = 0; i < motsClefsPlaylist.length(); i++) {
+		for (int i = 0; i < motsClefsPlaylist.length; i++) {
 			this.motsClefs.add(motsClefsPlaylist[i]);
 		}
 		this.vues = 0;
