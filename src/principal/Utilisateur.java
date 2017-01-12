@@ -13,7 +13,7 @@ public class Utilisateur {
 	@Id
 	private String pseudo;
 	private String mdp;
-	@ManyToMany(fetch=FetchType.EAGER)
+	@ManyToMany(mappedBy="utilisateurs", fetch=FetchType.EAGER)
 	private Set<Playlist> mesPlayLists;
 	
 	public Utilisateur() {
