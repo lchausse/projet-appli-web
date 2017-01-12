@@ -16,15 +16,14 @@ Set<Playlist> resultatRecherche = (Set<Playlist>)request.getAttribute("resultats
  %>
  
 
-<ul>
-<%
-out.println("<li class = \"left\"><a href=\"ServletUtilisateur?op=accueil" + user.getPseudo() + "\">Accueil</a></li>");
-%>
-  <li class = "left"><a href="tendances.jsp">Tendances</a></li>
-  <li class = "left"><a class = "active" href = "">Mes playlists</a>
-  <li class = "right"><a href="ServletUtilisateur?op=deconnexion">Déconnexion</a></li>
-  <li class = "right"><a href="">Mon compte</a></li>
-</ul>
+<form action = "ServletUtilisateur" method = "POST" class = "barre-navigation">
+  <input class = "left" type = "submit" name = "op" value = "Accueil" />
+<%out.println("<input type = \"hidden\" name = \"pseudo\" value = \"" + user.getPseudo() + "\" />");%>
+  <input class = "left" type = "submit" name = "op" value = "Tendances" />
+  <input class = "left-active" type = "submit" name = "op" value = "Mes playlists" />
+  <input class = "right" type = "submit" name = "op" value = "Déconnexion" />
+  <input class = "right" type = "submit" name = "op" value = "Mon compte" />
+</form>
 
 <div id = "principal">
 <!-- <form action="http://www.youtube.com/results" method="get" target="_blank" > -->
