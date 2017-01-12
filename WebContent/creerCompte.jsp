@@ -9,12 +9,13 @@
 </head>
 <body>
 
-<ul>
-  <li class = "left"><a href="accueil.jsp"><img id = "logoYoulist" src = "images/logoyl.png" alt = "logo" /></a></li>
-  <li class = "left"><a href="tendances.jsp">Tendances</a></li>
-  <li class = "right"><a href="connexion.jsp">Connexion</a></li>
-  <li class = "right"><a class="active" href="">Inscription</a></li>
-</ul>
+<form action = "ServletUtilisateur" method = "POST" class = "barre-navigation">
+  <input class = "left" type = "submit" name = "op" value = "Accueil" />
+  <input class = "left" type = "submit" name = "op" value = "Tendances" />
+  <input class = "right" type = "submit" name = "op" value = "Connexion" />
+  <input class = "right-active" type = "submit" name = "op" value = "Inscription" />
+</form>
+
 <div id = principal>
 <form  action = "ServletUtilisateur" method = "POST">
 <fieldset>
@@ -23,7 +24,7 @@
 	<input type = "password" name = "mdp" placeholder = "Mot de passe" required/>
 	<span class="erreur">${erreurs['mdp']}</span><br /><br />
 	<input type = "password" name = "mdp2" placeholder = "Confirmer mot de passe" required/><br /><br />
-	<input type = "submit" name = "op" value = "Inscription" /><br />
+	<input type = "submit" name = "op" value = "S'inscrire" /><br />
 </fieldset>
 </form>
 <a href="accueil.jsp">
