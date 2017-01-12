@@ -118,7 +118,7 @@ public class ServletUtilisateur extends HttpServlet {
 			pseudo = request.getParameter("utilisateur");
 			Utilisateur user = facadeUtilisateur.getUtilisateur(pseudo);
 			String titre = request.getParameter("titre");
-			motsClefs = (request.getParameter("motsClefs") + " " + titre).split(" ");
+			motsClefs = (request.getParameter("motsClefs")).split(" ");
 			Set<String> motsClefsEns = (new HashSet<String>(Arrays.asList(motsClefs)));
 			motsClefsEns.remove("");
 			String estPublique = request.getParameter("estPublique");
