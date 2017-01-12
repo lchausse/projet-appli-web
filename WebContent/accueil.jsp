@@ -12,22 +12,24 @@
 
 <%
 Utilisateur user = (Utilisateur)request.getAttribute("utilisateur");
+request.setAttribute("utilisateur", user);
  %>
 
-<ul>
-  <li class = "left"><a class="active" href=""><img id = "logoYoulist" src = "images/logoyl.png" alt = "logo" /></a></li>
-  <li class = "left"><a href="tendances.jsp">Tendances</a></li>
+<form action = "ServletUtilisateur" method = "POST" class = "barre-navigation">
+  <input class = "left-active" type = "submit" name = "op" value = "Accueil" />
+  <input class = "left" type = "submit" name = "op" value = "Tendances" />
 <%
 if (user != null) {
-	out.println("<li class = \"left\"><a href = \"ServletUtilisateur?op=mesPlaylists" + user.getPseudo() + "\">Mes playlists</a>");
-	out.println("<li class = \"right\"><a href = \"ServletUtilisateur?op=deconnexion\">Déconnexion</a>");
-	out.println("<li class = \"right\"><a href = \"\">Mon compte</a>");
+	out.println("<input type = \"hidden\" name = \"pseudo\" value = \"" + user.getPseudo() + "\" />");
+	out.println("<input class = \"left\" type = \"submit\" name = \"op\" value = \"Mes playlists\" />");
+	out.println("<input class = \"right\" type = \"submit\" name = \"op\" value = \"Déconnexion\" />");
+	out.println("<input class = \"right\" type = \"submit\" name = \"op\" value = \"Mon compte\" />");
 } else {
-	out.println("<li class = \"right\"><a href = \"connexion.jsp\">Connexion</a>");
-	out.println("<li class = \"right\"><a href = \"creerCompte.jsp\">Inscription</a>");
+	out.println("<input class = \"right\" type = \"submit\" name = \"op\" value = \"Connexion\" />");
+	out.println("<input class = \"right\" type = \"submit\" name = \"op\" value = \"Inscription\" />");
 }
 %>
-</ul>
+</form>
 
 <div id = "principal">
 	<p>Rechercher une playlist publique</p>
