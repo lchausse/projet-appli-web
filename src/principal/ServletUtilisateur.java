@@ -118,10 +118,11 @@ public class ServletUtilisateur extends HttpServlet {
 			pseudo = request.getParameter("utilisateur");
 			Utilisateur user = facadeUtilisateur.getUtilisateur(pseudo);
 			String titre = request.getParameter("titre");
-			motsClefs = request.getParameter("motsClefs").split(" ");
+			motsClefs = (request.getParameter("motsClefs") + " " + titre).split(" ");
 			Set<String> motsClefsEns = (new HashSet<String>(Arrays.asList(motsClefs)));
 			motsClefsEns.remove("");
-			this.facadeUtilisateur.creerPlaylist(titre, user, motsClefsEns);
+			String estPublique = request.getParameter("estPublique");
+			this.facadeUtilisateur.creerPlaylist(titre, user, motsClefsEns, (estPublique.equals("Publique") ? true : false));
 			request.setAttribute("utilisateur", user);
 			request.getRequestDispatcher("mesPlaylists.jsp").forward(request, response);
 		}
