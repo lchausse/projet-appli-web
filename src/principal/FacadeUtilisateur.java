@@ -60,11 +60,12 @@ public class FacadeUtilisateur {
 		return res;
 	}
 	
-	public void creerPlaylist(String nom, Utilisateur u, Set<String> motsClefs) {
+	public void creerPlaylist(String nom, Utilisateur u, Set<String> motsClefs, boolean estPublique) {
 	  	Playlist playlist = new Playlist();
 	  	playlist.addUtilisateur(u);
 		playlist.setNom(nom);
 		playlist.setMotsClefs(motsClefs);
+		playlist.setPublique(estPublique);
 		u.addPlaylist(playlist);
 		em.persist(playlist);
 	}
