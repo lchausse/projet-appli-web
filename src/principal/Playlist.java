@@ -21,7 +21,7 @@ public class Playlist {
 	@ManyToMany(fetch=FetchType.EAGER)
 	private Set<Musique> musiques; // musique de la playlist
 	@ManyToMany(fetch=FetchType.EAGER) 
-	private Set<String> utilisateurs; // utilisateur pouvant modifier la playlist
+	private Set<Utilisateur> utilisateurs; // utilisateur pouvant modifier la playlist
   	@ElementCollection(targetClass=String.class)
 	private Set<String> motsClefs; // mots clefs de la playlist
     	private boolean publique;
@@ -31,15 +31,15 @@ public class Playlist {
 
 	public Playlist() {
 		this.musiques = new HashSet<Musique>();
-		this.utilisateurs = new HashSet<String>();
+		this.utilisateurs = new HashSet<Utilisateur>();
 		this.motsClefs = new HashSet<String>();
 		this.vues = 0;
 		this.publique = false;
 	}
 	
-	public Playlist(String titre, String motsClefs, String createur, boolean estPublique) {
+	public Playlist(String titre, String motsClefs, Utilisateur createur, boolean estPublique) {
 		this.musiques = new HashSet<Musique>();
-		this.utilisateurs = new HashSet<String>();
+		this.utilisateurs = new HashSet<Utilisateur>();
 		this.utilisateurs.add(createur);
 		this.motsClefs = new HashSet<String>();
 		String[] motsClefsPlaylist = motsClefs.split(" ");
@@ -83,15 +83,15 @@ public class Playlist {
 	}
 
 	
-	public Set<String> getUtilisateurs() {
+	public Set<Utilisateur> getUtilisateurs() {
 		return this.utilisateurs;
 	}
 	
-	public void setUtilisateurs(Set<String> utilisateurs) {
+	public void setUtilisateurs(Set<Utilisateur> utilisateurs) {
 		this.utilisateurs = utilisateurs;
 	}
 	
-	public void addUtilisateur(String user) {
+	public void addUtilisateur(Utilisateur user) {
 		this.utilisateurs.add(user);
 	}
 
