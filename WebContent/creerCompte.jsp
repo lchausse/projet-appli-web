@@ -17,16 +17,17 @@
 </form>
 
 <div id = principal>
-<form  action = "ServletUtilisateur" method = "POST">
-<fieldset>
-	<input type = "text" name = "pseudo" placeholder = "Pseudo" value="<c:out value="${param.pseudo}"/>" required/>
+  <form class="login-form" action = "ServletUtilisateur" method = "POST">
+  	<p class="message">Inscrivez vous pour accéder à tous nos services</p>
+	<input type = "text" name = "pseudo" placeholder = "Pseudo" autofocus value="<c:out value="${param.pseudo}"/>" required/>
 	<span class="erreur">${erreurs['pseudo']}</span><br /><br />
 	<input type = "password" name = "mdp" placeholder = "Mot de passe" required/>
 	<span class="erreur">${erreurs['mdp']}</span><br /><br />
 	<input type = "password" name = "mdp2" placeholder = "Confirmer mot de passe" required/><br /><br />
-	<input type = "submit" name = "op" value = "S'inscrire" /><br />
-</fieldset>
-</form>
+	<input type = "submit" class="button" name = "op" value = "S'inscrire"/><br />
+  </form>
+</div>
+
 <a href="accueil.jsp">
 <!-- <img id="logoYoulist" src="images/YouList.jpeg" alt="Logo" /> -->
 </a>
