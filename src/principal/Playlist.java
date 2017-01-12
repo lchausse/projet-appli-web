@@ -22,17 +22,32 @@ public class Playlist {
 	private Set<Musique> musiques; // musique de la playlist
 	@ManyToMany(fetch=FetchType.EAGER) 
 	private Set<Utilisateur> utilisateurs; // utilisateur pouvant modifier la playlist
-    @ElementCollection(targetClass=String.class)
+  	@ElementCollection(targetClass=String.class)
 	private Set<String> motsClefs; // mots clefs de la playlist
-    private boolean publique;
+    	private boolean publique;
 	private int vues; // nombre de vue de la playlistre
+	private String titre; // titre de la playlist
 	
+
 	public Playlist() {
 		this.musiques = new HashSet<Musique>();
 		this.utilisateurs = new HashSet<Utilisateur>();
 		this.motsClefs = new HashSet<String>();
 		this.vues = 0;
 		this.publique = false;
+	}
+	
+	public Playlist(String titre, String motsClefs, Utilisateur createur, boolean estPublique) {
+		this.musiques = new HashSet<Musique>();
+		this.utilisateurs = new HashSet<Utilisateur>();
+		this.utilisateurs.add(createur);
+		this.motsClefs = new HashSet<String>();
+		String[] motsClefsPlaylist = motsClefs.split(" ");
+		for (int i = 0; i < motsClefsPlaylist.length(); i++) {
+			this.motsClefs.add(motsClefsPlaylist[i]);
+		}
+		this.vues = 0;
+		this.publique = estPublique;
 	}
 
 	public String getNom() {
@@ -41,6 +56,14 @@ public class Playlist {
 
 	public void setNom(String nom) {
 		this.nom = nom;
+	}
+	
+	public String getTitre() {
+		return titre;
+	}
+
+	public void setTitre(String titre) {
+		this.titre = titre;
 	}
 	
 	public Set<Musique> getMusiques() {
