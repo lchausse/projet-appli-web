@@ -52,15 +52,6 @@ public class ServletPlaylist extends HttpServlet {
 		String[] motsClefs;
 		String rechercheMusique;
 		switch (op) {
-		case "Créer Playlist":
-			String titrePlaylist = request.getParameter("titre");
-			String motsClefsPlaylist = request.getParameter("motsClefs");
-			String estPublique = request.getParameter("estPublique");
-			Utilisateur createur = (Utilisateur) request.getAttribute("utilisateur");
-			facadePlaylist.creerPlaylist(new Playlist(titrePlaylist, motsClefsPlaylist, createur, (estPublique.equals("Publique") ? true : false)));
-			request.getRequestDispatcher("mesPlaylists.jsp").forward(request, response);
-			break;
-			
 		case "Rechercher Playlist":
 			motsClefs = recherche.split(" ");
 			results = facadePlaylist.rechercherPlaylistsPubliques(motsClefs);
