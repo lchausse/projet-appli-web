@@ -87,36 +87,42 @@ public class ServletUtilisateur extends HttpServlet {
 			confirmationMdp = request.getParameter("mdp2");
 			
 			/* Validation des champs mot de passe et confirmation. */
-	        try {
-	            validationMotsDePasse(mdp, confirmationMdp);
-	        } catch (Exception e) {
-	            erreurs.put("mdp", e.getMessage());
-	        }
+			try {
+			    validationMotsDePasse(mdp, confirmationMdp);
+			} catch (Exception e) {
+			    erreurs.put("mdp", e.getMessage());
+			}
 
-	        /* Validation du champ pseudo */
-	        try {
-	            validationPseudo(pseudo);
-	        } catch ( Exception e ) {
-	            erreurs.put("pseudo", e.getMessage());
-	        }
-	        
-	        if (erreurs.isEmpty()) {
-	        	facadeUtilisateur.ajouterUtilisateur(pseudo, mdp);
-	        	request.getRequestDispatcher("accueil.jsp").forward(request, response);
-	        } else {
-	        	request.setAttribute("erreurs", erreurs);
-		        request.getRequestDispatcher("creerCompte.jsp").forward(request, response);
-	        }
+			/* Validation du champ pseudo */
+			try {
+			    validationPseudo(pseudo);
+			} catch ( Exception e ) {
+			    erreurs.put("pseudo", e.getMessage());
+			}
+
+			if (erreurs.isEmpty()) {
+				facadeUtilisateur.ajouterUtilisateur(pseudo, mdp);
+				request.getRequestDispatcher("accueil.jsp").forward(request, response);
+			} else {
+				request.setAttribute("erreurs", erreurs);
+				request.getRequestDispatcher("creerCompte.jsp").forward(request, response);
+			}
 		}
-		else if (op.equals("Appliquer")) {
+		else if (op.equals("Nouvelle Playlist")) {
+			pseudo = request.getParameter("utilisateur");
+			request.setAttribute("utilisateur", pseudo);
+			request.getRequestDispatcher("creerPlaylist.jsp").forward(request, response);
+		}
+		else if (op.equals("Creer Playlist")) {
+			pseudo = request.getParameter("utilisateur");
+			Utilisateur user = facadeUtilisateur.getUtilisateur(pseudo);
 			String titre = request.getParameter("titre");
 			motsClefs = request.getParameter("motsClefs").split(" ");
 			Set<String> motsClefsEns = (new HashSet<String>(Arrays.asList(motsClefs)));
 			motsClefsEns.remove("");
-			this.facadeUtilisateur.creerPlaylist(titre, utilisateurCourant, motsClefsEns);
-			request.setAttribute("utilisateur", utilisateurCourant);
-			request.setAttribute("resultats", new HashSet<Playlist>());
-			request.getRequestDispatcher("compte.jsp").forward(request, response);
+			this.facadeUtilisateur.creerPlaylist(titre, user, motsClefsEns);
+			request.setAttribute("utilisateur", user);
+			request.getRequestDispatcher("mesPlaylists.jsp").forward(request, response);
 		}
 		else if (op.equals("Rechercher")) {
 			String recherche = request.getParameter("recherche");
