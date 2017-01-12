@@ -52,8 +52,10 @@ Set<Playlist> resultatRecherche = (Set<Playlist>)request.getAttribute("resultats
 for (Playlist p : playlistsUtilisateur) {
 	out.println(p.getNom() + "<br />");
 }
-for (Playlist p : resultatRecherche) {
-	out.println(p.getNom() + "<br />");
+if (resultatRecherche != null) {
+	for (Playlist p : resultatRecherche) {
+		out.println(p.getNom() + "<br />");
+	}
 }
 %>
 
