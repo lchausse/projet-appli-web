@@ -9,22 +9,38 @@
 <%@ page import="com.google.api.services.youtube.YouTube" %>
 <%@ page import="com.google.api.services.youtube.model.Video" %>
 
-
-
 <html>
-
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="styleModifierPlaylist.css" />
-<title>Youlist - Créer playlist</title>
+<link rel="stylesheet" href="css/styleModifierPlaylist.css" />
+<title>Youlist - Mes playlists</title>
 </head>
+
 <body>
-<section id = "rechercheMusique">
+
+<%
+String pseudo = (String) request.getAttribute("utilisateur");
+Playlist pl = (Playlist) request.getAttribute("playlist");
+%>
+
+<form action = "ServletUtilisateur" method = "POST" class = "barre-navigation">
+  <input class = "left" type = "submit" name = "op" value = "Accueil" />
+<%out.println("<input type = \"hidden\" name = \"pseudo\" value = \"" + pseudo + "\" />");%>
+  <input class = "left" type = "submit" name = "op" value = "Tendances" />
+  <input class = "left-active" type = "submit" name = "op" value = "Mes playlists" />
+  <input class = "right" type = "submit" name = "op" value = "Deconnexion" />
+  <input class = "right" type = "submit" name = "op" value = "Mon compte" />
+</form>
+
+<div id = principal>
 	<form action = "ServletPlaylist" method = "POST">
-		<input type = "search" name = "rechercheMusique" placeholder = "Rechercher musique">
-		<input type = "submit" name = "op" value = "Rechercher musique">
+		<input type ="search" name ="rechercheMusique" placeholder ="Rechercher musique">
+		<input type="hidden" name ="titrePlaylist" value=<%=pl.getTitre()%>>
+		<input type="hidden" name ="utilisateur" value=<%=pseudo %>>
+		<input type ="submit" name ="op" value ="Rechercher Musique">
 	</form>
-</section>
+</div>
+
 <% List<SearchResult> searchResultList = (List<SearchResult>) request.getAttribute("resultatsRechercheMusique"); %>
 <% if (searchResultList != null) { %>
 <% for (SearchResult sr : searchResultList) { %>
@@ -39,19 +55,31 @@
 		    <img src=<%= "http://i.ytimg.com/vi/" + id + "/mqdefault.jpg" %> alt=<%= title %> width="300" height="200">
 		  </a>
 		  <div class="desc"><%= title %></div>
-		</div>		
+		  <form action = "ServletPlaylist" method = "POST">
+		  		<input type="text" name="titre" placeholder="Titre">
+		  		<input type="text" name="auteur" placeholder="Auteur">
+				<input type="hidden" name="titrePlaylist" value=<%=pl.getTitre()%>>
+				<input type="hidden" name="utilisateur" value=<%=pseudo%>>
+				<input type="hidden" name="lien" value=<%="https://www.youtube.com/watch?v=" + id%>>
+		 		<input type="submit" name="op" value="Ajouter Musique">
+		  </form>
+		</div>
+		
 	<% } %>
 <% }
-} %>
+}%>
 
+<div id = "principal">
+	<% if (pl != null) { %>
+	<%Set<Musique> musiques = pl.getMusiques();
+  	 if (musiques != null) {
+	  for (Musique m : musiques) {%>
+	  	<div class="img">
+		  <div class="desc"> <%=m.getTitre() + " - " + m.getAuteur() %></div>
+		</div>
+	  <% }}}%>
+	
+</div>
 
-<section id = "informationsPlaylist">
-	<form action = "ServletUtilisateur" method = "POST">
-		Saisissez le titre et les mots clefs de la playlist <br />
-		<input type = "text" name = "titre" placeholder = "Titre"> <br />
-		<textarea name = "motsClefs" placeholder = "Mots clefs" rows="5"></textarea> <br />
-		<input type = "submit" name = "op" value = "Appliquer">
-	</form>
-</section>
 </body>
 </html>
