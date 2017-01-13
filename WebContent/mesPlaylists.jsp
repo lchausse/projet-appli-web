@@ -1,159 +1,87 @@
-form.barre-navigation {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    left: 0;
-    overflow: hidden;
-    background-color: #333;
-    position: fixed;
-    top: 0;
-    width: 100%;
-}
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ page import="principal.*, java.util.*" %>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="css/styleMesPlaylists.css" />
+<title>Youlist - Mes playlists</title>
+</head>
+<body>
 
-input.left {
-	background-color: Transparent;
-    background-repeat:no-repeat;
-    border: none;
-    cursor:pointer;
-    overflow: hidden;
-    outline:none;
-    float: left;
-    display: block;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-}
+<%
+Utilisateur user = (Utilisateur) request.getAttribute("utilisateur");
+Set<Playlist> playlistsUtilisateur = user.getMesPlaylists();
+Set<Playlist> resultatRecherche = (Set<Playlist>)request.getAttribute("resultats");
+%>
+ 
 
-input.right {
-    background-color: Transparent;
-    background-repeat:no-repeat;
-    border: none;
-    cursor:pointer;
-    overflow: hidden;
-    outline:none;
-    float: right;
-    display: block;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-}
+<form action = "ServletUtilisateur" method = "POST" class = "barre-navigation">
+  <input class = "left" type = "submit" name = "op" value = "Accueil" />
+<%out.println("<input type = \"hidden\" name = \"pseudo\" value = \"" + user.getPseudo() + "\" />");%>
+  <input class = "left" type = "submit" name = "op" value = "Tendances" />
+  <input class = "left-active" type = "submit" name = "op" value = "Mes playlists" />
+  <input class = "right" type = "submit" name = "op" value = "Deconnexion" />
+  <input class = "right" type = "submit" name = "op" value = "Mon compte" />
+</form>
 
-input.left:hover {
-	background-color: #111;
-    background-repeat:no-repeat;
-    border: none;
-    cursor:pointer;
-    overflow: hidden;
-    outline:none;
-    float: left;
-    display: block;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-}
+<div id = "principal">
 
-input.right:hover {
-    background-color: #111;
-    background-repeat:no-repeat;
-    border: none;
-    cursor:pointer;
-    overflow: hidden;
-    outline:none;
-    float: right;
-    display: block;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-}
+<%out.println(playlistsUtilisateur); %>
 
-input.left-active {
-	background-color: #c0392b;
-    background-repeat:no-repeat;
-    border: none;
-    cursor:pointer;
-    overflow: hidden;
-    outline:none;
-    float: left;
-    display: block;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-}
+<header> Utilisateur : <%=user.getPseudo() %></header>
 
-input.right-active {
-    background-color: #c0392b;
-    background-repeat:no-repeat;
-    border: none;
-    cursor:pointer;
-    overflow: hidden;
-    outline:none;
-    float: right;
-    display: block;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-}
 
-div#principal {
-    padding:20px;
-    margin-top:30px;
-}
+<form action = "ServletUtilisateur" method = "POST" class = "rechercher">
+<input type = "search" name = "recherche" placeholder = "Rechercher playlist" />
+<input type="submit" name="op" value = "Rechercher"/>
+</form>
 
-form.rechercher input {
-	font-size: 15pt;
-	width:400px;
-    padding: 10px;
-    border: none;
-    border-bottom: solid 2px #c9c9c9;
-    -webkit-transition: border 0.3s;
-    -moz-transition: border 0.3s;
-    -o-transition: border 0.3s;
-    transition: border 0.3s;
+<%
+if (resultatRecherche == null) {
+	for (Playlist p : playlistsUtilisateur) { %>
+		<div class="playlist">
+		  <div class="titre"><%= p.getTitre()%> </div>
+		</div>
+		<form action = "ServletPlaylist" method = "POST" class = "rechercher">
+			<input type="submit" name="op" value = "Ecouter"/>
+			<input type="submit" name="op" value = "Modifier"/>
+			<input type="hidden" name="utilisateur" value=<%=user.getPseudo()%> />
+			<input type="hidden" name="titrePlaylist" value=<%=p.getTitre()%> />
+		</form>
+	<%}
+} else {
+	for (Playlist p : resultatRecherche) {%>
+		<div class="playlist">
+		  <div class="titre"><%= p.getTitre()%></div>
+		</div>
+		<form action = "ServletPlaylist" method = "POST" class = "rechercher">
+			<input type="submit" name="op" value = "Ecouter"/>
+			<input type="submit" name="op" value = "Modifier"/>
+			<input type="hidden" name="utilisateur" value=<%=user.getPseudo()%> />
+			<input type="hidden" name="titrePlaylist" value=<%=p.getTitre()%> />
+		</form>
+	<%}
 }
+%>
 
-form.rechercher {
-	width:400px;
-	margin: auto;
-}
 
-img#ajouterPlaylist { 
-  position: absolute; 
-  bottom: 50px; 
-  left: 50px;
-  border-width: 1px; 
-}
+<%
+out.println("<a href=\"ServletUtilisateur?op=ajouterPlaylist" + user.getPseudo() + "\" >");
+%>
+<img id="ajouterPlaylist" src="images/ajouterPlaylist.png" alt="Logo" title = "Créer une playlist"/>
+</a>
+</div>
 
-img#logoYoulist {
-  position: relative; 
-  top: 0;
-  left: 0;
-  width: 18px;
-  height: 18px;
-}
-
-div.playlist {
-    margin: 5px;
-    border: 1px solid #ccc;
-    float: left;
-    width: 700px;
-}
-
-div.playlist:hover {
-    border: 1px solid #777;
-}
-
-div.titre {
-	font-size: 130%;
-    text-align: left;
-}
-
-div .motsClefs {
-	font-size: 90%;
-    text-align: right;
-}
+<form action = "ServletUtilisateur" method = "POST" class = "rechercher">
+<input type="submit" name="op" value = "Nouvelle Playlist"/>
+<input type="hidden" name="utilisateur" value="<%=user.getPseudo()%>" />
+</form>
+<!-- <script language="javascript"> -->
+<!--  function IframeRefresh(IframeId) { -->
+<!--  	var iframe=document.getElementById(IframeId); -->
+<!--  	iframe.src="https://www.youtube.com/embed/oY6J1Lmj3ZE"; -->
+<!--  } -->
+<!-- </script> -->
+</body>
+</html>
