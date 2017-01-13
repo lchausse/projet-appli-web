@@ -136,3 +136,24 @@ img#logoYoulist {
   width: 18px;
   height: 18px;
 }
+
+div.playlist {
+    margin: 5px;
+    border: 1px solid #ccc;
+    float: left;
+    width: 700px;
+}
+
+div.playlist:hover {
+    border: 1px solid #777;
+}
+
+div.titre {
+	font-size: 130%;
+    text-align: left;
+}
+
+div .motsClefs {
+	font-size: 90%;
+    text-align: right;
+}
