@@ -36,14 +36,6 @@ public class Playlist {
 		this.publique = false;
 	}
 	
-	public Playlist(String titre, HashSet<String> motsClefs, HashSet<Utilisateur> utilisateurs, boolean estPublique) {
-		this.musiques = new HashSet<Musique>();
-		this.utilisateurs = utilisateurs;
-		this.motsClefs = motsClefs;
-		this.vues = 0;
-		this.publique = estPublique;
-	}
-	
 	public String getTitre() {
 		return titre;
 	}
