@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="principal.*, java.util.Set" %>
+<%@ page import="principal.*, java.util.*" %>
 <html>
 <head>
 <meta charset="UTF-8">
@@ -10,7 +10,7 @@
 <body>
 
 <%
-Utilisateur user = (Utilisateur)request.getAttribute("utilisateur");
+Utilisateur user = (Utilisateur) request.getAttribute("utilisateur");
 Set<Playlist> playlistsUtilisateur = user.getMesPlaylists();
 Set<Playlist> resultatRecherche = (Set<Playlist>)request.getAttribute("resultats");
 %>
@@ -26,22 +26,11 @@ Set<Playlist> resultatRecherche = (Set<Playlist>)request.getAttribute("resultats
 </form>
 
 <div id = "principal">
-<!-- <form action="http://www.youtube.com/results" method="get" target="_blank" > -->
-<!-- <input name="search_query" type="text" maxlength="128" /> -->
-<!-- <select name="search_type"> -->
-<!-- <option value="">Videos</option> -->
-<!-- <option value="search_users">Channels</option> -->
-<!-- </select> -->
-<!-- <input type="submit" value="Search" /> -->
-<!-- </form>  -->
 
 <%out.println(playlistsUtilisateur); %>
-<!-- <form action = "ServletUtilisateur" method = "POST"> -->
+
 <header> Utilisateur : <%=user.getPseudo() %></header>
 
-<!-- 	<iframe id="ibra" width="854" height="480" src="https://www.youtube.com/embed/W_qih8UTeAQ?autoplay=1" frameborder="0" allowfullscreen></iframe> -->
-<!-- 	<input value="Next" type = "button" onclick="IframeRefresh('ibra');" /> -->
-<!-- </form> -->
 
 <form action = "ServletUtilisateur" method = "POST" class = "rechercher">
 <input type = "search" name = "recherche" placeholder = "Rechercher playlist" />
@@ -49,13 +38,30 @@ Set<Playlist> resultatRecherche = (Set<Playlist>)request.getAttribute("resultats
 </form>
 
 <%
-for (Playlist p : playlistsUtilisateur) {
-	out.println(p.getNom() + "<br />");
-}
-if (resultatRecherche != null) {
-	for (Playlist p : resultatRecherche) {
-		out.println(p.getNom() + "<br />");
-	}
+if (resultatRecherche == null) {
+	for (Playlist p : playlistsUtilisateur) { %>
+		<div class="playlist">
+		  <div class="titre"><%= p.getTitre()%> </div>
+		</div>
+		<form action = "ServletPlaylist" method = "POST" class = "rechercher">
+			<input type="submit" name="op" value = "Ecouter"/>
+			<input type="submit" name="op" value = "Modifier"/>
+			<input type="hidden" name="utilisateur" value=<%=user.getPseudo()%> />
+			<input type="hidden" name="titrePlaylist" value=<%=p.getTitre()%> />
+		</form>
+	<%}
+} else {
+	for (Playlist p : resultatRecherche) {%>
+		<div class="playlist">
+		  <div class="titre"><%= p.getTitre()%></div>
+		</div>
+		<form action = "ServletPlaylist" method = "POST" class = "rechercher">
+			<input type="submit" name="op" value = "Ecouter"/>
+			<input type="submit" name="op" value = "Modifier"/>
+			<input type="hidden" name="utilisateur" value=<%=user.getPseudo()%> />
+			<input type="hidden" name="titrePlaylist" value=<%=p.getTitre()%> />
+		</form>
+	<%}
 }
 %>
 
