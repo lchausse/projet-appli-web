@@ -54,6 +54,7 @@ public class FacadePlaylist {
 	}
 
 	public void rendrePublique(Playlist playlist) {
+		playlist.setPublique(true);
 	}
 
 	public void ModifierMotClef(Playlist playlist, Set<String> nouveauxMotsClefs){
@@ -61,7 +62,7 @@ public class FacadePlaylist {
 	}
 
 	public void modifierTitrePlayList(Playlist playlist, String nouveauTitre) {
-	  	playlist.setNom(nouveauTitre);
+	  	playlist.setTitre(nouveauTitre);
 	}
 
 	public void modifierArtiste(Musique musique, String nouveauArtiste) {
@@ -73,6 +74,25 @@ public class FacadePlaylist {
 
 	}
 	
+	public Playlist getPlaylist(String titrePlaylist) {
+		List<Playlist> playlists = em.createQuery("SELECT p FROM Playlist p", Playlist.class)
+                .getResultList();
+		for (Playlist pl : playlists) {
+			if (pl.getTitre().equals(titrePlaylist)) {
+				return pl;
+			}
+		}
+		return null;
+	}
+	
+	public Set<Playlist> getPlaylists() {
+		return playlists;
+	}
+
+	public void setPlaylists(Set<Playlist> playlists) {
+		this.playlists = playlists;
+	}
+
 	private Set<Playlist> getPlaylistsPubliques() {
 		List<Playlist> playlists = em.createQuery("SELECT p FROM Playlist p", Playlist.class)
 				                     .getResultList();
