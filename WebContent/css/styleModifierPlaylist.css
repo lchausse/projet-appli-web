@@ -164,15 +164,13 @@ div.img {
     border: 1px solid #ccc;
     float: left;
     width: 700px;
-    height: 200px;
+    height: 120px;
     opacity: 0.85;
 	-webkit-transition: all 0.6s ease;
 	transition: all 0.6s ease;
 }
 
 div.img:hover {
-    -webkit-transform: translate(20px,-50px);
-	transform: translate(50px,0px);
 	opacity: 1;
 }
 
