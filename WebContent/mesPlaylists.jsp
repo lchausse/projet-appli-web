@@ -42,25 +42,25 @@ if (resultatRecherche == null) {
 	for (Playlist p : playlistsUtilisateur) { %>
 		<div class="playlist">
 		  <div class="titre"><%= p.getTitre()%> </div>
+			<form action = "ServletPlaylist" method = "POST">
+				<input type="submit" name="op" value = "Ecouter"/>
+				<input type="submit" name="op" value = "Modifier"/>
+				<input type="hidden" name="utilisateur" value=<%=user.getPseudo()%> />
+				<input type="hidden" name="titrePlaylist" value=<%=p.getTitre()%> />
+			</form>
 		</div>
-		<form action = "ServletPlaylist" method = "POST" class = "rechercher">
-			<input type="submit" name="op" value = "Ecouter"/>
-			<input type="submit" name="op" value = "Modifier"/>
-			<input type="hidden" name="utilisateur" value=<%=user.getPseudo()%> />
-			<input type="hidden" name="titrePlaylist" value=<%=p.getTitre()%> />
-		</form>
 	<%}
 } else {
 	for (Playlist p : resultatRecherche) {%>
 		<div class="playlist">
 		  <div class="titre"><%= p.getTitre()%></div>
+			<form action = "ServletPlaylist" method = "POST">
+				<input type="submit" name="op" value = "Ecouter"/>
+				<input type="submit" name="op" value = "Modifier"/>
+				<input type="hidden" name="utilisateur" value=<%=user.getPseudo()%> />
+				<input type="hidden" name="titrePlaylist" value=<%=p.getTitre()%> />
+			</form>
 		</div>
-		<form action = "ServletPlaylist" method = "POST" class = "rechercher">
-			<input type="submit" name="op" value = "Ecouter"/>
-			<input type="submit" name="op" value = "Modifier"/>
-			<input type="hidden" name="utilisateur" value=<%=user.getPseudo()%> />
-			<input type="hidden" name="titrePlaylist" value=<%=p.getTitre()%> />
-		</form>
 	<%}
 }
 %>
