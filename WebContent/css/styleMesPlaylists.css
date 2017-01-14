@@ -142,6 +142,7 @@ div.playlist {
     border: 1px solid #ccc;
     float: left;
     width: 700px;
+    height: 70px;
 }
 
 div.playlist:hover {
@@ -151,9 +152,4 @@ div.playlist:hover {
 div.titre {
 	font-size: 130%;
     text-align: left;
-}
-
-div .motsClefs {
-	font-size: 90%;
-    text-align: right;
 }
