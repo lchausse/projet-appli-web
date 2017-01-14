@@ -69,16 +69,12 @@ Playlist pl = (Playlist) request.getAttribute("playlist");
 <% }
 }%>
 
-<div id = "principal">
-	<% if (pl != null) { %>
-	<%Set<Musique> musiques = pl.getMusiques();
-  	 if (musiques != null) {
+<div id = principal>
+<% if (pl != null) {
+	Set<Musique> musiques = pl.getMusiques();
 	  for (Musique m : musiques) {%>
-	  	<div class="img">
 		  <div class="desc"> <%=m.getTitre() + " - " + m.getAuteur() %></div>
-		</div>
-	  <% }}}%>
-	
+<%}}%>
 </div>
 
 </body>
