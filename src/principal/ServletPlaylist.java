@@ -85,5 +85,10 @@ public class ServletPlaylist extends HttpServlet {
 			request.setAttribute("resultatsRechercheMusique", resultatsRecherche);
 			request.getRequestDispatcher("modifierPlaylist.jsp").forward(request, response);
 		}
+		else if(op.equals("Ecouter")) {
+			String pseudo = request.getParameter("utilisateur");
+			request.setAttribute("utilisateur", pseudo);
+			request.getRequestDispatcher("lirePlaylist.jsp").forward(request, response);
+		}
 	}
 }

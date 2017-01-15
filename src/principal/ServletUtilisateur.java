@@ -47,7 +47,6 @@ public class ServletUtilisateur extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String op = request.getParameter("op");
-		String pseudo;
 		String mdp;
 		String confirmationMdp;
 		String[] motsClefs;
@@ -55,7 +54,7 @@ public class ServletUtilisateur extends HttpServlet {
 		if (op.equals("Se connecter")) {
 			Map<String, String> erreurs = new HashMap<String, String>();
 			boolean connexionPossible = false;
-			pseudo = request.getParameter("pseudo");
+			String pseudo = request.getParameter("pseudo");
 			mdp = request.getParameter("mdp");
 			try {
 				connexionPossible = facadeUtilisateur.seConnecter(pseudo, mdp);
@@ -84,7 +83,7 @@ public class ServletUtilisateur extends HttpServlet {
 		}
 		else if (op.equals("S'inscrire")) {
 			Map<String, String> erreurs = new HashMap<String, String>();
-			pseudo = request.getParameter("pseudo");
+			String pseudo = request.getParameter("pseudo");
 			mdp = request.getParameter("mdp");
 			confirmationMdp = request.getParameter("mdp2");
 			
@@ -111,13 +110,13 @@ public class ServletUtilisateur extends HttpServlet {
 			}
 		}
 		else if (op.equals("Nouvelle Playlist")) {
-			pseudo = request.getParameter("utilisateur");
+			String pseudo = request.getParameter("utilisateur");
 			request.setAttribute("utilisateur", pseudo);
 			request.getRequestDispatcher("creerPlaylist.jsp").forward(request, response);
 		}
 		else if (op.equals("Creer Playlist")) {
 			Map<String, String> erreurs = new HashMap<String, String>();
-			pseudo = request.getParameter("utilisateur");
+			String pseudo = request.getParameter("utilisateur");
 			Utilisateur user = facadeUtilisateur.getUtilisateur(pseudo);
 			String titre = request.getParameter("titre");
 			motsClefs = request.getParameter("motsClefs").split(" ");
@@ -141,10 +140,12 @@ public class ServletUtilisateur extends HttpServlet {
 		}
 		else if (op.equals("Rechercher")) {
 			String recherche = request.getParameter("recherche");
+			String pseudo = request.getParameter("utilisateur");
+			Utilisateur user = facadeUtilisateur.getUtilisateur(pseudo);
 			motsClefs = recherche.split(" ");
-			Set<Playlist> results = facadeUtilisateur.rechercherPlaylistsUtilisateur(motsClefs, utilisateurCourant);
+			Set<Playlist> results = facadeUtilisateur.rechercherPlaylistsUtilisateur(motsClefs, user);
 			request.setAttribute("resultats", results);
-			request.setAttribute("utilisateur", utilisateurCourant);
+			request.setAttribute("utilisateur", user);
 			request.getRequestDispatcher("mesPlaylists.jsp").forward(request, response);
 		}
 		else if (op.equals("Rechercher musique")) {
@@ -190,15 +191,15 @@ public class ServletUtilisateur extends HttpServlet {
 	
 	private void validationMotsDePasse(String motDePasse, String confirmation) throws Exception{
 	    if (!motDePasse.equals(confirmation)) {
-	        throw new Exception("Les mots de passe entrÃ©s sont diffÃ©rents, merci de les saisir Ã  nouveau.");
+	        throw new Exception("Les mots de passe entrés sont différents, merci de les saisir à nouveau.");
 	    } else if (motDePasse.trim().length() < 3) {
-	        throw new Exception("Les mots de passe doivent contenir au moins 3 caractÃ¨res.");
+	        throw new Exception("Les mots de passe doivent contenir au moins 3 caractères.");
 	    }
 	}
 	
 	private void validationPseudo(String pseudo) throws Exception {
 	    if (pseudo != null && pseudo.trim().length() < 3) {
-	        throw new Exception("Le pseudo doit contenir au moins 3 caractÃ¨res.");
+	        throw new Exception("Le pseudo doit contenir au moins 3 caractères.");
 	    } else if (facadeUtilisateur.getUtilisateur(pseudo) != null) {
 	    	throw new Exception("Ce pseudo n'est pas disponible.");
 	    }

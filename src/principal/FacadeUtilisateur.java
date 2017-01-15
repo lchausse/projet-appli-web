@@ -1,6 +1,7 @@
 package principal;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -71,11 +72,11 @@ public class FacadeUtilisateur {
 	}
 	
 	public Set<Playlist> rechercherPlaylistsUtilisateur(String[] motClefs, Utilisateur u) {
-		Set<Playlist> playlistsARetirer;
+		Set<Playlist> playlistsARetirer = new HashSet<Playlist>();
 		Set<Playlist> playlistsCorrespondantes = new HashSet<Playlist>();
+		List<String> motsClefs = Arrays.asList(motClefs);
 		playlistsCorrespondantes.addAll(u.getMesPlaylists());
-		for (String motClef : motClefs) {
-			playlistsARetirer = new HashSet<Playlist>();
+		for (String motClef : motsClefs) {
 			for (Playlist pl : playlistsCorrespondantes) {
 				if (!match(pl.getMotsClefs(), motClef)) {
 					playlistsARetirer.add(pl);
