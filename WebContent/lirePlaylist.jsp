@@ -4,22 +4,22 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="css/styleMesPlaylists.css" />
+<link rel="stylesheet" href="css/styleLirePlaylist.css" />
 <title>Youlist - Lire playlist</title>
 </head>
 <body>
 
 <%
-Utilisateur user = (Utilisateur)request.getAttribute("utilisateur");
+String pseudo = (String)request.getAttribute("utilisateur");
 %>
  
 <form action = "ServletUtilisateur" method = "POST" class = "barre-navigation">
 <%
-if (user != null) {
-	out.println("<input class = \"left\" type = \"submit\" name = \"op\" value = \"Accueil\" />");
+if (pseudo != null) {
+	out.println("<input class = \"left-active\" type = \"submit\" name = \"op\" value = \"Accueil\" />");
 	out.println("<input class = \"left\" type = \"submit\" name = \"op\" value = \"Tendances\" />");
-	out.println("<input type = \"hidden\" name = \"pseudo\" value = \"" + user.getPseudo() + "\" />");
-	out.println("<input class = \"left-active\" type = \"submit\" name = \"op\" value = \"Mes playlists\" />");
+	out.println("<input type = \"hidden\" name = \"pseudo\" value = \"" + pseudo + "\" />");
+	out.println("<input class = \"left\" type = \"submit\" name = \"op\" value = \"Mes playlists\" />");
 	out.println("<input class = \"right\" type = \"submit\" name = \"op\" value = \"Deconnexion\" />");
 	out.println("<input class = \"right\" type = \"submit\" name = \"op\" value = \"Mon compte\" />");
 } else {
@@ -33,16 +33,12 @@ if (user != null) {
 
 <div id = "principal">
 
-<header> Utilisateur : <%=user.getPseudo() %></header>
-
 <form action = "ServletUtilisateur" method = "POST" class = "rechercher">
 <input type = "search" name = "recherche" placeholder = "Rechercher playlist" />
 <input type="submit" name="op" value = "Rechercher"/>
 </form>
 
-<%
-out.println("<a href=\"ServletUtilisateur?op=ajouterPlaylist" + user.getPseudo() + "\" >");
-%>
+
 </div>
 
 <!-- <script language="javascript"> -->

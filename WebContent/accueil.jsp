@@ -45,11 +45,21 @@ if (user != null) {
 <form action = "ServletPlaylist" method = "POST">
 <%
 if (playlistsPubliques != null) {
-	for (Playlist p : playlistsPubliques) {
-		out.println("<label>" + p.getTitre() + " " + p.getVues() + " vues</label>");
-		out.println("<input type = \"hidden\" name = \"nomPlaylist\" value = \"" + p.getTitre() + "\" />");
-		out.println("<input type = \"hidden\" name = \"typePlaylist\" value = \"publique\" />");
-		out.println("<input type = \"submit\" name = \"op\" value = \"Regarder\" class = \"bouton-regarder\" /> <br />");
+	if (user != null) {
+		for (Playlist p : playlistsPubliques) {
+			out.println("<label>" + p.getTitre() + " " + p.getVues() + " vues</label>");
+			out.println("<input type = \"hidden\" name = \"nomPlaylist\" value = \"" + p.getTitre() + "\" />");
+			out.println("<input type = \"hidden\" name = \"typePlaylist\" value = \"publique\" />");
+			out.println("<input type = \"hidden\" name = \"utilisateur\" value = \"" + user.getPseudo() + "\" />");
+			out.println("<input type = \"submit\" name = \"op\" value = \"Ecouter\" class = \"bouton-ecouter\" /> <br />");
+		}
+	} else {
+		for (Playlist p : playlistsPubliques) {
+			out.println("<label>" + p.getTitre() + " " + p.getVues() + " vues</label>");
+			out.println("<input type = \"hidden\" name = \"nomPlaylist\" value = \"" + p.getTitre() + "\" />");
+			out.println("<input type = \"hidden\" name = \"typePlaylist\" value = \"publique\" />");
+			out.println("<input type = \"submit\" name = \"op\" value = \"Ecouter\" class = \"bouton-ecouter\" /> <br />");
+		}
 	}
 }
 %>

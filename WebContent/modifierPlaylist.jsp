@@ -1,13 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="principal.*" %>
-<%@ page import="model.*" %>
-<%@ page import="java.util.*" %>
-<%@ page import="com.google.api.services.youtube.model.SearchResult" %>
-<%@ page import="com.google.api.services.youtube.model.ResourceId" %>
-<%@ page import="com.google.api.services.youtube.model.Thumbnail" %>
-<%@ page import="com.google.api.services.youtube.YouTube" %>
-<%@ page import="com.google.api.services.youtube.model.Video" %>
+<%@ page import="principal.*, model.*, java.util.*, com.google.api.services.youtube.model.SearchResult,
+com.google.api.services.youtube.model.ResourceId, com.google.api.services.youtube.model.Thumbnail,
+com.google.api.services.youtube.YouTube, com.google.api.services.youtube.model.Video" %>
 
 <html>
 <head>

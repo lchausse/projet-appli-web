@@ -34,6 +34,7 @@ Set<Playlist> resultatRecherche = (Set<Playlist>)request.getAttribute("resultats
 
 <form action = "ServletUtilisateur" method = "POST" class = "rechercher">
 <input type = "search" name = "recherche" placeholder = "Rechercher playlist" />
+<input type = "hidden" name = "utilisateur" value = "<%=user.getPseudo() %>" />
 <input type="submit" name="op" value = "Rechercher"/>
 </form>
 
