@@ -43,6 +43,7 @@ public class FacadePlaylist {
 	
 	public void ajouterMusique(Playlist playlist, Musique musique) {
 	  	playlist.addMusique(musique);
+	  	em.persist(musique);
 	}
 
 	public void supprimerMusique(Playlist playlist, Musique musique) {
