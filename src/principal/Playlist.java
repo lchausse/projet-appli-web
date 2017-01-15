@@ -17,7 +17,7 @@ public class Playlist {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
-	@ManyToMany(fetch=FetchType.EAGER)
+	@ManyToMany(mappedBy="playlists", fetch=FetchType.EAGER)
 	private Set<Musique> musiques; // musique de la playlist
 	@ManyToMany(fetch=FetchType.EAGER) 
 	private Set<Utilisateur> utilisateurs; // utilisateur pouvant modifier la playlist
@@ -53,7 +53,7 @@ public class Playlist {
 	}
 	
 	public void addMusique(Musique musique) {
-		this.musiques.add(musique);	
+		this.musiques.add(musique);
 	}
 	
 	public void deleteMusique(Musique musique) {
