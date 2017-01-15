@@ -1,6 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ page import="principal.*, java.util.Set" %>
+<%@ page import="principal.*, java.util.*" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
@@ -13,6 +13,7 @@
 <%
 Utilisateur user = (Utilisateur)request.getAttribute("utilisateur");
 request.setAttribute("utilisateur", user);
+List<Playlist> playlistsPubliques = (List<Playlist>)request.getAttribute("playlistsPubliques");
  %>
 
 <form action = "ServletUtilisateur" method = "POST" class = "barre-navigation">
@@ -22,7 +23,7 @@ request.setAttribute("utilisateur", user);
 if (user != null) {
 	out.println("<input type = \"hidden\" name = \"pseudo\" value = \"" + user.getPseudo() + "\" />");
 	out.println("<input class = \"left\" type = \"submit\" name = \"op\" value = \"Mes playlists\" />");
-	out.println("<input class = \"right\" type = \"submit\" name = \"op\" value = \"Déconnexion\" />");
+	out.println("<input class = \"right\" type = \"submit\" name = \"op\" value = \"Deconnexion\" />");
 	out.println("<input class = \"right\" type = \"submit\" name = \"op\" value = \"Mon compte\" />");
 } else {
 	out.println("<input class = \"right\" type = \"submit\" name = \"op\" value = \"Connexion\" />");
@@ -32,12 +33,31 @@ if (user != null) {
 </form>
 
 <div id = "principal">
-	<p>Rechercher une playlist publique</p>
-	<form  action = "ServletPlaylist" method = "POST">
-	  <input type="search" name="recherchePublique" placeholder="Mots clefs..."/>
-	  <input type="submit" name="op" value = "Rechercher Playlist" />  
-	</form>
-	</p>
+<section id = "recherche-playlist">
+<p>Rechercher une playlist publique</p>
+<form  action = "ServletPlaylist" method = "POST">
+  <input type="search" name="recherchePublique" placeholder="Mots clefs..."/>
+  <input type="submit" name="op" value = "Rechercher Playlist" />  
+</form>
+</section>
+
+<section id = "affichagePlaylistsPubliques">
+<form action = "ServletPlaylist" method = "POST">
+<%
+if (playlistsPubliques != null) {
+	for (Playlist p : playlistsPubliques) {
+		out.println("<label>" + p.getTitre() + " " + p.getVues() + " vues</label>");
+		out.println("<input type = \"hidden\" name = \"nomPlaylist\" value = \"" + p.getTitre() + "\" />");
+		out.println("<input type = \"hidden\" name = \"typePlaylist\" value = \"publique\" />");
+		out.println("<input type = \"submit\" name = \"op\" value = \"Regarder\" class = \"bouton-regarder\" /> <br />");
+	}
+}
+%>
+</ul>
+
+</section>
+
 </div>
+
 </body>
 </html>
