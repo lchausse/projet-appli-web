@@ -72,6 +72,7 @@ public class ServletPlaylist extends HttpServlet {
 			m.setAuteur(request.getParameter("auteur"));
 			m.setTitre(request.getParameter("titre"));
 			m.setLien(request.getParameter("lien"));
+			m.addPlaylist(pl);
 			facadePlaylist.ajouterMusique(pl, m);
 			request.getRequestDispatcher("modifierPlaylist.jsp").forward(request, response);
 		} 
