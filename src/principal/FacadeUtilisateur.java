@@ -112,4 +112,10 @@ public class FacadeUtilisateur {
 			return req.getResultList().get(0);
 		}
 	}
+	
+	public List<Playlist> getPlaylistsPubliques() {
+		TypedQuery<Playlist> req = em.createQuery(
+				"SELECT p FROM Playlist p WHERE p.publique = TRUE", Playlist.class);
+		return req.getResultList();
+	}
 }
