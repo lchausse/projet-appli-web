@@ -66,8 +66,18 @@ Playlist pl = (Playlist) request.getAttribute("playlist");
 <% if (pl != null) {
 	List<Musique> musiques = pl.getMusiques();
 	  for (Musique m : musiques) {%>
-		  <div class="desc"> <%=m.getTitre() + " - " + m.getAuteur() %></div>
-<%}}%>
+		  <div class="desc"> 
+		  	  <%=m.getTitre() + " - " + m.getAuteur() %>
+			  <form action = "ServletPlaylist" method = "POST">
+					<input type="hidden" name="titrePlaylist" value="<%=pl.getTitre()%>">
+					<input type="hidden" name="utilisateur" value="<%=pseudo%>">
+					<input type="hidden" name="idMusique" value="<%=m.getLien()%>">
+			 		<input type="submit" name="op" value="Supprimer Musique">
+			  </form>
+		  </div>
+<%} 
+}%>
+	
 </div>
 
 </body>
