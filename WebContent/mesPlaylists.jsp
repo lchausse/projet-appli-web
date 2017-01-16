@@ -35,7 +35,7 @@ Set<Playlist> resultatRecherche = (Set<Playlist>)request.getAttribute("resultats
 <form action = "ServletUtilisateur" method = "POST" class = "rechercher">
 <input type = "search" name = "recherche" placeholder = "Rechercher playlist" />
 <input type = "hidden" name = "utilisateur" value = "<%=user.getPseudo() %>" />
-<input type="submit" name="op" value = "Rechercher"/>
+<input type="submit" name="op" value = "Rechercher" class="button"/>
 </form>
 
 <%
@@ -79,7 +79,7 @@ out.println("<a href=\"ServletUtilisateur?op=ajouterPlaylist" + user.getPseudo()
 </div>
 
 <form action = "ServletUtilisateur" method = "POST" class = "rechercher">
-<input type="submit" name="op" value = "Nouvelle Playlist"/>
+<input type="submit" name="op" value = "Nouvelle Playlist" class="button"/>
 <input type="hidden" name="utilisateur" value="<%=user.getPseudo()%>" />
 </form>
 <!-- <script language="javascript"> -->
