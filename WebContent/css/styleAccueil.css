@@ -10,6 +10,12 @@ form.barre-navigation {
     width: 100%;
 }
 
+#recherche-playlist {
+    position: relative;
+    left: 70px;
+    top: 11px;
+}
+
 input.left {
 	background-color: Transparent;
     background-repeat:no-repeat;
