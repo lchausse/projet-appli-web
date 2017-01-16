@@ -94,6 +94,10 @@ public class FacadePlaylist {
 		this.playlists = playlists;
 	}
 
+	public Playlist getPlaylist(int playlistId) {
+		return em.find(Playlist.class, playlistId);
+	}
+	
 	private Set<Playlist> getPlaylistsPubliques() {
 		List<Playlist> playlists = em.createQuery("SELECT p FROM Playlist p", Playlist.class)
 				                     .getResultList();

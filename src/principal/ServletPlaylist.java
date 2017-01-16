@@ -86,8 +86,10 @@ public class ServletPlaylist extends HttpServlet {
 			request.getRequestDispatcher("modifierPlaylist.jsp").forward(request, response);
 		}
 		else if(op.equals("Ecouter")) {
+			int playlistId = Integer.parseInt(request.getParameter("playlistId"));
 			String pseudo = request.getParameter("utilisateur");
 			request.setAttribute("utilisateur", pseudo);
+			request.setAttribute("playlist", facadePlaylist.getPlaylist(playlistId));
 			request.getRequestDispatcher("lirePlaylist.jsp").forward(request, response);
 		}
 	}

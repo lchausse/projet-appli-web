@@ -101,4 +101,8 @@ public class Playlist {
 	public void setPublique(boolean publique) {
 		this.publique = publique;
 	}
+	
+	public int getId() {
+		return this.id;
+	}
 }
