@@ -34,7 +34,7 @@ String pseudo = (String) request.getAttribute("utilisateur");
 			<option> Privée
 		</select>
 		<input type="submit" name="op" value="Creer Playlist">
-		<input type="hidden" name="utilisateur" value=<%=pseudo%> />
+		<input type="hidden" name="utilisateur" value="<%=pseudo%>" />
 	</form>
 </div>
 </body>
