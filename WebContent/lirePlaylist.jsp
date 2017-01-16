@@ -11,6 +11,7 @@
 
 <%
 String pseudo = (String)request.getAttribute("utilisateur");
+Playlist playlist  = (Playlist)request.getAttribute("playlist");
 %>
  
 <form action = "ServletUtilisateur" method = "POST" class = "barre-navigation">
@@ -38,6 +39,11 @@ if (pseudo != null) {
 <input type="submit" name="op" value = "Rechercher"/>
 </form>
 
+<iframe width="854" height="480" src="https://www.youtube.com/embed/<%=playlist.getMusiques(). %>" frameborder="0" allowfullscreen></iframe>
+
+<%
+
+%>
 
 </div>
 

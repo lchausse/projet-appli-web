@@ -51,6 +51,7 @@ if (playlistsPubliques != null) {
 			out.println("<input type = \"hidden\" name = \"nomPlaylist\" value = \"" + p.getTitre() + "\" />");
 			out.println("<input type = \"hidden\" name = \"typePlaylist\" value = \"publique\" />");
 			out.println("<input type = \"hidden\" name = \"utilisateur\" value = \"" + user.getPseudo() + "\" />");
+			out.println("<input type = \"hidden\" name = \"idPlaylist\" value = \"" + p.getId() + "\" />");
 			out.println("<input type = \"submit\" name = \"op\" value = \"Ecouter\" class = \"bouton-ecouter\" /> <br />");
 		}
 	} else {
@@ -58,6 +59,7 @@ if (playlistsPubliques != null) {
 			out.println("<label>" + p.getTitre() + " " + p.getVues() + " vues</label>");
 			out.println("<input type = \"hidden\" name = \"nomPlaylist\" value = \"" + p.getTitre() + "\" />");
 			out.println("<input type = \"hidden\" name = \"typePlaylist\" value = \"publique\" />");
+			out.println("<input type = \"hidden\" name = \"idPlaylist\" value = \"" + p.getId() + "\" />");
 			out.println("<input type = \"submit\" name = \"op\" value = \"Ecouter\" class = \"bouton-ecouter\" /> <br />");
 		}
 	}
