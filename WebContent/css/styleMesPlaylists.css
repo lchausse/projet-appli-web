@@ -137,25 +137,6 @@ img#logoYoulist {
   height: 18px;
 }
 
-.button {
- font-family: "Roboto", sans-serif;
- text-transform: uppercase;
- outline: 0;
- background: #e74c3c;
- width: 100%;
- border: 0;
- padding: 15px;
- color: #FFFFFF;
- font-size: 14px;
- -webkit-transition: all 0.3 ease;
- transition: all 0.3 ease;
- cursor: pointer;	
-}
-
-.button:hover, .button:active {
- background: #c0392b;
-}
-
 div.playlist {
     margin: 5px;
     border: 1px solid #ccc;
@@ -171,4 +152,36 @@ div.playlist:hover {
 div.titre {
 	font-size: 130%;
     text-align: left;
+}
+
+form {
+               width:500px;
+               margin:50px auto;
+}
+.text {
+               padding:8px 15px;
+               color:#95a5a6;
+               border:0px solid #dbdbdb;
+				background-color:#ffffff;
+}
+
+.text:hover{
+   padding:8px 15px;
+   background:rgba(50, 50, 50, 0.2);
+   border:0px solid #dbdbdb;
+}
+
+
+.submit {
+               position:relative;
+               padding:8px 15px;
+               left:-8px;
+               border:0px solid #dbdbdb;
+               color:#ffffff;
+}
+.submit:hover  {
+
+               color:#ffffff;
+				background-color:#e74c3c;
+				border:0px solid #e74c3c;
 }
