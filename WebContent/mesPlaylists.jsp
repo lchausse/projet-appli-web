@@ -48,6 +48,7 @@ if (resultatRecherche == null) {
 				<input type="submit" name="op" value = "Modifier"/>
 				<input type="hidden" name="utilisateur" value=<%=user.getPseudo()%> />
 				<input type="hidden" name="titrePlaylist" value=<%=p.getTitre()%> />
+				<input type = "hidden" name = "typePlaylist" value = "privee" />
 			</form>
 		</div>
 	<%}
@@ -60,6 +61,7 @@ if (resultatRecherche == null) {
 				<input type="submit" name="op" value = "Modifier"/>
 				<input type="hidden" name="utilisateur" value=<%=user.getPseudo()%> />
 				<input type="hidden" name="titrePlaylist" value=<%=p.getTitre()%> />
+				<input type = "hidden" name = "typePlaylist" value = "privee" />
 			</form>
 		</div>
 	<%}

@@ -34,12 +34,7 @@ if (pseudo != null) {
 
 <div id = "principal">
 
-<form action = "ServletUtilisateur" method = "POST" class = "rechercher">
-<input type = "search" name = "recherche" placeholder = "Rechercher playlist" />
-<input type="submit" name="op" value = "Rechercher"/>
-</form>
-
-<iframe width="854" height="480" src="https://www.youtube.com/embed/<%=playlist.getMusiques(). %>" frameborder="0" allowfullscreen></iframe>
+<iframe width="854" height="480" src="https://www.youtube.com/embed/<%=playlist.getMusiques().get(0).getLien()%>" frameborder="0" allowfullscreen></iframe>
 
 <%
 

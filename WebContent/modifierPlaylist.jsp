@@ -55,7 +55,7 @@ Playlist pl = (Playlist) request.getAttribute("playlist");
 		  		<input type="text" name="auteur" placeholder="Auteur">
 				<input type="hidden" name="titrePlaylist" value=<%=pl.getTitre()%>>
 				<input type="hidden" name="utilisateur" value=<%=pseudo%>>
-				<input type="hidden" name="lien" value=<%="https://www.youtube.com/watch?v=" + id%>>
+				<input type="hidden" name="lien" value=<%=id%>>
 		 		<input type="submit" name="op" value="Ajouter Musique">
 		  </form>
 		</div>
@@ -66,7 +66,7 @@ Playlist pl = (Playlist) request.getAttribute("playlist");
 
 <div id = principal>
 <% if (pl != null) {
-	Set<Musique> musiques = pl.getMusiques();
+	List<Musique> musiques = pl.getMusiques();
 	  for (Musique m : musiques) {%>
 		  <div class="desc"> <%=m.getTitre() + " - " + m.getAuteur() %></div>
 <%}}%>
