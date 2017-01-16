@@ -106,8 +106,9 @@ div#principal {
 }
 
 form.rechercher input {
-	font-size: 15pt;
-	width:400px;
+ 	
+    font-size: 15pt;
+    width:400px;
     padding: 10px;
     border: none;
     border-bottom: solid 2px #c9c9c9;
@@ -115,6 +116,25 @@ form.rechercher input {
     -moz-transition: border 0.3s;
     -o-transition: border 0.3s;
     transition: border 0.3s;
+}
+
+.button {
+	font-family: "Roboto", sans-serif;
+ 	text-transform: uppercase;
+ 	outline: 0;
+ 	background: #e74c3c;
+ 	width: 100%;
+ 	border: 0;
+ 	padding: 15px;
+ 	color: #FFFFFF;
+ 	font-size: 14px;
+ 	-webkit-transition: all 0.3 ease;
+ 	transition: all 0.3 ease;
+ 	cursor: pointer;
+}
+
+.button:active, .button:hover, .button:focus {
+ 	background: #c0392b;
 }
 
 form.rechercher {
