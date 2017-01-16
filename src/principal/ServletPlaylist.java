@@ -7,9 +7,7 @@ import java.util.Set;
 
 import com.google.api.services.youtube.model.SearchResult;
 
-import java.util.HashSet;
 import java.util.List;
-
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
