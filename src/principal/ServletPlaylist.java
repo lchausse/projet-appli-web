@@ -7,7 +7,9 @@ import java.util.Set;
 
 import com.google.api.services.youtube.model.SearchResult;
 
+import java.util.HashSet;
 import java.util.List;
+
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -86,6 +88,8 @@ public class ServletPlaylist extends HttpServlet {
 		else if (op.equals("Ecouter")) {
 			int playlistId = Integer.parseInt(request.getParameter("idPlaylist"));
 			String pseudo = request.getParameter("utilisateur");
+			String typePlaylist = request.getParameter("typePlaylist");
+			request.setAttribute("typePlaylist", typePlaylist);
 			request.setAttribute("utilisateur", pseudo);
 			request.setAttribute("musiqueCourante", 0);
 			request.setAttribute("playlist", facadePlaylist.getPlaylist(playlistId));
