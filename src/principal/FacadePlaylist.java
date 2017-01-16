@@ -86,6 +86,18 @@ public class FacadePlaylist {
 		return null;
 	}
 	
+	public void supprimerMusique(Playlist playlist, String lien) {
+		Musique musiqueASupprimer = null;
+		for (Musique m : playlist.getMusiques()) {
+			if (m.getLien().equals(lien)) {
+				musiqueASupprimer = m;
+			}
+		}
+		playlist.deleteMusique(musiqueASupprimer);
+		musiqueASupprimer.deletePlaylist(playlist);
+		em.remove(em.find(Musique.class, musiqueASupprimer.getLien()));
+	}
+	
 	public Set<Playlist> getPlaylists() {
 		return playlists;
 	}
