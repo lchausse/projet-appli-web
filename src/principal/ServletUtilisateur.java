@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -25,7 +24,6 @@ public class ServletUtilisateur extends HttpServlet {
 	
 	@EJB
 	private FacadeUtilisateur facadeUtilisateur;
-	private Utilisateur utilisateurCourant;
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -67,7 +65,6 @@ public class ServletUtilisateur extends HttpServlet {
 				}
 			}
 			if (connexionPossible) {
-				utilisateurCourant = facadeUtilisateur.getUtilisateur(pseudo);
 				request.setAttribute("utilisateur", facadeUtilisateur.getUtilisateur(pseudo));
 				request.getRequestDispatcher("accueil.jsp").forward(request, response);
 			} else {
@@ -147,9 +144,6 @@ public class ServletUtilisateur extends HttpServlet {
 			request.setAttribute("resultats", results);
 			request.setAttribute("utilisateur", user);
 			request.getRequestDispatcher("mesPlaylists.jsp").forward(request, response);
-		}
-		else if (op.equals("Rechercher musique")) {
-			String rechercheMusique = request.getParameter("rechercheMusique");
 		}
 		else if (op.equals("Mes playlists")) {
 			Utilisateur user = facadeUtilisateur.getUtilisateur(request.getParameter("pseudo"));
