@@ -11,6 +11,7 @@
 
 <%
 String pseudo = (String)request.getAttribute("utilisateur");
+String typePlaylist = (String)request.getAttribute("typePlaylist");
 Playlist playlist  = (Playlist)request.getAttribute("playlist");
 int musiqueCourante = (int)request.getAttribute("musiqueCourante");
 %>
@@ -18,12 +19,21 @@ int musiqueCourante = (int)request.getAttribute("musiqueCourante");
 <form action = "ServletUtilisateur" method = "POST" class = "barre-navigation">
 <%
 if (pseudo != null) {
-	out.println("<input class = \"left-active\" type = \"submit\" name = \"op\" value = \"Accueil\" />");
-	out.println("<input class = \"left\" type = \"submit\" name = \"op\" value = \"Tendances\" />");
-	out.println("<input type = \"hidden\" name = \"pseudo\" value = \"" + pseudo + "\" />");
-	out.println("<input class = \"left\" type = \"submit\" name = \"op\" value = \"Mes playlists\" />");
-	out.println("<input class = \"right\" type = \"submit\" name = \"op\" value = \"Deconnexion\" />");
-	out.println("<input class = \"right\" type = \"submit\" name = \"op\" value = \"Mon compte\" />");
+	if (typePlaylist.equals("publique")) {
+		out.println("<input class = \"left-active\" type = \"submit\" name = \"op\" value = \"Accueil\" />");
+		out.println("<input class = \"left\" type = \"submit\" name = \"op\" value = \"Tendances\" />");
+		out.println("<input type = \"hidden\" name = \"pseudo\" value = \"" + pseudo + "\" />");
+		out.println("<input class = \"left\" type = \"submit\" name = \"op\" value = \"Mes playlists\" />");
+		out.println("<input class = \"right\" type = \"submit\" name = \"op\" value = \"Deconnexion\" />");
+		out.println("<input class = \"right\" type = \"submit\" name = \"op\" value = \"Mon compte\" />");
+	} else {
+		out.println("<input class = \"left\" type = \"submit\" name = \"op\" value = \"Accueil\" />");
+		out.println("<input class = \"left\" type = \"submit\" name = \"op\" value = \"Tendances\" />");
+		out.println("<input type = \"hidden\" name = \"pseudo\" value = \"" + pseudo + "\" />");
+		out.println("<input class = \"left-active\" type = \"submit\" name = \"op\" value = \"Mes playlists\" />");
+		out.println("<input class = \"right\" type = \"submit\" name = \"op\" value = \"Deconnexion\" />");
+		out.println("<input class = \"right\" type = \"submit\" name = \"op\" value = \"Mon compte\" />");
+	}
 } else {
 	out.println("<input class = \"left-active\" type = \"submit\" name = \"op\" value = \"Accueil\" />");
 	out.println("<input class = \"left\" type = \"submit\" name = \"op\" value = \"Tendances\" />");
@@ -39,8 +49,9 @@ if (pseudo != null) {
 <input type = "hidden" name = "musiqueCourante" value = "<%= musiqueCourante %>" />
 <input type = "hidden" name = "idPlaylist" value = "<%=playlist.getId() %>" />
 <input type = "hidden" name = "utilisateur" value = "<%=pseudo %>" />
+<input type = "hidden" name = "typePlaylist" value = "<%=typePlaylist %>" />
 <%
-if (musiqueCourante != playlist.getMusiques().size() - 1) {
+if (musiqueCourante < playlist.getMusiques().size() - 1) {
 %>
 <input type = "submit" name = "op" value = "Musique suivante" />
 <%
