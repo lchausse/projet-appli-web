@@ -1,5 +1,7 @@
 package principal;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.ElementCollection;
@@ -18,7 +20,7 @@ public class Playlist {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	@ManyToMany(mappedBy="playlists", fetch=FetchType.EAGER)
-	private Set<Musique> musiques; // musique de la playlist
+	private List<Musique> musiques; // musique de la playlist
 	@ManyToMany(fetch=FetchType.EAGER) 
 	private Set<Utilisateur> utilisateurs; // utilisateur pouvant modifier la playlist
     @ElementCollection(fetch=FetchType.EAGER, targetClass=String.class)
@@ -29,7 +31,7 @@ public class Playlist {
 	
 
 	public Playlist() {
-		this.musiques = new HashSet<Musique>();
+		this.musiques = new ArrayList<Musique>();
 		this.utilisateurs = new HashSet<Utilisateur>();
 		this.motsClefs = new HashSet<String>();
 		this.vues = 0;
@@ -44,11 +46,11 @@ public class Playlist {
 		this.titre = titre;
 	}
 	
-	public Set<Musique> getMusiques() {
+	public List<Musique> getMusiques() {
 		return this.musiques;
 	}
 	
-	public void setMusiques(Set<Musique> musiques) {
+	public void setMusiques(List<Musique> musiques) {
 		this.musiques = musiques;
 	}
 	
