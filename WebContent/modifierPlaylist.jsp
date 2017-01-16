@@ -30,11 +30,10 @@ Playlist pl = (Playlist) request.getAttribute("playlist");
 <div id = principal>
 	<form action = "ServletPlaylist" method = "POST">
 		<input type ="search" name ="rechercheMusique" placeholder ="Rechercher musique">
-		<input type="hidden" name ="titrePlaylist" value="<%=pl.getTitre()%>">
-		<input type="hidden" name ="utilisateur" value="<%=pseudo %>">
+		<input type="hidden" name ="titrePlaylist" value=<%=pl.getTitre()%>>
+		<input type="hidden" name ="utilisateur" value=<%=pseudo %>>
 		<input type ="submit" name ="op" value ="Rechercher Musique">
 	</form>
-</div>
 
 <% List<SearchResult> searchResultList = (List<SearchResult>) request.getAttribute("resultatsRechercheMusique"); %>
 <% if (searchResultList != null) { %>
@@ -53,9 +52,9 @@ Playlist pl = (Playlist) request.getAttribute("playlist");
 		  <form action = "ServletPlaylist" method = "POST">
 		  		<input type="text" name="titre" placeholder="Titre">
 		  		<input type="text" name="auteur" placeholder="Auteur">
-				<input type="hidden" name="titrePlaylist" value="<%=pl.getTitre()%>">
-				<input type="hidden" name="utilisateur" value="<%=pseudo%>">
-				<input type="hidden" name="lien" value="<%=id%>">
+				<input type="hidden" name="titrePlaylist" value=<%=pl.getTitre()%>>
+				<input type="hidden" name="utilisateur" value=<%=pseudo%>>
+				<input type="hidden" name="lien" value=<%=id%>>
 		 		<input type="submit" name="op" value="Ajouter Musique">
 		  </form>
 		</div>
@@ -64,7 +63,6 @@ Playlist pl = (Playlist) request.getAttribute("playlist");
 <% }
 }%>
 
-<div id = principal>
 <% if (pl != null) {
 	List<Musique> musiques = pl.getMusiques();
 	  for (Musique m : musiques) {%>

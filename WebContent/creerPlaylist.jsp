@@ -18,7 +18,7 @@ String pseudo = (String) request.getAttribute("utilisateur");
 <%out.println("<input type = \"hidden\" name = \"pseudo\" value = \"" + pseudo + "\" />");%>
   <input class = "left" type = "submit" name = "op" value = "Tendances" />
   <input class = "left-active" type = "submit" name = "op" value = "Mes playlists" />
-  <input class = "right" type = "submit" name = "op" value = "Déconnexion" />
+  <input class = "right" type = "submit" name = "op" value = "Deconnexion" />
   <input class = "right" type = "submit" name = "op" value = "Mon compte" />
 </form>
 
@@ -34,7 +34,7 @@ String pseudo = (String) request.getAttribute("utilisateur");
 			<option> Privée
 		</select>
 		<input type="submit" name="op" value="Creer Playlist">
-		<input type="hidden" name="utilisateur" value="<%=pseudo%>" />
+		<input type="hidden" name="utilisateur" value=<%=pseudo%> />
 	</form>
 </div>
 </body>
