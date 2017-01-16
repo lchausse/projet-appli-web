@@ -22,6 +22,7 @@ public class Musique {
 		this.playlists = new HashSet<Playlist>();
 	}
 
+	
 	public String getTitre() {
 		return titre;
 	}
@@ -50,8 +51,5 @@ public class Musique {
 		playlists.add(pl);
 	}
 	
-	public void deletePlaylist(Playlist pl) {
-		playlists.remove(pl);
-	}
 	
 }

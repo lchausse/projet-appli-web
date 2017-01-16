@@ -85,10 +85,31 @@ public class ServletPlaylist extends HttpServlet {
 			request.setAttribute("resultatsRechercheMusique", resultatsRecherche);
 			request.getRequestDispatcher("modifierPlaylist.jsp").forward(request, response);
 		}
-		else if(op.equals("Ecouter")) {
+		else if (op.equals("Ecouter")) {
 			int playlistId = Integer.parseInt(request.getParameter("idPlaylist"));
 			String pseudo = request.getParameter("utilisateur");
 			request.setAttribute("utilisateur", pseudo);
+			request.setAttribute("musiqueCourante", 0);
+			request.setAttribute("playlist", facadePlaylist.getPlaylist(playlistId));
+			request.getRequestDispatcher("lirePlaylist.jsp").forward(request, response);
+		}
+		else if (op.equals("Musique suivante")) {
+			int musiqueCourante = Integer.parseInt(request.getParameter("musiqueCourante"));
+			int playlistId = Integer.parseInt(request.getParameter("idPlaylist"));
+			String pseudo = request.getParameter("utilisateur");
+			musiqueCourante++;
+			request.setAttribute("utilisateur", pseudo);
+			request.setAttribute("musiqueCourante", musiqueCourante);
+			request.setAttribute("playlist", facadePlaylist.getPlaylist(playlistId));
+			request.getRequestDispatcher("lirePlaylist.jsp").forward(request, response);
+		}
+		else if (op.equals("Musique precedente")) {
+			int musiqueCourante = Integer.parseInt(request.getParameter("musiqueCourante"));
+			int playlistId = Integer.parseInt(request.getParameter("idPlaylist"));
+			String pseudo = request.getParameter("utilisateur");
+			musiqueCourante--;
+			request.setAttribute("utilisateur", pseudo);
+			request.setAttribute("musiqueCourante", musiqueCourante);
 			request.setAttribute("playlist", facadePlaylist.getPlaylist(playlistId));
 			request.getRequestDispatcher("lirePlaylist.jsp").forward(request, response);
 		}
