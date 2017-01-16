@@ -93,6 +93,16 @@ public class ServletPlaylist extends HttpServlet {
 			request.setAttribute("playlist", facadePlaylist.getPlaylist(playlistId));
 			request.getRequestDispatcher("lirePlaylist.jsp").forward(request, response);
 		}
+		else if(op.equals("Supprimer Musique")) {
+			pl = facadePlaylist.getPlaylist(request.getParameter("titrePlaylist"));
+			String m = request.getParameter("idMusique");
+			System.err.println(pl.getMusiques());
+			facadePlaylist.supprimerMusique(pl, m);
+			System.err.println(pl.getMusiques());
+			request.setAttribute("playlist", pl);
+			request.setAttribute("utilisateur", request.getParameter("utilisateur"));
+			request.getRequestDispatcher("modifierPlaylist.jsp").forward(request, response);
+		}
 		else if (op.equals("Musique suivante")) {
 			int musiqueCourante = Integer.parseInt(request.getParameter("musiqueCourante"));
 			int playlistId = Integer.parseInt(request.getParameter("idPlaylist"));
