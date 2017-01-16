@@ -38,7 +38,7 @@ Set<Playlist> resultatRecherche = (Set<Playlist>)request.getAttribute("resultats
 <input type="submit" name="op" value = "Rechercher" class="button"/>
 </form>
 
-<div class = "mid" ><%
+<%
 if (resultatRecherche == null) {
 	for (Playlist p : playlistsUtilisateur) { %>
 		<div class="playlist">
@@ -58,6 +58,7 @@ if (resultatRecherche == null) {
 		<div class="playlist">
 		  <div class="titre"><%= p.getTitre()%></div>
 			<form action = "ServletPlaylist" method = "POST">
+			
 				<input type="submit" name="op" value = "Ecouter"/>
 				<input type="submit" name="op" value = "Modifier"/>
 				<input type="hidden" name="utilisateur" value="<%=user.getPseudo()%>" />
@@ -69,18 +70,11 @@ if (resultatRecherche == null) {
 	<%}
 }
 %>
+
 </div>
 
-
-<%
-out.println("<a href=\"ServletUtilisateur?op=ajouterPlaylist" + user.getPseudo() + "\" >");
-%>
-<img id="ajouterPlaylist" src="images/ajouterPlaylist.png" alt="Logo" title = "Créer une playlist"/>
-</a>
-</div>
-
-<form action = "ServletUtilisateur" method = "POST" class = "rechercher">
-<input type="submit" name="op" value = "Nouvelle Playlist" class="button"/>
+<form action = "ServletUtilisateur" method = "POST" >
+<input type="image" name="op" value = "Nouvelle Playlist" src="images/ajouterPlaylist.png" />
 <input type="hidden" name="utilisateur" value="<%=user.getPseudo()%>" />
 </form>
 <!-- <script language="javascript"> -->
