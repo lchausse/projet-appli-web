@@ -38,7 +38,7 @@ Set<Playlist> resultatRecherche = (Set<Playlist>)request.getAttribute("resultats
 <input type="submit" name="op" value = "Rechercher" class="button"/>
 </form>
 
-<%
+<div class = "mid" ><%
 if (resultatRecherche == null) {
 	for (Playlist p : playlistsUtilisateur) { %>
 		<div class="playlist">
@@ -69,6 +69,7 @@ if (resultatRecherche == null) {
 	<%}
 }
 %>
+</div>
 
 
 <%
