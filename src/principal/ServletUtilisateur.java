@@ -67,6 +67,7 @@ public class ServletUtilisateur extends HttpServlet {
 			}
 			if (connexionPossible) {
 				request.setAttribute("utilisateur", facadeUtilisateur.getUtilisateur(pseudo));
+				request.setAttribute("playlistsPubliques", facadeUtilisateur.getPlaylistsPubliques());
 				request.getRequestDispatcher("accueil.jsp").forward(request, response);
 			} else {
 				request.setAttribute("erreurs", erreurs);
@@ -169,6 +170,7 @@ public class ServletUtilisateur extends HttpServlet {
 		}
 		else if (op.equals("Deconnexion")) {
 			request.setAttribute("utilisateur", null);
+			request.setAttribute("playlistsPubliques", facadeUtilisateur.getPlaylistsPubliques());
 			request.getRequestDispatcher("accueil.jsp").forward(request,  response);
 		}
 	}
