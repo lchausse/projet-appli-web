@@ -110,7 +110,7 @@ public class ServletUtilisateur extends HttpServlet {
 		}
 		else if (op.equals("Nouvelle Playlist")) {
 			String pseudo = request.getParameter("utilisateur");
-			request.setAttribute("utilisateur", pseudo);
+			request.setAttribute("utilisateur", facadeUtilisateur.getUtilisateur(pseudo));
 			request.getRequestDispatcher("creerPlaylist.jsp").forward(request, response);
 		}
 		else if (op.equals("Creer Playlist")) {
