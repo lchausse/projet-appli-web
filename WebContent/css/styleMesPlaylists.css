@@ -1,95 +1,212 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ page import="principal.*, java.util.*" %>
-<html>
-<head>
-<meta charset="UTF-8">
-<link rel="stylesheet" href="css/styleMesPlaylists.css" />
-<title>Youlist - Mes playlists</title>
-</head>
-<body>
-
-<%
-Utilisateur user = (Utilisateur) request.getAttribute("utilisateur");
-Set<Playlist> playlistsUtilisateur = user.getMesPlaylists();
-Set<Playlist> resultatRecherche = (Set<Playlist>)request.getAttribute("resultats");
-%>
- 
-
-<form action = "ServletUtilisateur" method = "POST" class = "barre-navigation">
-  <input class = "left" type = "submit" name = "op" value = "Accueil" />
-<%out.println("<input type = \"hidden\" name = \"pseudo\" value = \"" + user.getPseudo() + "\" />");%>
-  <input class = "left" type = "submit" name = "op" value = "Tendances" />
-  <input class = "left-active" type = "submit" name = "op" value = "Mes playlists" />
-  <input class = "right" type = "submit" name = "op" value = "Deconnexion" />
-  <input class = "right" type = "submit" name = "op" value = "Mon compte" />
-</form>
-
-<div id = "principal">
-
-<form action = "ServletUtilisateur" method = "POST" class = "rechercher">
-<input type="text" class="search" name = "recherche"  placeholder="Rechercher playlist..." required>
-<input type="hidden" name = "utilisateur" value = "<%=user.getPseudo() %>" />
-<input type="submit" name="op" class="button" value="Rechercher" class = "button"/>
-</form>
-
-<br/>
-<br/>
-<div class="min">
-<%
-if (resultatRecherche == null) {
-	for (Playlist p : playlistsUtilisateur) { %>
-		<div class = "aff">
-		  <div class="titre"><%= p.getTitre()%> </div>
-			<form action = "ServletPlaylist" method = "POST" class = "opt">
-					<input type="submit" name="op" class="button" value="Ecouter" class = 
-
-"button">
-					<input type="submit" name="op" class="button" value="Modifier" class = 
-
-"button">
-					<input type = "text" name = "pseudoPartage" placeholder = "Pseudo 
-
-utilisateur" />
-					<input type = "submit" name = "op" value = "Partager" class = "button"/>
-					<input type="hidden" name="utilisateur" value="<%=user.getPseudo()%>" />
-					<input type="hidden" name="titrePlaylist" value="<%=p.getTitre()%>" />
-					<input type="hidden" name="idPlaylist" value="<%=p.getId()%>" />
-					<input type = "hidden" name = "typePlaylist" value = "privee" />		
-			</form>
-		</div>
-	<%}
-} else {
-	for (Playlist p : resultatRecherche) {%>
-		<div class = "aff">
-		  <div class="titre"><%= p.getTitre()%></div>
-			<form action = "ServletPlaylist" method = "POST" class = "opt">
-				<input type="submit" name="op" class="button" value="Ecouter">
-				<input type="submit" name="op" class="button" value="Modifier">
-				<input type = "text" name = "pseudoPartage" placeholder = "Pseudo utilisateur" />
-				<input type = "submit" name = "op" value = "Partager" class = "button"/>
-				<input type="hidden" name="utilisateur" value="<%=user.getPseudo()%>" />
-				<input type="hidden" name="titrePlaylist" value="<%=p.getTitre()%>" />
-				<input type="hidden" name="idPlaylist" value="<%=p.getId()%>" />
-				<input type = "hidden" name = "typePlaylist" value = "privee" />
-			</form>
-		<div class = "aff">
-	<%}
+form.barre-navigation {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    left: 0;
+    overflow: hidden;
+    background-color: #333;
+    position: fixed;
+    top: 0;
+    width: 100%;
 }
-%>
 
-</div>
-</div>
+input.left {
+	background-color: Transparent;
+    background-repeat:no-repeat;
+    border: none;
+    cursor:pointer;
+    overflow: hidden;
+    outline:none;
+    float: left;
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
 
-<form action = "ServletUtilisateur" method = "POST" >
-<input type="image" name="op" value = "Nouvelle Playlist" src="images/ajouterPlaylist.png" id = "newpl"/>
-<input type="hidden" name="utilisateur" value="<%=user.getPseudo()%>" />
-</form>
-<!-- <script language="javascript"> -->
-<!--  function IframeRefresh(IframeId) { -->
-<!--  	var iframe=document.getElementById(IframeId); -->
-<!--  	iframe.src="https://www.youtube.com/embed/oY6J1Lmj3ZE"; -->
-<!--  } -->
-<!-- </script> -->
-</body>
-</html>
+input.right {
+    background-color: Transparent;
+    background-repeat:no-repeat;
+    border: none;
+    cursor:pointer;
+    overflow: hidden;
+    outline:none;
+    float: right;
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+input.left:hover {
+	background-color: #111;
+    background-repeat:no-repeat;
+    border: none;
+    cursor:pointer;
+    overflow: hidden;
+    outline:none;
+    float: left;
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+input.right:hover {
+    background-color: #111;
+    background-repeat:no-repeat;
+    border: none;
+    cursor:pointer;
+    overflow: hidden;
+    outline:none;
+    float: right;
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+input.left-active {
+	background-color: #c0392b;
+    background-repeat:no-repeat;
+    border: none;
+    cursor:pointer;
+    overflow: hidden;
+    outline:none;
+    float: left;
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+input.right-active {
+    background-color: #c0392b;
+    background-repeat:no-repeat;
+    border: none;
+    cursor:pointer;
+    overflow: hidden;
+    outline:none;
+    float: right;
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+div#principal {
+    padding:20px;
+    margin-top:30px;
+}
+
+form.rechercher input {
+	padding: 10px;
+}
+
+form.rechercher {
+  width:500px;
+  margin:50px auto;
+}
+
+img#ajouterPlaylist { 
+  position: absolute; 
+  bottom: 50px; 
+  left: 50px;
+  border-width: 1px; 
+}
+
+img#logoYoulist {
+  position: relative; 
+  top: 0;
+  left: 0;
+  width: 18px;
+  height: 18px;
+}
+
+div.playlist {
+    margin: 5px;
+    border: 1px solid #ccc;
+    float: left;
+    width: 700px;
+    height: 70px;
+}
+
+div.playlist:hover {
+    border: 1px solid #777;
+}
+
+div.titre {
+	font-size: 130%;
+    text-align: left;
+}
+
+.search {
+	width :400px;
+	height:43px;
+	color:#95a5a6;
+	background-color:#f9f8fa;
+	padding: 10px;
+	border:none !important;
+	box-shadow:none !important;
+	text-shadow:none !important;	
+}
+
+.search:hover{
+   	background-color:#f4f2f6;
+}
+
+.search, .button {
+	margin-left:auto;
+	margin-right:auto;
+	position:relative;
+	top: 350px;
+}
+
+.button {
+	width :400px;
+	height:43px;
+    position:relative;
+    color:#333333;
+    border:none !important;
+	box-shadow:none !important;
+	text-shadow:none !important;
+}
+
+.button:hover  {
+	color:#ffffff;
+	background-color:#e74c3c;
+	border:none !important;
+	box-shadow:none !important;
+	text-shadow:none !important;	
+}
+
+.aff {
+	text-align: center;
+	width: 600px;
+ 	margin-left: auto;
+	margin-right: auto;
+}
+
+.titre {
+	position: absolute;
+	width: 200px;
+}
+
+.opt {
+	position: relative;
+	top:0;
+	margin-top: -25px;
+	margin-right: -20px;
+}
+
+#newpl {
+	position: absolute;
+	bottom: 30px;
+	left : 30px;
+}
