@@ -74,7 +74,7 @@ input.right:hover {
 .vid {
     position: absolute;
     left: 80px;
-    width:854px ; 
+    width:854px; 
 }
 
 .aff {
@@ -87,14 +87,26 @@ input.right:hover {
 
 .suiv {
  	position: relative;
-	top:456px;
-	right: -710px;
+	top:445px;
+	right: -60%;
+  	padding:8px 15px;
+  	border:0px solid #dbdbdb;
+	color:#ffffff;
 }
 
 .prec {
 	position: relative;
-	top:456px;
-	left: -700px;
+	top:445px;
+	left: -81%;
+  	padding:8px 15px;
+  	border:0px solid #dbdbdb;
+	color:#ffffff; 
+}
+
+.prec:hover,.suiv:hover {
+  color:#ffffff;
+  background-color:#e74c3c;
+  border:0px solid #e74c3c;
 }
 
 .info {
