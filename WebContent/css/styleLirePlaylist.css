@@ -88,13 +88,18 @@ input.right:hover {
 .suiv {
  	position: relative;
 	top:456px;
-	right: -610px;
+	right: -710px;
 }
 
 .prec {
 	position: relative;
 	top:456px;
-	left: -800px;
+	left: -700px;
+}
+
+.info {
+	position: relative;
+	top: 490px;
 }
 
 input.left-active {
