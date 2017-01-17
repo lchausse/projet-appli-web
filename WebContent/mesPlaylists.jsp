@@ -33,9 +33,8 @@ Set<Playlist> resultatRecherche = (Set<Playlist>)request.getAttribute("resultats
 
 
 <form action = "ServletUtilisateur" method = "POST" class = "rechercher">
-<input type="text" class="search" placeholder="Rechercher..." required>
-<input type = "search" name = "recherche" placeholder = "Rechercher playlist" />
-<input type = "hidden" name = "utilisateur" value = "<%=user.getPseudo() %>" />
+<input type="text" class="search" name = "recherche"  placeholder="Rechercher playlist..." required>
+<input type="hidden" name = "utilisateur" value = "<%=user.getPseudo() %>" />
 <input type="submit" name="op" class="button" value="Rechercher"/>
 </form>
 
@@ -44,7 +43,6 @@ Set<Playlist> resultatRecherche = (Set<Playlist>)request.getAttribute("resultats
 <%
 if (resultatRecherche == null) {
 	for (Playlist p : playlistsUtilisateur) { %>
-		<div class="playlist">
 		  <div class="titre"><%= p.getTitre()%> </div>
 			<form action = "ServletPlaylist" method = "POST">
 					<input type="submit" name="op" class="button" value="Ecouter">
@@ -54,11 +52,9 @@ if (resultatRecherche == null) {
 					<input type="hidden" name="idPlaylist" value="<%=p.getId()%>" />
 					<input type = "hidden" name = "typePlaylist" value = "privee" />		
 			</form>
-		</div>
 	<%}
 } else {
 	for (Playlist p : resultatRecherche) {%>
-		<div class="playlist">
 		  <div class="titre"><%= p.getTitre()%></div>
 			<form action = "ServletPlaylist" method = "POST">
 				<input type="submit" name="op" class="button" value="Ecouter">
@@ -68,7 +64,6 @@ if (resultatRecherche == null) {
 				<input type="hidden" name="idPlaylist" value="<%=p.getId()%>" />
 				<input type = "hidden" name = "typePlaylist" value = "privee" />
 			</form>
-		</div>
 	<%}
 }
 %>
