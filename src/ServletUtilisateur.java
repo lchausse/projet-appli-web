@@ -155,6 +155,18 @@ public class ServletUtilisateur extends HttpServlet {
 			request.setAttribute("utilisateur", user);
 			request.getRequestDispatcher("mesPlaylists.jsp").forward(request, response);
 		}
+		else if (op.equals("Mon compte")) {
+			Utilisateur user = facadeUtilisateur.getUtilisateur(request.getParameter("pseudo"));
+			request.setAttribute("utilisateur", user);
+			request.getRequestDispatcher("parametres.jsp").forward(request, response);
+		}
+		else if (op.equals("Modifier mot de passe")) {
+			String pseudo = request.getParameter("utilisateur");
+			Utilisateur user = facadeUtilisateur.getUtilisateur(pseudo);
+			request.setAttribute("utilisateur", user);
+			facadeUtilisateur.modifierMdp(pseudo, request.getParameter("newPassword2"));
+			request.getRequestDispatcher("mesPlaylists.jsp").forward(request, response);
+		}
 		else if (op.equals("Accueil")) {
 			String pseudoUser = request.getParameter("pseudo");
 			if (pseudoUser != null) {
