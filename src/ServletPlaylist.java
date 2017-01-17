@@ -7,10 +7,7 @@ import java.util.Set;
 
 import com.google.api.services.youtube.model.SearchResult;
 
-import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
 
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
@@ -49,24 +46,25 @@ public class ServletPlaylist extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String op = request.getParameter("op");
-		String recherche = request.getParameter("recherche");
-		List<Playlist> results;
-		String[] motsClefs;
-		String rechercheMusique;
-		if (op.equals("Rechercher Playlist")) {
+		Set<Playlist> results;
+		Playlist pl;
+		if (op.equals("Rechercher Playlist Publique")) {
+			String recherche = request.getParameter("recherchePublique");
+			String[] motsClefs;
 			motsClefs = recherche.split(" ");
 			results = facadePlaylist.rechercherPlaylistsPubliques(motsClefs);
-			request.setAttribute("resultatsRecherchePlaylist", results);
+			request.setAttribute("playlistsPubliques", results);
+			request.setAttribute("utilisateur", facadePlaylist.getUtilisateur(request.getParameter("utilisateur")));
 			request.getRequestDispatcher("accueil.jsp").forward(request, response);
 		}
 		else if (op.equals("Modifier")) { 
-			Playlist pl = facadePlaylist.getPlaylist( request.getParameter("titrePlaylist"));
+			pl = facadePlaylist.getPlaylist( request.getParameter("titrePlaylist"));
 			request.setAttribute("playlist", pl);
 			request.setAttribute("utilisateur", request.getParameter("utilisateur"));
 			request.getRequestDispatcher("modifierPlaylist.jsp").forward(request, response);
 		}
 		else if (op.equals("Ajouter Musique")) {
-			Playlist pl = facadePlaylist.getPlaylist(request.getParameter("titrePlaylist"));
+			pl = facadePlaylist.getPlaylist(request.getParameter("titrePlaylist"));
 			request.setAttribute("playlist", pl);
 			request.setAttribute("utilisateur", request.getParameter("utilisateur"));
 			Musique m = new Musique();
@@ -78,7 +76,8 @@ public class ServletPlaylist extends HttpServlet {
 			request.getRequestDispatcher("modifierPlaylist.jsp").forward(request, response);
 		} 
 		else if (op.equals("Rechercher Musique")) {
-			Playlist pl = facadePlaylist.getPlaylist(request.getParameter("titrePlaylist"));
+			String rechercheMusique;
+			pl = facadePlaylist.getPlaylist(request.getParameter("titrePlaylist"));
 			request.setAttribute("playlist", pl);
 			request.setAttribute("utilisateur", request.getParameter("utilisateur"));
 			rechercheMusique = request.getParameter("rechercheMusique");
@@ -90,12 +89,10 @@ public class ServletPlaylist extends HttpServlet {
 			int playlistId = Integer.parseInt(request.getParameter("idPlaylist"));
 			String pseudo = request.getParameter("utilisateur");
 			String typePlaylist = request.getParameter("typePlaylist");
-			Playlist pl = facadePlaylist.getPlaylist(playlistId);
-			pl.addVues();
 			request.setAttribute("typePlaylist", typePlaylist);
 			request.setAttribute("utilisateur", pseudo);
 			request.setAttribute("musiqueCourante", 0);
-			request.setAttribute("playlist", pl);
+			request.setAttribute("playlist", facadePlaylist.getPlaylist(playlistId));
 			request.getRequestDispatcher("lirePlaylist.jsp").forward(request, response);
 		}
 		else if (op.equals("Partager")) {
@@ -113,7 +110,7 @@ public class ServletPlaylist extends HttpServlet {
 			request.getRequestDispatcher("mesPlaylists.jsp").forward(request, response);
 		}
 		else if(op.equals("Supprimer Musique")) {
-			Playlist pl = facadePlaylist.getPlaylist(request.getParameter("titrePlaylist"));
+			pl = facadePlaylist.getPlaylist(request.getParameter("titrePlaylist"));
 			String m = request.getParameter("idMusique");
 			System.err.println(pl.getMusiques());
 			facadePlaylist.supprimerMusique(pl, m);
