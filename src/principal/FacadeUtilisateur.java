@@ -1,6 +1,5 @@
 package principal;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
@@ -75,10 +74,16 @@ public class FacadeUtilisateur {
 		Set<Playlist> playlistsARetirer = new HashSet<Playlist>();
 		Set<Playlist> playlistsCorrespondantes = new HashSet<Playlist>();
 		List<String> motsClefs = Arrays.asList(motClefs);
+		List<String> motsClefsTitre;
+		Set<String> motsClefsTitreSet;
 		playlistsCorrespondantes.addAll(u.getMesPlaylists());
 		for (String motClef : motsClefs) {
 			for (Playlist pl : playlistsCorrespondantes) {
-				if (!match(pl.getMotsClefs(), motClef)) {
+				motsClefsTitre = Arrays.asList(pl.getTitre().split(" "));
+				motsClefsTitreSet = new HashSet<String>();
+				motsClefsTitreSet.addAll(motsClefsTitre);
+				motsClefsTitreSet.remove(new String(" "));
+				if (!match(pl.getMotsClefs(), motClef) && !match(motsClefsTitreSet, motClef)) {
 					playlistsARetirer.add(pl);
 				}
 			}
