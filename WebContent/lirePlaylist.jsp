@@ -44,14 +44,21 @@ if (pseudo != null) {
 </form>
 
 <div id = "principal">
+<%if (playlist.getMusiques().size() != 0) {%>
+<%=musiqueCourante %>
+<%Set<Musique> musiquesSet = new HashSet<Musique>();
+musiquesSet.addAll(playlist.getMusiques());
+List<Musique> musiques = new ArrayList<Musique>();
+musiques.addAll(musiquesSet);%>
+<%=musiques.size() %>
 <form action = "ServletPlaylist" method = "POST">
-<iframe width="854" height="480" src="https://www.youtube.com/embed/<%=playlist.getMusiques().get(musiqueCourante).getLien()%>" events: {'onStateChange': onPlayerStateChange} frameborder="0" allowfullscreen></iframe>
+<iframe width="854" height="480" src="https://www.youtube.com/embed/<%=musiques.get(musiqueCourante).getLien()%>" frameborder="0" allowfullscreen></iframe>
 <input type = "hidden" name = "musiqueCourante" value = "<%= musiqueCourante %>" />
 <input type = "hidden" name = "idPlaylist" value = "<%=playlist.getId() %>" />
 <input type = "hidden" name = "utilisateur" value = "<%=pseudo %>" />
 <input type = "hidden" name = "typePlaylist" value = "<%=typePlaylist %>" />
 <%
-if (musiqueCourante < playlist.getMusiques().size() - 1) {
+if (musiqueCourante < musiques.size() - 1) {
 %>
 <input type = "submit" name = "op" value = "Musique suivante" />
 <%
@@ -65,14 +72,16 @@ if (musiqueCourante != 0) {
 </form>
 
 <%
-List<Musique> musiques = playlist.getMusiques();
 for (int i = 0; i < musiques.size(); i++) {
 	if (i != musiqueCourante) {
 		out.println(musiques.get(i).getTitre() + " - " + musiques.get(i).getAuteur());
 	}
 }
 %>
-
+<%
+} else {
+	out.println("PAS DE MUSIQUE DANS LA PLAYLIST");
+}%>
 </div>
 
 </body>
