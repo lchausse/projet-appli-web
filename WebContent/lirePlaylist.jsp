@@ -50,7 +50,9 @@ musiquesSet.addAll(playlist.getMusiques());
 List<Musique> musiques = new ArrayList<Musique>();
 musiques.addAll(musiquesSet);%>
 <form action = "ServletPlaylist" method = "POST">
-<iframe width="854" height="480" src="https://www.youtube.com/embed/<%=musiques.get(musiqueCourante).getLien()%>" frameborder="0" allowfullscreen></iframe>
+<div class="aff">
+<div class="vid">
+<iframe width="854" height="480" src="https://www.youtube.com/embed/<%=musiques.get(musiqueCourante).getLien()%>" frameborder="0" allowfullscreen></iframe></div>
 <input type = "hidden" name = "musiqueCourante" value = "<%= musiqueCourante %>" />
 <input type = "hidden" name = "idPlaylist" value = "<%=playlist.getId() %>" />
 <input type = "hidden" name = "utilisateur" value = "<%=pseudo %>" />
@@ -58,16 +60,43 @@ musiques.addAll(musiquesSet);%>
 <%
 if (musiqueCourante < musiques.size() - 1) {
 %>
-<input type = "submit" name = "op" value = "Musique suivante" />
+<input type = "submit" name = "op" value = "Musique suivante" class="suiv"/>
 <%
 }
 if (musiqueCourante != 0) {
 %>
-<input type = "submit" name = "op" value = "Musique precedente" />
+<input type = "submit" name = "op" value = "Musique precedente" class="prec"/>
 <%
 }
 %>
 </form>
+
+
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
 
 <%
 for (int i = 0; i < musiques.size(); i++) {
@@ -80,6 +109,7 @@ for (int i = 0; i < musiques.size(); i++) {
 } else {
 	out.println("PAS DE MUSIQUE DANS LA PLAYLIST");
 }%>
+</div>
 </div>
 
 </body>
