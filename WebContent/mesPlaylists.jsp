@@ -27,16 +27,13 @@ Set<Playlist> resultatRecherche = (Set<Playlist>)request.getAttribute("resultats
 
 <div id = "principal">
 
-<%out.println(playlistsUtilisateur); %>
-
-<header> Utilisateur : <%=user.getPseudo() %></header>
-
-
 <form action = "ServletUtilisateur" method = "POST" class = "rechercher">
 <input type="text" class="search" name = "recherche"  placeholder="Rechercher playlist..." required>
 <input type="hidden" name = "utilisateur" value = "<%=user.getPseudo() %>" />
 <input type="submit" name="op" class="button" value="Rechercher" class = "button"/>
 </form>
+
+</div>
 
 <br/>
 <br/>
