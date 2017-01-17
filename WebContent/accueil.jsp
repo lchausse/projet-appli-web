@@ -12,7 +12,7 @@
 
 <%
 Utilisateur user = (Utilisateur) request.getAttribute("utilisateur");
-List<Playlist> playlistsPubliques = (List<Playlist>)request.getAttribute("playlistsPubliques");
+Set<Playlist> playlistsPubliques = (Set<Playlist>)request.getAttribute("playlistsPubliques");
  %>
 
 <form action = "ServletUtilisateur" method = "POST" class = "barre-navigation">

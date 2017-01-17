@@ -52,23 +52,23 @@ musiques.addAll(musiquesSet);%>
 <form action = "ServletPlaylist" method = "POST">
 <div class="aff">
 <div class="vid">
-<iframe width="854" height="480" src="https://www.youtube.com/embed/<%=musiques.get(musiqueCourante).getLien()%>" frameborder="0" allowfullscreen></iframe></div>
-<input type = "hidden" name = "musiqueCourante" value = "<%= musiqueCourante %>" />
-<input type = "hidden" name = "idPlaylist" value = "<%=playlist.getId() %>" />
-<input type = "hidden" name = "utilisateur" value = "<%=pseudo %>" />
-<input type = "hidden" name = "typePlaylist" value = "<%=typePlaylist %>" />
 <%
 if (musiqueCourante < musiques.size() - 1) {
 %>
 <input type = "submit" name = "op" value = "Musique suivante" class="suiv"/>
+<%} %>
+<iframe width="854" height="480" src="https://www.youtube.com/embed/<%=musiques.get(musiqueCourante).getLien()%>" frameborder="0" allowfullscreen></iframe></div>
 <%
-}
 if (musiqueCourante != 0) {
 %>
 <input type = "submit" name = "op" value = "Musique precedente" class="prec"/>
 <%
 }
 %>
+<input type = "hidden" name = "musiqueCourante" value = "<%= musiqueCourante %>" />
+<input type = "hidden" name = "idPlaylist" value = "<%=playlist.getId() %>" />
+<input type = "hidden" name = "utilisateur" value = "<%=pseudo %>" />
+<input type = "hidden" name = "typePlaylist" value = "<%=typePlaylist %>" />
 </form>
 
 
