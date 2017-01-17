@@ -111,30 +111,18 @@ form .erreur {
     color: #900;
 }
 
-
-img#logoYoulist {
-  position: relative; 
-  top: 0;
-  left: 0;
-  width: 18px;
-  height: 18px;
-}
-
-
 form.login-form {
- width: 360px;
- position: fixed;
+ position: relative;
+ top: 350px;
+ margin-left: auto;
+ margin-right: auto;
  padding: 8% 0 0;
  background: #FFFFFF;
  max-width: 360px;
- margin-top: 42vh;
- margin-left: 54vh;
  transform: translateY(-50%);
  padding: 45px;
- text-align: center;
  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
 }
-
 
 form.login-form input {
  font-family: "Roboto", sans-serif;
@@ -147,6 +135,7 @@ form.login-form input {
  box-sizing: border-box;
  font-size: 14px;
 }
+
 form.login-form .button {
  font-family: "Roboto", sans-serif;
  text-transform: uppercase;
@@ -162,7 +151,7 @@ form.login-form .button {
  cursor: pointer;
 }
 
-form.login-form :hover, form.login-form .button:active, form.login-form .button:hover, form.login-form .button:focus {
+form.login-form .button:focus {
  background: #c0392b;
 }
 
@@ -173,6 +162,7 @@ form.login-form .message {
 }
 
 body {
+  text-align: center;
  background-image: url("../images/connexion.png");
  -webkit-background-size: 100% auto;
  -moz-background-size: 100% auto;
