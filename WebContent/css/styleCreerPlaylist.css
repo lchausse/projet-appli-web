@@ -1,108 +1,111 @@
+
+@import url(https://fonts.googleapis.com/css?family=Roboto:300);
+
 form.barre-navigation {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    left: 0;
-    overflow: hidden;
-    background-color: #333;
-    position: fixed;
-    top: 0;
-    width: 100%;
+   list-style-type: none;
+   margin: 0;
+   padding: 0;
+   left: 0;
+   overflow: hidden;
+   background-color: #333;
+   position: fixed;
+   top: 0;
+   width: 100%;
 }
 
 input.left {
-	background-color: Transparent;
-    background-repeat:no-repeat;
-    border: none;
-    cursor:pointer;
-    overflow: hidden;
-    outline:none;
-    float: left;
-    display: block;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
+   background-color: Transparent;
+   background-repeat:no-repeat;
+   border: none;
+   cursor:pointer;
+   overflow: hidden;
+   outline:none;
+   float: left;
+   display: block;
+   color: white;
+   text-align: center;
+   padding: 14px 16px;
+   text-decoration: none;
 }
 
 input.right {
-    background-color: Transparent;
-    background-repeat:no-repeat;
-    border: none;
-    cursor:pointer;
-    overflow: hidden;
-    outline:none;
-    float: right;
-    display: block;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
+   background-color: Transparent;
+   background-repeat:no-repeat;
+   border: none;
+   cursor:pointer;
+   overflow: hidden;
+   outline:none;
+   float: right;
+   display: block;
+   color: white;
+   text-align: center;
+   padding: 14px 16px;
+   text-decoration: none;
 }
 
 input.left:hover {
-	background-color: #111;
-    background-repeat:no-repeat;
-    border: none;
-    cursor:pointer;
-    overflow: hidden;
-    outline:none;
-    float: left;
-    display: block;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
+   background-color: #111;
+   background-repeat:no-repeat;
+   border: none;
+   cursor:pointer;
+   overflow: hidden;
+   outline:none;
+   float: left;
+   display: block;
+   color: white;
+   text-align: center;
+   padding: 14px 16px;
+   text-decoration: none;
 }
 
 input.right:hover {
-    background-color: #111;
-    background-repeat:no-repeat;
-    border: none;
-    cursor:pointer;
-    overflow: hidden;
-    outline:none;
-    float: right;
-    display: block;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
+   background-color: #111;
+   background-repeat:no-repeat;
+   border: none;
+   cursor:pointer;
+   overflow: hidden;
+   outline:none;
+   float: right;
+   display: block;
+   color: white;
+   text-align: center;
+   padding: 14px 16px;
+   text-decoration: none;
 }
 
 input.left-active {
 	background-color: #c0392b;
-    background-repeat:no-repeat;
-    border: none;
-    cursor:pointer;
-    overflow: hidden;
-    outline:none;
-    float: left;
-    display: block;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
+   background-repeat:no-repeat;
+   border: none;
+   cursor:pointer;
+   overflow: hidden;
+   outline:none;
+   float: left;
+   display: block;
+   color: white;
+   text-align: center;
+   padding: 14px 16px;
+   text-decoration: none;
 }
 
 input.right-active {
-    background-color: #c0392b;
-    background-repeat:no-repeat;
-    border: none;
-    cursor:pointer;
-    overflow: hidden;
-    outline:none;
-    float: right;
-    display: block;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
+   background-color: #c0392b;
+   background-repeat:no-repeat;
+   border: none;
+   cursor:pointer;
+   overflow: hidden;
+   outline:none;
+   float: right;
+   display: block;
+   color: white;
+   text-align: center;
+   padding: 14px 16px;
+   text-decoration: none;
 }
 
 div#principal {
-    padding:20px;
-    margin-top:30px;
+   padding:20px;
+   margin-top:30px;
 }
 
 section#informationsPlaylist {
@@ -118,25 +121,162 @@ section#rechercheMusique {
 }
 
 section#rechercheMusique input[type="search"] {
-	font-size: 15pt;
-	width:400px;
-    padding: 10px;
-    border: none;
-    border-bottom: solid 2px #c9c9c9;
-    -webkit-transition: border 0.3s;
-    -moz-transition: border 0.3s;
-    -o-transition: border 0.3s;
-    transition: border 0.3s;
+   font-size: 15pt;
+   width:400px;
+   padding: 10px;
+   border: none;
+   border-bottom: solid 2px #c9c9c9;
+   -webkit-transition: border 0.3s;
+   -moz-transition: border 0.3s;
+   -o-transition: border 0.3s;
+   transition: border 0.3s;
 }
 
 img#logoYoulist {
-  position: relative; 
-  top: 0;
-  left: 0;
-  width: 18px;
-  height: 18px;
+ position: relative; 
+ top: 0;
+ left: 0;
+ width: 18px;
+ height: 18px;
 }
 
 form .erreur {
-    color: #900;
+   color: #900;
+}
+
+.search {
+	color:#95a5a6;
+	background-color:#f9f8fa;
+	border:none !important;
+	box-shadow:none !important;
+	text-shadow:none !important;	
+	
+}
+
+.search:hover{
+  	background-color:#f4f2f6;
+}
+
+
+.button {
+   position:relative;
+   color:#333333;
+   border:none !important;
+	box-shadow:none !important;
+	text-shadow:none !important;
+}
+.button:hover  {
+	color:#ffffff;
+	background-color:#e74c3c;
+	border:none !important;
+	box-shadow:none !important;
+	text-shadow:none !important;	
+}
+
+
+form .erreur {
+   color: #900;
+}
+
+img#logoYoulist {
+ position: relative; 
+ top: 0;
+ left: 0;
+ width: 18px;
+ height: 18px;
+}
+
+
+form.login-form {
+width: 360px;
+position: fixed;
+padding: 8% 0 0;
+background: #FFFFFF;
+max-width: 360px;
+margin-top: 42vh;
+margin-left: 54vh;
+transform: translateY(-50%);
+padding: 45px;
+text-align: center;
+box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+
+
+form.login-form input {
+font-family: "Roboto", sans-serif;
+outline: 0;
+background: #f2f2f2;
+width: 100%;
+border: 0;
+margin: 0 0 0px;
+padding: 15px;
+box-sizing: border-box;
+font-size: 14px;
+}
+
+form.login-form .button {
+font-family: "Roboto", sans-serif;
+text-transform: uppercase;
+outline: 0;
+background: #e74c3c;
+width: 100%;
+border: 0;
+padding: 15px;
+color: #FFFFFF;
+font-size: 14px;
+-webkit-transition: all 0.3 ease;
+transition: all 0.3 ease;
+cursor: pointer;
+}
+
+form.login-form :hover, form.login-form .button:active, form.login-form .button:hover, form.login-form .button:focus {
+background: #c0392b;
+}
+
+form.login-form .message {
+margin: 0 0 25px;
+color: #b3b3b3;
+font-size: 12px;
+}
+
+body {
+font-family: "Roboto", sans-serif;
+-webkit-font-smoothing: antialiased;
+-moz-osx-font-smoothing: grayscale;      
+}
+
+.select {
+ font-family: "Roboto", sans-serif;
+ text-align:center;
+ text-transform: uppercase;
+ background: #e74c3c;
+ width: 100%;
+ border: 0;
+ padding: 15px;
+ color: #FFFFFF;
+ font-size: 14px;
+ -webkit-transition: all 0.3 ease;
+ transition: all 0.3 ease;
+ cursor: pointer;
+}
+
+.custom-dropdown__select {
+padding-right: 2.5em;
+/* accommodate with the pseudo elements for the dropdown arrow */
+border: 0;
+border-radius: 3px;
+-webkit-appearance: none;
+-moz-appearance: none;
+appearance: none;
+}
+
+.custom-dropdown__select--red {
+	background-color: #c0392b;
+	color: #fff;
+}
+
+.custom-dropdown__select {
+	font-size: inherit;
+	padding: .5em;
+	margin: 30;
 }
