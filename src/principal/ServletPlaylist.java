@@ -7,7 +7,6 @@ import java.util.Set;
 
 import com.google.api.services.youtube.model.SearchResult;
 
-import java.util.HashSet;
 import java.util.List;
 
 import javax.ejb.EJB;
@@ -47,15 +46,15 @@ public class ServletPlaylist extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String op = request.getParameter("op");
-		String recherche = request.getParameter("recherche");
-		List<Playlist> results;
+		Set<Playlist> results;
 		Playlist pl;
-		String[] motsClefs;
-		String rechercheMusique;
 		if (op.equals("Rechercher Playlist")) {
+			String recherche = request.getParameter("recherchePublique");
+			String[] motsClefs;
 			motsClefs = recherche.split(" ");
 			results = facadePlaylist.rechercherPlaylistsPubliques(motsClefs);
-			request.setAttribute("resultatsRecherchePlaylist", results);
+			request.setAttribute("playlistsPubliques", results);
+			request.setAttribute("utilisateur", facadePlaylist.getUtilisateur(request.getParameter("utilisateur")));
 			request.getRequestDispatcher("accueil.jsp").forward(request, response);
 		}
 		else if (op.equals("Modifier")) { 
@@ -77,6 +76,7 @@ public class ServletPlaylist extends HttpServlet {
 			request.getRequestDispatcher("modifierPlaylist.jsp").forward(request, response);
 		} 
 		else if (op.equals("Rechercher Musique")) {
+			String rechercheMusique;
 			pl = facadePlaylist.getPlaylist(request.getParameter("titrePlaylist"));
 			request.setAttribute("playlist", pl);
 			request.setAttribute("utilisateur", request.getParameter("utilisateur"));
