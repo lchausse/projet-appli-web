@@ -105,6 +105,30 @@ div#principal {
     margin-top:30px;
 }
 
+form.rechercher input {
+	font-size: 15pt;
+	width:400px;
+    padding: 10px;
+    border: none;
+    border-bottom: solid 2px #c9c9c9;
+    -webkit-transition: border 0.3s;
+    -moz-transition: border 0.3s;
+    -o-transition: border 0.3s;
+    transition: border 0.3s;
+}
+
+form.rechercher {
+	width:400px;
+	margin: auto;
+}
+
+img#ajouterPlaylist { 
+  position: absolute; 
+  bottom: 50px; 
+  left: 50px;
+  border-width: 1px; 
+}
+
 img#logoYoulist {
   position: relative; 
   top: 0;
@@ -113,38 +137,78 @@ img#logoYoulist {
   height: 18px;
 }
 
-
-form.rechercher {
-  width:500px;
-  margin:50px auto;
+div.playlist {
+    margin: 5px;
+    border: 1px solid #ccc;
+    float: left;
+    width: 700px;
+    height: 70px;
 }
+
+div.playlist:hover {
+    border: 1px solid #777;
+}
+
+div.titre {
+	font-size: 130%;
+    text-align: left;
+}
+
+form {
+    width:500px;
+    margin:50px auto;
+}
+
 .search {
-  padding:8px 15px;
-  color:#95a5a6;
-  border:0px solid #dbdbdb;
-  background-color:#ffffff;
+	color:#95a5a6;
+	background-color:#f9f8fa;
+	border:none !important;
+	box-shadow:none !important;
+	text-shadow:none !important;	
+	
 }
 
 .search:hover{
-  padding:8px 15px;
-  background:rgba(50, 50, 50, 0.2);
-  border:0px solid #dbdbdb;
+   	background-color:#f4f2f6;
 }
 
 
 .button {
-  position:relative;
-  padding:8px 15px;
-  left:-8px;
-  border:0px solid #dbdbdb;
-  color:#ffffff;
+    position:relative;
+    color:#333333;
+    border:none !important;
+	box-shadow:none !important;
+	text-shadow:none !important;
 }
-.button:hover {
-  color:#ffffff;
-  background-color:#e74c3c;
-  border:0px solid #e74c3c;
+.button:hover  {
+	color:#ffffff;
+	background-color:#e74c3c;
+	border:none !important;
+	box-shadow:none !important;
+	text-shadow:none !important;	
 }
 
-form .erreur {
-    color: #900;
+.aff {
+	text-align: center;
+	width: 600px;
+ 	margin-left: auto;
+	margin-right: auto;
+}
+
+.titre {
+	position: absolute;
+	width: 200px;
+}
+
+.opt {
+	position: relative;
+	top:2;
+	margin-top: -25px;
+	margin-right: -20px;
+}
+
+#newpl {
+	position: absolute;
+	bottom: 30px;
+	left : 30px;
 }
