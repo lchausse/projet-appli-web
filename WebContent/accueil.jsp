@@ -11,10 +11,10 @@
 <body>
 
 <%
-Utilisateur user = (Utilisateur)request.getAttribute("utilisateur");
+Utilisateur user = (Utilisateur) request.getAttribute("utilisateur");
 request.setAttribute("utilisateur", user);
-List<Playlist> playlistsPubliques = (List<Playlist>)request.getAttribute("playlistsPubliques");
- %>
+Set<Playlist> playlistsPubliques = (Set<Playlist>) request.getAttribute("playlistsPubliques");
+%>
 
 <form action = "ServletUtilisateur" method = "POST" class = "barre-navigation">
   <input class = "left-active" type = "submit" name = "op" value = "Accueil" />
@@ -38,6 +38,9 @@ if (user != null) {
   <p>Rechercher une playlist publique</p>
   <input type="search" class="search" name="recherchePublique" placeholder="Mots clefs...">
   <input type="submit" class="button" name="op" value="Rechercher Playlist">
+  <% if (user != null) { %>
+  	<input type = "hidden" name = "utilisateur" value = "<%=user.getPseudo() %>" />
+  <% } %>
 </form>
 </section>
 
