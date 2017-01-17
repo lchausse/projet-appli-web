@@ -70,50 +70,6 @@ input.right:hover {
     text-decoration: none;
 }
 
-
-.vid {
-    position: absolute;
-    left: 80px;
-    width:854px; 
-}
-
-.aff {
-    position: relative;
-    top: 30px;
-    margin-left: auto;
-    margin-right: auto;
-    width:1000px ; 
-}
-
-.suiv {
- 	position: relative;
-	top:445px;
-	right: -60%;
-  	padding:8px 15px;
-  	border:0px solid #dbdbdb;
-	color:#ffffff;
-}
-
-.prec {
-	position: relative;
-	top:445px;
-	left: -81%;
-  	padding:8px 15px;
-  	border:0px solid #dbdbdb;
-	color:#ffffff; 
-}
-
-.prec:hover,.suiv:hover {
-  color:#ffffff;
-  background-color:#e74c3c;
-  border:0px solid #e74c3c;
-}
-
-.info {
-	position: relative;
-	top: 490px;
-}
-
 input.left-active {
 	background-color: #c0392b;
     background-repeat:no-repeat;
@@ -155,4 +111,56 @@ img#logoYoulist {
   left: 0;
   width: 18px;
   height: 18px;
+}
+
+form.rechercher input {
+	font-size: 15pt;
+	width:400px;
+    padding: 10px;
+    border: none;
+    border-bottom: solid 2px #c9c9c9;
+    -webkit-transition: border 0.3s;
+    -moz-transition: border 0.3s;
+    -o-transition: border 0.3s;
+    transition: border 0.3s;
+}
+
+form.rechercher {
+	width:400px;
+	margin: auto;
+}
+
+form {
+    width:500px;
+    margin:50px auto;
+}
+
+.search {
+	color:#95a5a6;
+	Font-Size:xx-Small;
+	background-color:#f9f8fa;
+	border:none !important;
+	box-shadow:none !important;
+	text-shadow:none !important;	
+	
+}
+
+.search:hover{
+   	background-color:#f4f2f6;
+}
+
+
+.button {
+    position:relative;
+    color:#333333;
+    border:none !important;
+	box-shadow:none !important;
+	text-shadow:none !important;
+}
+.button:hover  {
+	color:#ffffff;
+	background-color:#e74c3c;
+	border:none !important;
+	box-shadow:none !important;
+	text-shadow:none !important;	
 }
