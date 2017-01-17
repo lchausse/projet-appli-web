@@ -203,4 +203,11 @@ form {
 	position: absolute;
 	bottom: 30px;
 	left : 30px;
+	background-image:url("../images/ajouterPlaylist.png");
+	width: 59px;
+	height: 57px;
+	font-size: 0pt;
+	border: none;
+	box-shadox: none;
+	
 }
