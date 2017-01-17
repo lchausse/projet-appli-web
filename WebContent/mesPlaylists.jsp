@@ -78,14 +78,8 @@ if (resultatRecherche == null) {
 </div>
 
 <form action = "ServletUtilisateur" method = "POST" >
-<input type="image" name="op" value = "Nouvelle Playlist" src="images/ajouterPlaylist.png" id = "newpl"/>
+<input type="submit" name="op" value = "Nouvelle Playlist" id = "newpl"/>
 <input type="hidden" name="utilisateur" value="<%=user.getPseudo()%>" />
 </form>
-<!-- <script language="javascript"> -->
-<!--  function IframeRefresh(IframeId) { -->
-<!--  	var iframe=document.getElementById(IframeId); -->
-<!--  	iframe.src="https://www.youtube.com/embed/oY6J1Lmj3ZE"; -->
-<!--  } -->
-<!-- </script> -->
 </body>
 </html>
