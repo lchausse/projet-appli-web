@@ -13,7 +13,7 @@ form.barre-navigation {
 }
 
 input.left {
-	background-color: Transparent;
+    background-color: Transparent;
     background-repeat:no-repeat;
     border: none;
     cursor:pointer;
@@ -73,7 +73,7 @@ input.right:hover {
 }
 
 input.left-active {
-	background-color: #c0392b;
+    background-color: #c0392b;
     background-repeat:no-repeat;
     border: none;
     cursor:pointer;
@@ -111,15 +111,6 @@ form .erreur {
     color: #900;
 }
 
-img#logoYoulist {
-  position: relative; 
-  top: 0;
-  left: 0;
-  width: 18px;
-  height: 18px;
-}
-
-
 form.login-form {
  position: relative;
  top: 350px;
@@ -133,7 +124,6 @@ form.login-form {
  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
 }
 
-
 form.login-form input {
  font-family: "Roboto", sans-serif;
  outline: 0;
@@ -145,6 +135,7 @@ form.login-form input {
  box-sizing: border-box;
  font-size: 14px;
 }
+
 form.login-form .button {
  font-family: "Roboto", sans-serif;
  text-transform: uppercase;
@@ -159,8 +150,6 @@ form.login-form .button {
  transition: all 0.3 ease;
  cursor: pointer;
 }
-
-form.login-form :hover, form.login-form .button:active, form.login-form .button:hover, 
 
 form.login-form .button:focus {
  background: #c0392b;
