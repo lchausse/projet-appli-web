@@ -72,32 +72,8 @@ if (musiqueCourante != 0) {
 </form>
 
 
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
 
+<div class="info">
 <%
 for (int i = 0; i < musiques.size(); i++) {
 	if (i != musiqueCourante) {
@@ -109,6 +85,7 @@ for (int i = 0; i < musiques.size(); i++) {
 } else {
 	out.println("PAS DE MUSIQUE DANS LA PLAYLIST");
 }%>
+</div>
 </div>
 </div>
 
