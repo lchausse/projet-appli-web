@@ -186,9 +186,13 @@ public class Facade {
 		return em.find(Playlist.class, playlistId);
 	}
 	
-	public void partager(Playlist p, String pseudo) {
+	public void partager(int idPlaylist, String pseudo) throws Exception {
 		Utilisateur u = em.find(Utilisateur.class, pseudo);
-		u.addPlaylist(p);
-		p.addUtilisateur(u);
+		Playlist p = em.find(Playlist.class, idPlaylist);
+		if (u != null) {
+			p.addUtilisateur(u);
+		} else {
+			throw new Exception("Cet utilisateur n'existe pas.");
+		}
 	}
 }
