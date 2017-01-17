@@ -158,34 +158,30 @@ form {
                width:500px;
                margin:50px auto;
 }
-.text {
+.search {
                padding:8px 15px;
                color:#95a5a6;
                border:0px solid #dbdbdb;
 				background-color:#ffffff;
 }
 
-.text:hover{
+.search:hover{
    padding:8px 15px;
    background:rgba(50, 50, 50, 0.2);
    border:0px solid #dbdbdb;
 }
 
 
-.submit {
+.button {
                position:relative;
                padding:8px 15px;
                left:-8px;
                border:0px solid #dbdbdb;
                color:#ffffff;
 }
-.submit:hover  {
+.button:hover  {
 
                color:#ffffff;
 				background-color:#e74c3c;
 				border:0px solid #e74c3c;
-}
-
-.mid {
-	text-align: center;	
 }
