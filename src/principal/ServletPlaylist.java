@@ -96,10 +96,16 @@ public class ServletPlaylist extends HttpServlet {
 			request.getRequestDispatcher("lirePlaylist.jsp").forward(request, response);
 		}
 		else if (op.equals("Partager")) {
+			String erreur = "";
 			int playlistId = Integer.parseInt(request.getParameter("idPlaylist"));
 			String pseudo = request.getParameter("utilisateur");
 			String pseudoPartage = request.getParameter("pseudoPartage");
-			facadePlaylist.partager(facadePlaylist.getPlaylist(playlistId), pseudoPartage);
+			try {
+				facadePlaylist.partager(playlistId, pseudoPartage);
+			} catch (Exception e) {
+				erreur = e.getMessage();
+			}
+			request.setAttribute("erreur", erreur);
 			request.setAttribute("utilisateur", facadePlaylist.getUtilisateur(pseudo));
 			request.getRequestDispatcher("mesPlaylists.jsp").forward(request, response);
 		}
@@ -116,21 +122,25 @@ public class ServletPlaylist extends HttpServlet {
 		else if (op.equals("Musique suivante")) {
 			int musiqueCourante = Integer.parseInt(request.getParameter("musiqueCourante"));
 			int playlistId = Integer.parseInt(request.getParameter("idPlaylist"));
+			String typePlaylist = (String)request.getParameter("typePlaylist");
 			String pseudo = request.getParameter("utilisateur");
 			musiqueCourante++;
 			request.setAttribute("utilisateur", pseudo);
 			request.setAttribute("musiqueCourante", musiqueCourante);
 			request.setAttribute("playlist", facadePlaylist.getPlaylist(playlistId));
+			request.setAttribute("typePlaylist", typePlaylist);
 			request.getRequestDispatcher("lirePlaylist.jsp").forward(request, response);
 		}
 		else if (op.equals("Musique precedente")) {
 			int musiqueCourante = Integer.parseInt(request.getParameter("musiqueCourante"));
 			int playlistId = Integer.parseInt(request.getParameter("idPlaylist"));
 			String pseudo = request.getParameter("utilisateur");
+			String typePlaylist = (String)request.getParameter("typePlaylist");
 			musiqueCourante--;
 			request.setAttribute("utilisateur", pseudo);
 			request.setAttribute("musiqueCourante", musiqueCourante);
 			request.setAttribute("playlist", facadePlaylist.getPlaylist(playlistId));
+			request.setAttribute("typePlaylist", typePlaylist);
 			request.getRequestDispatcher("lirePlaylist.jsp").forward(request, response);
 		}
 	}
