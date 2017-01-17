@@ -45,12 +45,10 @@ if (pseudo != null) {
 
 <div id = "principal">
 <%if (playlist.getMusiques().size() != 0) {%>
-<%=musiqueCourante %>
 <%Set<Musique> musiquesSet = new HashSet<Musique>();
 musiquesSet.addAll(playlist.getMusiques());
 List<Musique> musiques = new ArrayList<Musique>();
 musiques.addAll(musiquesSet);%>
-<%=musiques.size() %>
 <form action = "ServletPlaylist" method = "POST">
 <iframe width="854" height="480" src="https://www.youtube.com/embed/<%=musiques.get(musiqueCourante).getLien()%>" frameborder="0" allowfullscreen></iframe>
 <input type = "hidden" name = "musiqueCourante" value = "<%= musiqueCourante %>" />
