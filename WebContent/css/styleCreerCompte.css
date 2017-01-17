@@ -137,16 +137,13 @@ input.right-active {
 }
 
 form.login-form {
- width: 360px;
- position: fixed;
- padding: 8% 0 0;
+ position: relative;
+ top: 350px;
+ margin-left: auto;
+ margin-right: auto;
  background: #FFFFFF;
- max-width: 360px;
- margin-top: 52vh;
- margin-left: 57vh;
  transform: translateY(-50%);
  padding: 45px;
- text-align: center;
  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
 }
 
@@ -189,7 +186,8 @@ form.login-form .message {
 }
 
 body {
- background-image: url("../images/inscription.png");
+  text-align: center;
+  background-image: url("../images/inscription.png");
  -webkit-background-size: 100% auto;
  -moz-background-size: 100% auto;
  -ms-background-size: 100% auto;
