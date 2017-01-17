@@ -11,8 +11,7 @@
 <body>
 
 <%
-Utilisateur user = (Utilisateur)request.getAttribute("utilisateur");
-request.setAttribute("utilisateur", user);
+Utilisateur user = (Utilisateur) request.getAttribute("utilisateur");
 List<Playlist> playlistsPubliques = (List<Playlist>)request.getAttribute("playlistsPubliques");
  %>
 
