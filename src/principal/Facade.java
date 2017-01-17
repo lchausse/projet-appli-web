@@ -118,7 +118,11 @@ public class Facade {
 	}
 	
 	public Utilisateur getUtilisateur(String pseudo) {
-		return em.find(Utilisateur.class, pseudo);
+		if (pseudo != null) {
+			return em.find(Utilisateur.class, pseudo);
+		} else {
+			return null;
+		}
 	}
 	
 	public Set<Playlist> getPlaylistsPubliques() {

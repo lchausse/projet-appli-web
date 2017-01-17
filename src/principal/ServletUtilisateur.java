@@ -221,15 +221,15 @@ public class ServletUtilisateur extends HttpServlet {
 	
 	private void validationMotsDePasse(String motDePasse, String confirmation) throws Exception{
 	    if (!motDePasse.equals(confirmation)) {
-	        throw new Exception("Les mots de passe entrés sont différents, merci de les saisir à nouveau.");
+	        throw new Exception("Les mots de passe entrÃ©s sont diffÃ©rents, merci de les saisir Ã  nouveau.");
 	    } else if (motDePasse.trim().length() < 3) {
-	        throw new Exception("Les mots de passe doivent contenir au moins 3 caractères.");
+	        throw new Exception("Les mots de passe doivent contenir au moins 3 caractÃ¨res.");
 	    }
 	}
 	
 	private void validationPseudo(String pseudo) throws Exception {
 	    if (pseudo != null && pseudo.trim().length() < 3) {
-	        throw new Exception("Le pseudo doit contenir au moins 3 caractères.");
+	        throw new Exception("Le pseudo doit contenir au moins 3 caractÃ¨res.");
 	    } else if (facadeUtilisateur.getUtilisateur(pseudo) != null) {
 	    	throw new Exception("Ce pseudo n'est pas disponible.");
 	    }
