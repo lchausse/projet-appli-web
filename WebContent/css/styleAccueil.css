@@ -142,7 +142,6 @@ form {
 	border:none !important;
 	box-shadow:none !important;
 	text-shadow:none !important;	
-	
 }
 
 .search:hover{
@@ -157,6 +156,7 @@ form {
 	box-shadow:none !important;
 	text-shadow:none !important;
 }
+
 .button:hover  {
 	color:#ffffff;
 	background-color:#e74c3c;
