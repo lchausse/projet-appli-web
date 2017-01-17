@@ -70,6 +70,33 @@ input.right:hover {
     text-decoration: none;
 }
 
+
+.vid {
+    position: absolute;
+    left: 80px;
+    width:854px ; 
+}
+
+.aff {
+    position: relative;
+    top: 30px;
+    margin-left: auto;
+    margin-right: auto;
+    width:1000px ; 
+}
+
+.suiv {
+ 	position: relative;
+	top:456px;
+	right: -610px;
+}
+
+.prec {
+	position: relative;
+	top:456px;
+	left: -800px;
+}
+
 input.left-active {
 	background-color: #c0392b;
     background-repeat:no-repeat;
