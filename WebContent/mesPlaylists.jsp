@@ -47,6 +47,8 @@ if (resultatRecherche == null) {
 			<form action = "ServletPlaylist" method = "POST">
 					<input type="submit" name="op" class="button" value="Ecouter">
 					<input type="submit" name="op" class="button" value="Modifier">
+					<input type = "text" name = "pseudoPartage" placeholder = "Pseudo utilisateur" />
+					<input type = "submit" name = "op" value = "Partager" />
 					<input type="hidden" name="utilisateur" value="<%=user.getPseudo()%>" />
 					<input type="hidden" name="titrePlaylist" value="<%=p.getTitre()%>" />
 					<input type="hidden" name="idPlaylist" value="<%=p.getId()%>" />
@@ -59,6 +61,8 @@ if (resultatRecherche == null) {
 			<form action = "ServletPlaylist" method = "POST">
 				<input type="submit" name="op" class="button" value="Ecouter">
 				<input type="submit" name="op" class="button" value="Modifier">
+				<input type = "text" name = "pseudoPartage" placeholder = "Pseudo utilisateur" />
+				<input type = "submit" name = "op" value = "Partager" />
 				<input type="hidden" name="utilisateur" value="<%=user.getPseudo()%>" />
 				<input type="hidden" name="titrePlaylist" value="<%=p.getTitre()%>" />
 				<input type="hidden" name="idPlaylist" value="<%=p.getId()%>" />
