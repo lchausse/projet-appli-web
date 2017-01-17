@@ -114,33 +114,47 @@ img#logoYoulist {
 }
 
 
-form.rechercher {
-  width:500px;
-  margin:50px auto;
+form.rechercher input {
+	padding: 10px;
 }
+
 .search {
-  padding:8px 15px;
-  color:#95a5a6;
-  border:0px solid #dbdbdb;
-  background-color:#ffffff;
+	width :400px;
+	height:43px;
+	color:#95a5a6;
+	background-color:#f9f8fa;
+	padding: 10px;
+	border:none !important;
+	box-shadow:none !important;
+	text-shadow:none !important;	
 }
 
 .search:hover{
-  padding:8px 15px;
-  background:rgba(50, 50, 50, 0.2);
-  border:0px solid #dbdbdb;
+   	background-color:#f4f2f6;
 }
 
+
+.search, .button {
+	margin-left:auto;
+	margin-right:auto;
+	position:relative;
+	top: 350px;
+}
 
 .button {
-  position:relative;
-  padding:8px 15px;
-  left:-8px;
-  border:0px solid #dbdbdb;
-  color:#ffffff;
+	width :400px;
+	height:43px;
+    position:relative;
+    color:#333333;
+    border:none !important;
+	box-shadow:none !important;
+	text-shadow:none !important;
 }
-.button:hover {
-  color:#ffffff;
-  background-color:#e74c3c;
-  border:0px solid #e74c3c;
+
+.button:hover  {
+	color:#ffffff;
+	background-color:#e74c3c;
+	border:none !important;
+	box-shadow:none !important;
+	text-shadow:none !important;	
 }
