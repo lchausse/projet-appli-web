@@ -24,14 +24,14 @@ public class ServletUtilisateur extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	@EJB
-	private FacadeUtilisateur facadeUtilisateur;
+	private Facade facadeUtilisateur;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
     public ServletUtilisateur() {
         super();
-        this.facadeUtilisateur = new FacadeUtilisateur();
+        this.facadeUtilisateur = new Facade();
     }
 
 	/**

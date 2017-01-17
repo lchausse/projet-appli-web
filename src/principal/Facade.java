@@ -11,12 +11,12 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
 @Singleton
-public class FacadeUtilisateur {
+public class Facade {
 	
 	@PersistenceContext
 	EntityManager em;
 	
-	public FacadeUtilisateur() {
+	public Facade() {
 	}
 	
 	public void ajouterUtilisateur(String pseudo, String mdp) {
@@ -26,20 +26,8 @@ public class FacadeUtilisateur {
 		em.persist(user);
 	}
 
-	public void modifierPseudo(String ancienPseudo, String nouveauPseudo) {
-		this.getUtilisateur(ancienPseudo).setPseudo(nouveauPseudo);
-	}
-
 	public void modifierMdp(String pseudo, String mdp) {
 		this.getUtilisateur(pseudo).setMdp(mdp);
-	}
-
-	public void partagerPlayList(Utilisateur user, Playlist playlist) {
-		playlist.addUtilisateur(user);
-	}
-
-	public void ajouterPlayList(String pseudo, Playlist playlist) {
-//		this.getUtilisateur(pseudo).addPlaylist(playlist);
 	}
 
 	public boolean seConnecter(String pseudo, String mdp) throws Exception {
@@ -96,32 +84,100 @@ public class FacadeUtilisateur {
 	
 	private boolean match(Set<String> motClefs, String motClef) {
 		for (String mc : motClefs) {
-			if (mc.equals(motClef)) {
-				return true;
-			}
-			if (mc.toLowerCase().contains(motClef.toLowerCase())) {
-				return true;
-			}
+			if (mc.toLowerCase().equals(motClef.toLowerCase())) return true;
+			if (mc.toLowerCase().contains(motClef.toLowerCase())) return true;
+			if ((mc.toLowerCase() + 's').equals(motClef.toLowerCase())) return true;
 		}
 		return false;
-	}	
+	}
 	
-	public Utilisateur getUtilisateur(String pseudo2) {
-		TypedQuery<Utilisateur> req = em.createQuery(
-				"SELECT u FROM Utilisateur u WHERE u.pseudo LIKE :pseudo2", Utilisateur.class)
-				.setParameter("pseudo2", pseudo2);
-		
-		if (req.getResultList().size() == 0) {
-			return null;	
-		}
-		else {
-			return req.getResultList().get(0);
-		}
+	public Utilisateur getUtilisateur(String pseudo) {
+		return em.find(Utilisateur.class, pseudo);
 	}
 	
 	public List<Playlist> getPlaylistsPubliques() {
 		TypedQuery<Playlist> req = em.createQuery(
 				"SELECT p FROM Playlist p WHERE p.publique = TRUE", Playlist.class);
 		return req.getResultList();
+	}
+	
+	public List<Playlist> rechercherPlaylistsPubliques(String[] motClefs) {
+		Set<Playlist> playlistsARetirer;
+		List<Playlist> playlistsCorrespondantes = this.getPlaylistsPubliques();
+		for (String motClef : motClefs) {
+			playlistsARetirer = new HashSet<Playlist>();
+			for (Playlist pl : playlistsCorrespondantes) {
+				if (!match(pl.getMotsClefs(), motClef)) {
+					playlistsARetirer.add(pl);
+				}
+			}
+			for (Playlist plARetirer : playlistsARetirer) {
+				playlistsCorrespondantes.remove(plARetirer);
+			}
+		}
+		return playlistsCorrespondantes;
+	}
+	
+	public void ajouterMusique(Playlist playlist, Musique musique) {
+	  	playlist.addMusique(musique);
+	  	em.persist(musique);
+	}
+
+	public void supprimerMusique(Playlist playlist, Musique musique) {
+		playlist.deleteMusique(musique);
+	}
+
+	public void rendrePublique(Playlist playlist) {
+		playlist.setPublique(true);
+	}
+
+	public void ModifierMotClef(Playlist playlist, Set<String> nouveauxMotsClefs){
+	  	playlist.setMotsClefs(nouveauxMotsClefs);
+	}
+
+	public void modifierTitrePlayList(Playlist playlist, String nouveauTitre) {
+	  	playlist.setTitre(nouveauTitre);
+	}
+
+	public void modifierArtiste(Musique musique, String nouveauArtiste) {
+	  	musique.setAuteur(nouveauArtiste);
+	}
+
+	public void modifierTitreMusique(Musique musique, String nouveauTitre) {
+	  	musique.setTitre(nouveauTitre);
+
+	}
+	
+	public Playlist getPlaylist(String titrePlaylist) {
+		List<Playlist> playlists = em.createQuery("SELECT p FROM Playlist p", Playlist.class)
+                .getResultList();
+		for (Playlist pl : playlists) {
+			if (pl.getTitre().equals(titrePlaylist)) {
+				return pl;
+			}
+		}
+		return null;
+	}
+	
+	public void supprimerMusique(Playlist playlist, String lien) {
+		Musique musiqueASupprimer = null;
+		for (Musique m : playlist.getMusiques()) {
+			if (m.getLien().equals(lien)) {
+				musiqueASupprimer = m;
+			}
+		}
+		playlist.deleteMusique(musiqueASupprimer);
+		musiqueASupprimer.deletePlaylist(playlist);
+		em.remove(em.find(Musique.class, musiqueASupprimer.getLien()));
+	}
+
+	public Playlist getPlaylist(int playlistId) {
+		return em.find(Playlist.class, playlistId);
+	}
+	
+	public void partager(Playlist p, String pseudo) {
+		Utilisateur u = em.find(Utilisateur.class, pseudo);
+		u.addPlaylist(p);
+		p.addUtilisateur(u);
 	}
 }

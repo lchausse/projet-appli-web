@@ -25,14 +25,14 @@ public class ServletPlaylist extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	@EJB
-	private FacadePlaylist facadePlaylist;
+	private Facade facadePlaylist;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
     public ServletPlaylist() {
         super();
-        this.facadePlaylist = new FacadePlaylist();
+        this.facadePlaylist = new Facade();
     }
 
 	/**
@@ -48,11 +48,11 @@ public class ServletPlaylist extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String op = request.getParameter("op");
 		String recherche = request.getParameter("recherche");
-		Set<Playlist> results;
+		List<Playlist> results;
 		Playlist pl;
 		String[] motsClefs;
 		String rechercheMusique;
-		if (op.equals("Rechercher Playlist")) { 
+		if (op.equals("Rechercher Playlist")) {
 			motsClefs = recherche.split(" ");
 			results = facadePlaylist.rechercherPlaylistsPubliques(motsClefs);
 			request.setAttribute("resultatsRecherchePlaylist", results);
@@ -94,6 +94,14 @@ public class ServletPlaylist extends HttpServlet {
 			request.setAttribute("musiqueCourante", 0);
 			request.setAttribute("playlist", facadePlaylist.getPlaylist(playlistId));
 			request.getRequestDispatcher("lirePlaylist.jsp").forward(request, response);
+		}
+		else if (op.equals("Partager")) {
+			int playlistId = Integer.parseInt(request.getParameter("idPlaylist"));
+			String pseudo = request.getParameter("utilisateur");
+			String pseudoPartage = request.getParameter("pseudoPartage");
+			facadePlaylist.partager(facadePlaylist.getPlaylist(playlistId), pseudoPartage);
+			request.setAttribute("utilisateur", facadePlaylist.getUtilisateur(pseudo));
+			request.getRequestDispatcher("mesPlaylists.jsp").forward(request, response);
 		}
 		else if(op.equals("Supprimer Musique")) {
 			pl = facadePlaylist.getPlaylist(request.getParameter("titrePlaylist"));
