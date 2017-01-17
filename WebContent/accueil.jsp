@@ -34,12 +34,15 @@ if (user != null) {
 
 <div id = "principal">
 <section id = "recherche-playlist">
-<form  action = "ServletPlaylist" method = "POST" class = "rechercher">
-  <p>Rechercher une playlist publique</p>
-  <input type="search" class="search" name="recherchePublique" placeholder="Mots clefs...">
-  <input type="submit" class="button" name="op" value="Rechercher Playlist">
+<form action = "ServletPlaylist" method = "POST" class = "rechercher">
+  <input type="text" class="search" name="recherchePublique" placeholder="mots clefs...">
+  <% if (user != null) {  %>
+	<input type="hidden" name = "utilisateur" value = "<%=user.getPseudo() %>" />
+  <%} %>
+  <input type="submit" class="button" name="op" value="Rechercher Playlist Publique">
 </form>
-</section>
+
+</div>
 
 <section id = "affichagePlaylistsPubliques">
 <form action = "ServletPlaylist" method = "POST">
