@@ -129,14 +129,6 @@ img#ajouterPlaylist {
   border-width: 1px; 
 }
 
-img#logoYoulist {
-  position: relative; 
-  top: 0;
-  left: 0;
-  width: 18px;
-  height: 18px;
-}
-
 div.playlist {
     margin: 5px;
     border: 1px solid #ccc;
