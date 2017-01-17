@@ -206,3 +206,9 @@ form {
 	margin-top: -25px;
 	margin-right: -20px;
 }
+
+#newpl {
+	position: absolute;
+	bottom: 30px;
+	left : 30px;
+}
