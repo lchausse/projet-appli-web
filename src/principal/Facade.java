@@ -67,32 +67,6 @@ public class Facade {
 		playlistsCorrespondantes.addAll(u.getMesPlaylists());
 		for (String motClef : motsClefs) {
 			for (Playlist pl : playlistsCorrespondantes) {
-				playlistsARetirer = new HashSet<Playlist>();
-				motsClefsTitre = Arrays.asList(pl.getTitre().split(" "));
-				motsClefsTitreSet = new HashSet<String>();
-				motsClefsTitreSet.addAll(motsClefsTitre);
-				motsClefsTitreSet.remove(new String(" "));
-				if (!match(pl.getMotsClefs(), motClef) && !match(motsClefsTitreSet, motClef)) {
-					playlistsARetirer.add(pl);
-				}
-			}
-			for (Playlist plARetirer : playlistsARetirer) {
-				playlistsCorrespondantes.remove(plARetirer);
-			}
-		}
-		return playlistsCorrespondantes;
-	}
-	
-	public Set<Playlist> rechercherPlaylistsPubliques(String[] motClefs) {
-		Set<Playlist> playlistsARetirer = new HashSet<Playlist>();
-		Set<Playlist> playlistsCorrespondantes = new HashSet<Playlist>();
-		List<String> motsClefs = Arrays.asList(motClefs);
-		List<String> motsClefsTitre;
-		Set<String> motsClefsTitreSet;
-		playlistsCorrespondantes.addAll(this.getPlaylistsPubliques());
-		for (String motClef : motsClefs) {
-			for (Playlist pl : playlistsCorrespondantes) {
-				playlistsARetirer = new HashSet<Playlist>();
 				motsClefsTitre = Arrays.asList(pl.getTitre().split(" "));
 				motsClefsTitreSet = new HashSet<String>();
 				motsClefsTitreSet.addAll(motsClefsTitre);
@@ -121,12 +95,27 @@ public class Facade {
 		return em.find(Utilisateur.class, pseudo);
 	}
 	
-	public Set<Playlist> getPlaylistsPubliques() {
+	public List<Playlist> getPlaylistsPubliques() {
 		TypedQuery<Playlist> req = em.createQuery(
 				"SELECT p FROM Playlist p WHERE p.publique = TRUE", Playlist.class);
-		Set<Playlist> res = new HashSet<Playlist>();
-		res.addAll(req.getResultList());
-		return res;
+		return req.getResultList();
+	}
+	
+	public List<Playlist> rechercherPlaylistsPubliques(String[] motClefs) {
+		Set<Playlist> playlistsARetirer;
+		List<Playlist> playlistsCorrespondantes = this.getPlaylistsPubliques();
+		for (String motClef : motClefs) {
+			playlistsARetirer = new HashSet<Playlist>();
+			for (Playlist pl : playlistsCorrespondantes) {
+				if (!match(pl.getMotsClefs(), motClef)) {
+					playlistsARetirer.add(pl);
+				}
+			}
+			for (Playlist plARetirer : playlistsARetirer) {
+				playlistsCorrespondantes.remove(plARetirer);
+			}
+		}
+		return playlistsCorrespondantes;
 	}
 	
 	public void ajouterMusique(Playlist playlist, Musique musique) {
@@ -136,10 +125,6 @@ public class Facade {
 
 	public void supprimerMusique(Playlist playlist, Musique musique) {
 		playlist.deleteMusique(musique);
-	}
-
-	public void rendrePublique(Playlist playlist) {
-		playlist.setPublique(true);
 	}
 
 	public void ModifierMotClef(Playlist playlist, Set<String> nouveauxMotsClefs){
