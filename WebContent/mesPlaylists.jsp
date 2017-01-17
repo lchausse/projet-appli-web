@@ -35,41 +35,44 @@ Set<Playlist> resultatRecherche = (Set<Playlist>)request.getAttribute("resultats
 <form action = "ServletUtilisateur" method = "POST" class = "rechercher">
 <input type="text" class="search" name = "recherche"  placeholder="Rechercher playlist..." required>
 <input type="hidden" name = "utilisateur" value = "<%=user.getPseudo() %>" />
-<input type="submit" name="op" class="button" value="Rechercher"/>
+<input type="submit" name="op" class="button" value="Rechercher" class = "button"/>
 </form>
 
-
+<br/>
+<br/>
 <div class="min">
 <%
 if (resultatRecherche == null) {
 	for (Playlist p : playlistsUtilisateur) { %>
+		<div class = "aff">
 		  <div class="titre"><%= p.getTitre()%> </div>
-			<form action = "ServletPlaylist" method = "POST">
-					<input type="submit" name="op" class="button" value="Ecouter">
-					<input type="submit" name="op" class="button" value="Modifier">
+			<form action = "ServletPlaylist" method = "POST" class = "opt">
+					<input type="submit" name="op" class="button" value="Ecouter" class = "button">
+					<input type="submit" name="op" class="button" value="Modifier" class = "button">
 					<input type = "text" name = "pseudoPartage" placeholder = "Pseudo utilisateur" />
-					<input type = "submit" name = "op"  class="button" value = "Partager" />
+					<input type = "submit" name = "op" value = "Partager" class = "button"/>
 					<input type="hidden" name="utilisateur" value="<%=user.getPseudo()%>" />
 					<input type="hidden" name="titrePlaylist" value="<%=p.getTitre()%>" />
 					<input type="hidden" name="idPlaylist" value="<%=p.getId()%>" />
-					<input type = "hidden" name = "typePlaylist" value = "privee" /><br />
-					<span class="erreur">${erreur}</span>		
+					<input type = "hidden" name = "typePlaylist" value = "privee" />		
 			</form>
+		</div>
 	<%}
 } else {
 	for (Playlist p : resultatRecherche) {%>
+		<div class = "aff">
 		  <div class="titre"><%= p.getTitre()%></div>
-			<form action = "ServletPlaylist" method = "POST">
+			<form action = "ServletPlaylist" method = "POST" class = "opt">
 				<input type="submit" name="op" class="button" value="Ecouter">
 				<input type="submit" name="op" class="button" value="Modifier">
 				<input type = "text" name = "pseudoPartage" placeholder = "Pseudo utilisateur" />
-				<input type = "submit" name = "op"  class="button" value = "Partager" />
+				<input type = "submit" name = "op" value = "Partager" class = "button"/>
 				<input type="hidden" name="utilisateur" value="<%=user.getPseudo()%>" />
 				<input type="hidden" name="titrePlaylist" value="<%=p.getTitre()%>" />
 				<input type="hidden" name="idPlaylist" value="<%=p.getId()%>" />
-				<input type = "hidden" name = "typePlaylist" value = "privee" /><br />
-				<span class="erreur">${erreur}</span>		
+				<input type = "hidden" name = "typePlaylist" value = "privee" />
 			</form>
+		<div class = "aff">
 	<%}
 }
 %>
@@ -78,7 +81,7 @@ if (resultatRecherche == null) {
 </div>
 
 <form action = "ServletUtilisateur" method = "POST" >
-<input type="image" name="op" value = "Nouvelle Playlist" src="images/ajouterPlaylist.png" />
+<input type="image" name="op" value = "Nouvelle Playlist" src="images/ajouterPlaylist.png" id = "newpl"/>
 <input type="hidden" name="utilisateur" value="<%=user.getPseudo()%>" />
 </form>
 <!-- <script language="javascript"> -->
