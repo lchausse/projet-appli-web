@@ -86,7 +86,7 @@ utilisateur" />
 </div>
 
 <form action = "ServletUtilisateur" method = "POST" >
-<input type="image" name="op" value = "Nouvelle Playlist" src="images/ajouterPlaylist.png" />
+<input type="image" name="op" value = "Nouvelle Playlist" src="images/ajouterPlaylist.png" id="newpl"/>
 <input type="hidden" name="utilisateur" value="<%=user.getPseudo()%>" />
 </form>
 <!-- <script language="javascript"> -->
