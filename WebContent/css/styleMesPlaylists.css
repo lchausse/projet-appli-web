@@ -196,12 +196,12 @@ form {
 }
 
 .titre {
-	position: relative;
+	position: absolute;
 	width: 200px;
 }
 
 .opt {
-	position: relative
+	position: relative;
 	top:0;
 	margin-top: -25px;
 	margin-right: -20px;
