@@ -30,9 +30,7 @@ value="<c:out value="${param.pseudo}"/>" required/>
     <span class="erreur">${erreurs['pseudo']}</span><br />
     <input type="password" name = "mdp" placeholder="mot de passe" required/>
     <span class="erreur">${erreurs['mdp']}</span><br />
-    <input type = "submit" class="button" name = "op" value = "Se 
-
-connecter"/><br />
+    <input type = "submit" class="button" name = "op" value = "Se connecter"/><br />
 
   </form>
 </div>
