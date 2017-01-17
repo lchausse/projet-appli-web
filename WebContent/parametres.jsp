@@ -26,10 +26,10 @@
   <form class="login-form" action = "ServletUtilisateur" method = "POST" >
 	<p class="message">Modifier les paramètres du compte </p>  
 	<input type="password" name = "oldPassword" placeholder="ancien mot de passe" required/>
-	<span class="erreurMDP">${erreurs['oldMdp']}</span><br />
+	<span class="erreur">${erreurs['oldMdp']}</span><br />
 	<input type="password" name = "newPassword" placeholder="nouveau mot de passe" required/>
 	<input type="password" name ="newPassword2" placeholder="confirmer mot de passe" required/>
-	<span class="erreurMDP2">${erreurs['newMdp']}</span><br />
+	<span class="erreur">${erreurs['newMdp']}</span><br />
 	<input type = "submit" class="button" name = "op" value = "Modifier mot de passe"/><br />
 	<input type="hidden" name = "utilisateur" value = "<%=user.getPseudo() %>" />
   </form>
