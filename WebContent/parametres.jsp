@@ -14,8 +14,8 @@
 <form action = "ServletUtilisateur" method = "POST" class = "barre-navigation">
   <input class = "left" type = "submit" name = "op" value = "Accueil" />
   <input class = "left" type = "submit" name = "op" value = "Tendances" />
-  <input class = "left" type = "submit\" name = "op" value = "Mes playlists" />
-  <input class = "right" type = "submit\" name = "op" value = "Deconnexion" />
+  <input class = "left" type = "submit" name = "op" value = "Mes playlists" />
+  <input class = "right" type = "submit" name = "op" value = "Deconnexion" />
   <input class = "right-active" type = "submit" name = "op" value = "Mon compte" />
 <%
 	out.println("<input type = \"hidden\" name = \"pseudo\" value = \"" + user.getPseudo() + "\" />");
