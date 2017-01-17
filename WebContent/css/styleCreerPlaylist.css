@@ -1,4 +1,3 @@
-
 @import url(https://fonts.googleapis.com/css?family=Roboto:300);
 
 form.barre-navigation {
@@ -188,16 +187,16 @@ img#logoYoulist {
 
 
 form.login-form {
-margin-right: auto;
-margin-left: auto;
-position: relative;
-top: 270px;
 width: 360px;
+position: fixed;
 padding: 8% 0 0;
 background: #FFFFFF;
 max-width: 360px;
+margin-top: 42vh;
+margin-left: 54vh;
 transform: translateY(-50%);
 padding: 45px;
+text-align: center;
 box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
 }
 
@@ -229,9 +228,7 @@ transition: all 0.3 ease;
 cursor: pointer;
 }
 
-form.login-form :hover, form.login-form .button:active, form.login-form .button:hover, 
-
-form.login-form .button:focus {
+form.login-form :hover, form.login-form .button:active, form.login-form .button:hover, form.login-form .button:focus {
 background: #c0392b;
 }
 
@@ -273,7 +270,7 @@ appearance: none;
 }
 
 .custom-dropdown__select--red {
-	background-color: #e74c3c;
+	background-color: #c0392b;
 	color: #fff;
 }
 

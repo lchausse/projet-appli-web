@@ -105,13 +105,12 @@ input.right-active {
 div#principal {
     padding:20px;
     margin-top:30px;
-    background-image: url(images/connexion.png); /* fallback for old browsers */
-    
 }
 
 form .erreur {
     color: #900;
 }
+
 
 img#logoYoulist {
   position: relative; 
