@@ -110,7 +110,7 @@ public class ServletUtilisateur extends HttpServlet {
 		}
 		else if (op.equals("Nouvelle Playlist")) {
 			String pseudo = request.getParameter("utilisateur");
-			request.setAttribute("utilisateur", pseudo);
+			request.setAttribute("utilisateur", facadeUtilisateur.getUtilisateur(pseudo));
 			request.getRequestDispatcher("creerPlaylist.jsp").forward(request, response);
 		}
 		else if (op.equals("Creer Playlist")) {
@@ -155,6 +155,36 @@ public class ServletUtilisateur extends HttpServlet {
 			request.setAttribute("utilisateur", user);
 			request.getRequestDispatcher("mesPlaylists.jsp").forward(request, response);
 		}
+		else if (op.equals("Mon compte")) {
+			Utilisateur user = facadeUtilisateur.getUtilisateur(request.getParameter("pseudo"));
+			request.setAttribute("utilisateur", user);
+			request.getRequestDispatcher("parametres.jsp").forward(request, response);
+		}
+		else if (op.equals("Modifier mot de passe")) {
+			Map<String, String> erreurs = new HashMap<String, String>();
+			String oldPassword = request.getParameter("oldPassword");
+			String newPassword = request.getParameter("newPassword");
+			String newPassword2 = request.getParameter("newPassword2");
+			String pseudo = request.getParameter("utilisateur");
+			Utilisateur user = facadeUtilisateur.getUtilisateur(pseudo);
+			if (!user.getMdp().equals(oldPassword)) {
+				erreurs.put("oldMdp", "L'ancien mot de passe n'est pas correct.");
+			} else {
+				try {
+				    validationMotsDePasse(newPassword, newPassword2);
+				} catch (Exception e) {
+				    erreurs.put("newMdp", e.getMessage());
+				}
+			}
+			request.setAttribute("utilisateur", user);
+			if (erreurs.isEmpty()) {
+				facadeUtilisateur.modifierMdp(pseudo, newPassword);
+				request.getRequestDispatcher("mesPlaylists.jsp").forward(request, response);
+			} else {
+				request.setAttribute("erreurs", erreurs);
+				request.getRequestDispatcher("parametres.jsp").forward(request, response);
+			}
+		}
 		else if (op.equals("Accueil")) {
 			String pseudoUser = request.getParameter("pseudo");
 			if (pseudoUser != null) {
@@ -191,15 +221,15 @@ public class ServletUtilisateur extends HttpServlet {
 	
 	private void validationMotsDePasse(String motDePasse, String confirmation) throws Exception{
 	    if (!motDePasse.equals(confirmation)) {
-	        throw new Exception("Les mots de passe entrÃ©s sont diffÃ©rents, merci de les saisir Ã  nouveau.");
+	        throw new Exception("Les mots de passe entrés sont différents, merci de les saisir à nouveau.");
 	    } else if (motDePasse.trim().length() < 3) {
-	        throw new Exception("Les mots de passe doivent contenir au moins 3 caractÃ¨res.");
+	        throw new Exception("Les mots de passe doivent contenir au moins 3 caractères.");
 	    }
 	}
 	
 	private void validationPseudo(String pseudo) throws Exception {
 	    if (pseudo != null && pseudo.trim().length() < 3) {
-	        throw new Exception("Le pseudo doit contenir au moins 3 caractÃ¨res.");
+	        throw new Exception("Le pseudo doit contenir au moins 3 caractères.");
 	    } else if (facadeUtilisateur.getUtilisateur(pseudo) != null) {
 	    	throw new Exception("Ce pseudo n'est pas disponible.");
 	    }

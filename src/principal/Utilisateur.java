@@ -14,10 +14,10 @@ public class Utilisateur {
 	private String pseudo;
 	private String mdp;
 	@ManyToMany(mappedBy="utilisateurs", fetch=FetchType.EAGER)
-	private Set<Playlist> mesPlayLists;
+	private Set<Playlist> mesPlaylists;
 	
 	public Utilisateur() {
-		this.mesPlayLists = new HashSet<Playlist>();
+		this.mesPlaylists = new HashSet<Playlist>();
 	}
 	
 	public String getPseudo() {
@@ -37,14 +37,14 @@ public class Utilisateur {
 	}
 	
 	public Set<Playlist> getMesPlaylists() {
-		return this.mesPlayLists;	
+		return this.mesPlaylists;	
 	}
 	
 	public void setMesPlaylists(Set<Playlist> playlists) {
-		this.mesPlayLists = playlists;	
+		this.mesPlaylists = playlists;	
 	}
 
 	public void addPlaylist(Playlist playlist) {
-		this.mesPlayLists.add(playlist);	
+		this.mesPlaylists.add(playlist);	
 	}
 }

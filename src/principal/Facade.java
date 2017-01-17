@@ -66,8 +66,8 @@ public class Facade {
 		Set<String> motsClefsTitreSet;
 		playlistsCorrespondantes.addAll(u.getMesPlaylists());
 		for (String motClef : motsClefs) {
+			playlistsARetirer = new HashSet<Playlist>();
 			for (Playlist pl : playlistsCorrespondantes) {
-				playlistsARetirer = new HashSet<Playlist>();
 				motsClefsTitre = Arrays.asList(pl.getTitre().split(" "));
 				motsClefsTitreSet = new HashSet<String>();
 				motsClefsTitreSet.addAll(motsClefsTitre);
@@ -91,8 +91,8 @@ public class Facade {
 		Set<String> motsClefsTitreSet;
 		playlistsCorrespondantes.addAll(this.getPlaylistsPubliques());
 		for (String motClef : motsClefs) {
+			playlistsARetirer = new HashSet<Playlist>();
 			for (Playlist pl : playlistsCorrespondantes) {
-				playlistsARetirer = new HashSet<Playlist>();
 				motsClefsTitre = Arrays.asList(pl.getTitre().split(" "));
 				motsClefsTitreSet = new HashSet<String>();
 				motsClefsTitreSet.addAll(motsClefsTitre);
@@ -121,10 +121,12 @@ public class Facade {
 		return em.find(Utilisateur.class, pseudo);
 	}
 	
-	public List<Playlist> getPlaylistsPubliques() {
+	public Set<Playlist> getPlaylistsPubliques() {
 		TypedQuery<Playlist> req = em.createQuery(
 				"SELECT p FROM Playlist p WHERE p.publique = TRUE", Playlist.class);
-		return req.getResultList();
+		Set<Playlist> res = new HashSet<Playlist>();
+		res.addAll(req.getResultList());
+		return res;
 	}
 	
 	public void ajouterMusique(Playlist playlist, Musique musique) {

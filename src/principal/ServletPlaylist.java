@@ -48,7 +48,7 @@ public class ServletPlaylist extends HttpServlet {
 		String op = request.getParameter("op");
 		Set<Playlist> results;
 		Playlist pl;
-		if (op.equals("Rechercher Playlist")) {
+		if (op.equals("Rechercher Playlist Publique")) {
 			String recherche = request.getParameter("recherchePublique");
 			String[] motsClefs;
 			motsClefs = recherche.split(" ");
