@@ -38,7 +38,8 @@ Set<Playlist> resultatRecherche = (Set<Playlist>)request.getAttribute("resultats
 <input type="submit" name="op" class="button" value="Rechercher" class = "button"/>
 </form>
 
-
+<br/>
+<br/>
 <div class="min">
 <%
 if (resultatRecherche == null) {
@@ -86,7 +87,7 @@ utilisateur" />
 </div>
 
 <form action = "ServletUtilisateur" method = "POST" >
-<input type="image" name="op" value = "Nouvelle Playlist" src="images/ajouterPlaylist.png" id="newpl"/>
+<input type="image" name="op" value = "Nouvelle Playlist" src="images/ajouterPlaylist.png" id = "newpl"/>
 <input type="hidden" name="utilisateur" value="<%=user.getPseudo()%>" />
 </form>
 <!-- <script language="javascript"> -->
