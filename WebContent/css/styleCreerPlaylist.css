@@ -131,14 +131,6 @@ section#rechercheMusique input[type="search"] {
    transition: border 0.3s;
 }
 
-img#logoYoulist {
- position: relative; 
- top: 0;
- left: 0;
- width: 18px;
- height: 18px;
-}
-
 form .erreur {
    color: #900;
 }
@@ -176,15 +168,6 @@ form .erreur {
 form .erreur {
    color: #900;
 }
-
-img#logoYoulist {
- position: relative; 
- top: 0;
- left: 0;
- width: 18px;
- height: 18px;
-}
-
 
 form.login-form {
 width: 360px;
